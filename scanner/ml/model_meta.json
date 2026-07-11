@@ -1,0 +1,67 @@
+{
+ "entraine_le": "2026-07-11",
+ "seuil_signal_p85_valid": 0.323,
+ "metrics": {
+  "train": {
+   "n": 25671,
+   "taux_de_base": 0.1734,
+   "auc": 0.8972,
+   "brier": 0.1044,
+   "taux_top_decile": 0.7255,
+   "lift_top_decile": 4.18
+  },
+  "valid": {
+   "n": 6192,
+   "taux_de_base": 0.1743,
+   "auc": 0.6439,
+   "brier": 0.1408,
+   "taux_top_decile": 0.3597,
+   "lift_top_decile": 2.06
+  },
+  "test": {
+   "n": 6708,
+   "taux_de_base": 0.1492,
+   "auc": 0.625,
+   "brier": 0.1265,
+   "taux_top_decile": 0.2385,
+   "lift_top_decile": 1.6
+  }
+ },
+ "features": [
+  "rv5_sur_rv20",
+  "rv20_sur_rv60",
+  "rv20_pctl_1an",
+  "bollinger_width",
+  "bbw_pctl_6mois",
+  "compression_5_60",
+  "max_abs_ret_5j",
+  "abs_ret_veille",
+  "jours_depuis_choc",
+  "rsi14",
+  "mom5",
+  "mom20",
+  "mom60",
+  "dist_haut_20j",
+  "dist_bas_20j",
+  "dist_haut_60j",
+  "dist_bas_60j",
+  "autocorr_1j",
+  "skew_20j",
+  "kurt_20j",
+  "volume_5_sur_60",
+  "volume_5_sur_20",
+  "log_dollar_volume"
+ ],
+ "label": "mouvement > 1.645 x sigma_5j sous 5 séances",
+ "univers": 133,
+ "limites_connues": [
+  "biais de survivance : univers = titres cotés en 2026, appliqué rétroactivement (métriques modestement optimistes)",
+  "test = une seule fenêtre de 5 mois, labels chevauchants : IC95 AUC ~[0.60, 0.65]",
+  "l'edge économique net (après thêta + fourchettes) n'est PAS démontré : utiliser comme signal de timing, pas comme stratégie autonome"
+ ],
+ "gel": {
+  "date": "2026-07-11",
+  "sha256_model": "11fa6982d2cf365970875ef5dbfb016fd7e7159c79e1a261e62ccf74df292f4b",
+  "protocole": "Modèle, features et seuil (0.323, p85 validation uniquement) GELÉS après audit. Toute évaluation future se fait PROSPECTIVEMENT via output/journal_signaux.csv sur des données jamais utilisées dans aucune décision de développement. Interdiction de re-régler le seuil sur les résultats du test."
+ }
+}

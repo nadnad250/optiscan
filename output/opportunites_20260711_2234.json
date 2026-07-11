@@ -1,0 +1,309 @@
+{
+  "generated_at": "2026-07-11T22:34:28",
+  "count": 13,
+  "opportunities": [
+    {
+      "ticker": "MARA",
+      "kind": "put_cash_secured",
+      "strategy": "Vendre put MARA 12 exp 2026-07-31 @ ~0.81$ (capital requis 1,200$)",
+      "score": 88.0,
+      "summary": "MARA : put 12 (20j, delta 0.36) rapporte ~123% annualisé, prob. de profit ~55%",
+      "details": {
+        "expiry": "2026-07-31",
+        "dte": 20,
+        "strike": 12.0,
+        "mid": 0.81,
+        "delta": 0.36,
+        "annual_yield": 1.232,
+        "prob_profit": 0.55,
+        "capital_requis": 1200,
+        "greeks": {
+          "delta": 0.3649,
+          "gamma": -0.1381,
+          "theta_jour": 0.0249
+        }
+      }
+    },
+    {
+      "ticker": "SOFI",
+      "kind": "put_cash_secured",
+      "strategy": "Vendre put SOFI 18 exp 2026-07-31 @ ~0.86$ (capital requis 1,800$)",
+      "score": 80.8,
+      "summary": "SOFI : put 18 (20j, delta 0.36) rapporte ~87% annualisé, prob. de profit ~58%",
+      "details": {
+        "expiry": "2026-07-31",
+        "dte": 20,
+        "strike": 18.0,
+        "mid": 0.86,
+        "delta": 0.36,
+        "annual_yield": 0.872,
+        "prob_profit": 0.58,
+        "capital_requis": 1800,
+        "greeks": {
+          "delta": 0.3598,
+          "gamma": -0.1236,
+          "theta_jour": 0.0274
+        }
+      }
+    },
+    {
+      "ticker": "SOFI",
+      "kind": "strategie_optimale",
+      "strategy": "VENDRE call 20.5 + ACHETER call 21.5 exp 2026-07-31 (crédit ~0.24$)",
+      "score": 72.8,
+      "summary": "SOFI : bear call spread 20.5/21.5 exp 2026-07-31 (20j) — crédit 0.24$, risque max 0.76$, POP 80%, EV prudent +0.02$/action, gain max 32% du risque en 20j [ATTENTION : earnings avant l'expiration]",
+      "details": {
+        "strategie": "bear call spread",
+        "jambes": [
+          "VENDRE call 20.5",
+          "ACHETER call 21.5"
+        ],
+        "expiry": "2026-07-31",
+        "dte": 20,
+        "credit_par_action": 0.24,
+        "risque_max_par_action": 0.76,
+        "prob_profit": 0.803,
+        "esperance_gain_EV": 0.067,
+        "edge_par_risque": 0.089,
+        "ratio_gain_risque": 0.325,
+        "rendement_annualise": 5.922,
+        "kelly_pleine": 0.195,
+        "demi_kelly_conseillee": 0.097,
+        "spot": 18.78,
+        "vol_estimee": 0.539,
+        "iv_atm": 0.699,
+        "ev_prudent_apres_frais": 0.023,
+        "greeks": {
+          "delta": -0.1091,
+          "gamma": -0.0364,
+          "theta_jour": 0.0053,
+          "vega": -0.0038
+        },
+        "attention_earnings": "résultats dans 18j, avant l'expiration — risque de gap"
+      }
+    },
+    {
+      "ticker": "SOFI",
+      "kind": "strategie_optimale",
+      "strategy": "VENDRE put 16.5 + ACHETER put 14.5 exp 2026-07-31 (crédit ~0.27$)",
+      "score": 69.4,
+      "summary": "SOFI : bull put spread 16.5/14.5 exp 2026-07-31 (20j) — crédit 0.27$, risque max 1.73$, POP 86%, EV prudent +0.06$/action, gain max 15% du risque en 20j [ATTENTION : earnings avant l'expiration]",
+      "details": {
+        "strategie": "bull put spread",
+        "jambes": [
+          "VENDRE put 16.5",
+          "ACHETER put 14.5"
+        ],
+        "expiry": "2026-07-31",
+        "dte": 20,
+        "credit_par_action": 0.27,
+        "risque_max_par_action": 1.73,
+        "prob_profit": 0.862,
+        "esperance_gain_EV": 0.11,
+        "edge_par_risque": 0.064,
+        "ratio_gain_risque": 0.153,
+        "rendement_annualise": 2.787,
+        "kelly_pleine": 0.0,
+        "demi_kelly_conseillee": 0.0,
+        "spot": 18.78,
+        "vol_estimee": 0.539,
+        "iv_atm": 0.699,
+        "ev_prudent_apres_frais": 0.064,
+        "greeks": {
+          "delta": 0.1174,
+          "gamma": -0.0737,
+          "theta_jour": 0.0101,
+          "vega": -0.0077
+        },
+        "attention_earnings": "résultats dans 18j, avant l'expiration — risque de gap"
+      }
+    },
+    {
+      "ticker": "F",
+      "kind": "strategie_optimale",
+      "strategy": "VENDRE put 13 + ACHETER put 12 + VENDRE call 15 + ACHETER call 16 exp 2026-07-31 (crédit ~0.29$)",
+      "score": 68.5,
+      "summary": "F : iron condor 13/12/15/16 exp 2026-07-31 (20j) — crédit 0.29$, risque max 0.71$, POP 73%, EV prudent +0.02$/action, gain max 40% du risque en 20j [ATTENTION : earnings avant l'expiration]",
+      "details": {
+        "strategie": "iron condor",
+        "jambes": [
+          "VENDRE put 13",
+          "ACHETER put 12",
+          "VENDRE call 15",
+          "ACHETER call 16"
+        ],
+        "expiry": "2026-07-31",
+        "dte": 20,
+        "credit_par_action": 0.29,
+        "risque_max_par_action": 0.71,
+        "prob_profit": 0.729,
+        "esperance_gain_EV": 0.073,
+        "edge_par_risque": 0.102,
+        "ratio_gain_risque": 0.399,
+        "rendement_annualise": 7.274,
+        "kelly_pleine": 0.05,
+        "demi_kelly_conseillee": 0.025,
+        "spot": 14.0,
+        "vol_estimee": 0.357,
+        "iv_atm": 0.452,
+        "ev_prudent_apres_frais": 0.024,
+        "greeks": {
+          "delta": -0.0206,
+          "gamma": -0.3113,
+          "theta_jour": 0.0107,
+          "vega": -0.0119
+        },
+        "attention_earnings": "résultats dans 17j, avant l'expiration — risque de gap"
+      }
+    },
+    {
+      "ticker": "SOFI",
+      "kind": "achat_call",
+      "strategy": "ACHETER call 20 exp 2026-07-31 @ ~0.79$ (78$/contrat, perte max = la prime)",
+      "score": 64.6,
+      "summary": "SOFI : 4/4 signaux hausse convergents (flux +85%, momentum +18.3%, RSI 60, skew +0.39) → call 20 (20j) @ 0.79$ — si mouvement 1σ (12.6%) : +47% sur la prime",
+      "details": {
+        "sens": "HAUSSE",
+        "side": "call",
+        "strike": 20.0,
+        "expiry": "2026-07-31",
+        "dte": 20,
+        "prime_par_action": 0.79,
+        "cout_par_contrat": 78,
+        "delta": 0.39,
+        "breakeven": 20.79,
+        "mouvement_necessaire": 0.107,
+        "mouvement_attendu_1sigma": 0.126,
+        "gain_si_mouvement_1sigma": 0.47,
+        "prob_profit_a_echeance": 0.19,
+        "score_direction": 0.8,
+        "signaux": {
+          "direction": 0.8002091445252749,
+          "flux": 0.85,
+          "momentum_20j": 0.183,
+          "rsi": 60.0,
+          "breakout": 1.0,
+          "skew": 0.39
+        },
+        "iv_contrat": 0.705,
+        "vol_realisee": 0.433,
+        "spot": 18.78,
+        "attention_earnings": "résultats dans 18j, avant l'expiration : tu paies l'IV gonflée et elle s'écrasera après l'annonce (IV crush)"
+      }
+    },
+    {
+      "ticker": "SOFI",
+      "kind": "activite_inhabituelle",
+      "strategy": "Surveiller / suivre le flux : call 23 exp 2026-07-31",
+      "score": 61.2,
+      "summary": "SOFI : volume 50,198 vs OI 4,693 (x10.7) sur call 23 (+22.5% du spot), ~1.00M$ de prime — flux haussier",
+      "details": {
+        "expiry": "2026-07-31",
+        "dte": 20,
+        "side": "call",
+        "strike": 23.0,
+        "volume": 50198,
+        "open_interest": 4693,
+        "ratio_vol_oi": 10.7,
+        "premium_flow_usd": 1003960
+      }
+    },
+    {
+      "ticker": "SOFI",
+      "kind": "activite_inhabituelle",
+      "strategy": "Surveiller / suivre le flux : call 20 exp 2026-07-31",
+      "score": 57.6,
+      "summary": "SOFI : volume 54,335 vs OI 10,570 (x5.1) sur call 20 (+6.5% du spot), ~4.24M$ de prime — flux haussier",
+      "details": {
+        "expiry": "2026-07-31",
+        "dte": 20,
+        "side": "call",
+        "strike": 20.0,
+        "volume": 54335,
+        "open_interest": 10570,
+        "ratio_vol_oi": 5.14,
+        "premium_flow_usd": 4238130
+      }
+    },
+    {
+      "ticker": "F",
+      "kind": "put_cash_secured",
+      "strategy": "Vendre put F 13.5 exp 2026-07-31 @ ~0.35$ (capital requis 1,350$)",
+      "score": 56.4,
+      "summary": "F : put 13.5 (20j, delta 0.34) rapporte ~48% annualisé, prob. de profit ~63%",
+      "details": {
+        "expiry": "2026-07-31",
+        "dte": 20,
+        "strike": 13.5,
+        "mid": 0.35,
+        "delta": 0.34,
+        "annual_yield": 0.48,
+        "prob_profit": 0.63,
+        "capital_requis": 1350,
+        "greeks": {
+          "delta": 0.3355,
+          "gamma": -0.2498,
+          "theta_jour": 0.0127
+        }
+      }
+    },
+    {
+      "ticker": "SOFI",
+      "kind": "activite_inhabituelle",
+      "strategy": "Surveiller / suivre le flux : put 19.5 exp 2026-07-17",
+      "score": 53.4,
+      "summary": "SOFI : volume 1,498 vs OI 156 (x9.6) sur put 19.5 (+3.8% du spot), ~0.16M$ de prime — flux baissier (ou couverture)",
+      "details": {
+        "expiry": "2026-07-17",
+        "dte": 6,
+        "side": "put",
+        "strike": 19.5,
+        "volume": 1498,
+        "open_interest": 156,
+        "ratio_vol_oi": 9.6,
+        "premium_flow_usd": 155792
+      }
+    },
+    {
+      "ticker": "SOFI",
+      "kind": "prime_riche",
+      "strategy": "Vente de prime : put cash-secured, covered call ou iron condor",
+      "score": 50.9,
+      "summary": "SOFI : IV 70% vs vol réalisée 43% (ratio x1.61) — les options sont chères, avantage au vendeur",
+      "details": {
+        "iv_atm": 0.6987,
+        "rv_20d": 0.4328,
+        "ratio": 1.61
+      }
+    },
+    {
+      "ticker": "MARA",
+      "kind": "activite_inhabituelle",
+      "strategy": "Surveiller / suivre le flux : call 13 exp 2026-07-17",
+      "score": 47.5,
+      "summary": "MARA : volume 37,628 vs OI 11,470 (x3.3) sur call 13 (+3.2% du spot), ~1.51M$ de prime — flux haussier",
+      "details": {
+        "expiry": "2026-07-17",
+        "dte": 6,
+        "side": "call",
+        "strike": 13.0,
+        "volume": 37628,
+        "open_interest": 11470,
+        "ratio_vol_oi": 3.28,
+        "premium_flow_usd": 1505120
+      }
+    },
+    {
+      "ticker": "F",
+      "kind": "prime_riche",
+      "strategy": "Vente de prime : put cash-secured, covered call ou iron condor",
+      "score": 46.2,
+      "summary": "F : IV 45% vs vol réalisée 29% (ratio x1.54) — les options sont chères, avantage au vendeur",
+      "details": {
+        "iv_atm": 0.4517,
+        "rv_20d": 0.2939,
+        "ratio": 1.54
+      }
+    }
+  ]
+}

@@ -1,0 +1,575 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OptiScan — Opportunités Options</title>
+<style>
+  :root{
+    --bg:#0b0e14; --panel:#12161f; --panel2:#171c28; --line:#232a3a;
+    --txt:#e7ecf5; --muted:#8b94a7; --accent:#4f8cff; --accent2:#7c5cff;
+    --green:#2fd48a; --red:#ff5d6c; --yellow:#ffc555; --cyan:#38cfe0; --magenta:#e06bd8;
+    --radius:14px; --mono:'Cascadia Code',Consolas,monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--txt);
+    font:15px/1.55 -apple-system,'Segoe UI',Roboto,sans-serif;min-height:100vh}
+  body::before{content:'';position:fixed;inset:0;pointer-events:none;
+    background:radial-gradient(900px 400px at 80% -10%,rgba(79,140,255,.14),transparent 60%),
+               radial-gradient(700px 350px at 10% -10%,rgba(124,92,255,.10),transparent 60%)}
+  .wrap{max-width:1180px;margin:0 auto;padding:28px 22px 60px;position:relative}
+
+  header{display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-bottom:26px}
+  .logo{display:flex;align-items:center;gap:12px}
+  .logo-mark{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));
+    font-weight:800;font-size:19px;color:#fff;box-shadow:0 6px 24px rgba(79,140,255,.35)}
+  h1{font-size:21px;font-weight:700;letter-spacing:.3px}
+  h1 span{color:var(--muted);font-weight:500;font-size:13px;display:block;letter-spacing:.4px}
+  .spacer{flex:1}
+  .meta{color:var(--muted);font-size:13px;text-align:right}
+  .meta b{color:var(--txt)}
+
+  .btn{border:0;border-radius:10px;padding:11px 20px;font-size:14px;font-weight:600;
+    cursor:pointer;color:#fff;background:linear-gradient(135deg,var(--accent),var(--accent2));
+    box-shadow:0 4px 18px rgba(79,140,255,.35);transition:.15s}
+  .btn:hover{transform:translateY(-1px);filter:brightness(1.1)}
+  .btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+
+  .progress{display:none;margin:-8px 0 20px;background:var(--panel);border:1px solid var(--line);
+    border-radius:var(--radius);padding:14px 18px}
+  .progress.on{display:block}
+  .progress .lbl{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-bottom:8px}
+  .bar{height:7px;border-radius:99px;background:var(--panel2);overflow:hidden}
+  .bar i{display:block;height:100%;width:0;border-radius:99px;transition:width .5s;
+    background:linear-gradient(90deg,var(--accent),var(--accent2))}
+
+  .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:22px}
+  .tile{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px}
+  .tile .k{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.8px}
+  .tile .v{font-size:26px;font-weight:700;margin-top:4px;font-variant-numeric:tabular-nums}
+  .tile .v small{font-size:13px;color:var(--muted);font-weight:500}
+
+  .controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:16px}
+  .chip{border:1px solid var(--line);background:var(--panel);color:var(--muted);border-radius:99px;
+    padding:7px 14px;font-size:13px;cursor:pointer;transition:.15s;user-select:none}
+  .chip:hover{border-color:var(--accent)}
+  .chip.on{background:rgba(79,140,255,.16);border-color:var(--accent);color:var(--txt)}
+  .chip b{font-variant-numeric:tabular-nums}
+  input[type=search]{background:var(--panel);border:1px solid var(--line);border-radius:10px;
+    color:var(--txt);padding:9px 14px;font-size:14px;width:170px;outline:none}
+  input[type=search]:focus{border-color:var(--accent)}
+  select{background:var(--panel);border:1px solid var(--line);border-radius:10px;
+    color:var(--txt);padding:10px 12px;font-size:13.5px;outline:none;cursor:pointer}
+  select:focus{border-color:var(--accent)}
+  .guide-link{color:var(--accent);text-decoration:none;font-size:14px;font-weight:600;
+    padding:9px 14px;border:1px solid var(--line);border-radius:10px;transition:.15s}
+  .guide-link:hover{border-color:var(--accent)}
+  /* mode statique (GitHub Pages) : pas de serveur -> actions masquées */
+  body.static #btn-scan, body.static #source, body.static .stage-row{display:none}
+  .score-filter{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:13px}
+  input[type=range]{accent-color:var(--accent)}
+
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+    margin-bottom:10px;overflow:hidden;transition:border-color .15s}
+  .card:hover{border-color:#2e3850}
+  .row{display:grid;grid-template-columns:70px 90px 160px 1fr;gap:14px;align-items:center;
+    padding:15px 18px;cursor:pointer}
+  .score{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;
+    font-weight:800;font-size:16px;font-variant-numeric:tabular-nums;
+    background:conic-gradient(var(--c,#4f8cff) calc(var(--p,0)*1%),var(--panel2) 0);position:relative}
+  .score::before{content:'';position:absolute;inset:4px;border-radius:50%;background:var(--panel)}
+  .score span{position:relative}
+  .tick{font-weight:800;font-size:17px;letter-spacing:.5px}
+  .badge{display:inline-block;padding:5px 11px;border-radius:8px;font-size:12px;font-weight:700;
+    letter-spacing:.3px;background:color-mix(in srgb,var(--bc) 16%,transparent);
+    color:var(--bc);border:1px solid color-mix(in srgb,var(--bc) 35%,transparent)}
+  .sum{color:var(--txt);font-size:14px}
+  .sum .strat{display:block;color:var(--green);font-size:13px;margin-top:3px}
+  .details{display:none;border-top:1px solid var(--line);background:var(--panel2);padding:16px 18px}
+  .card.open .details{display:block}
+  .expl{color:var(--muted);font-size:13.5px;margin-bottom:14px;line-height:1.5}
+  .facts{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:10px}
+  .fact{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 13px}
+  .fact .l{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.6px}
+  .fact .v{font-size:16.5px;font-weight:700;margin-top:3px;font-variant-numeric:tabular-nums}
+  .fact .v small{font-size:12px;color:var(--muted);font-weight:500}
+  .fact.good .v{color:var(--green)} .fact.bad .v{color:var(--red)}
+  .warnbox{margin-top:12px;padding:10px 14px;border-radius:10px;font-size:13px;font-weight:600;
+    background:color-mix(in srgb,var(--red) 14%,transparent);color:var(--red);
+    border:1px solid color-mix(in srgb,var(--red) 35%,transparent)}
+  .stage-row{margin-top:14px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .btn.stage{background:linear-gradient(135deg,var(--green),#1ea86b);box-shadow:0 4px 16px rgba(47,212,138,.3)}
+  .stage-hint{color:var(--muted);font-size:12px}
+  .chip.preset.on{background:rgba(124,92,255,.18);border-color:var(--accent2);color:var(--txt)}
+
+  .modal-bg{display:none;position:fixed;inset:0;background:rgba(5,8,14,.75);z-index:50;
+    align-items:center;justify-content:center;backdrop-filter:blur(3px)}
+  .modal-bg.on{display:flex}
+  .modal{background:var(--panel);border:1px solid var(--line);border-radius:16px;
+    padding:24px;width:min(430px,92vw);box-shadow:0 20px 60px rgba(0,0,0,.5)}
+  .modal h3{font-size:17px;margin-bottom:4px}
+  .modal .contract{color:var(--accent);font-size:14px;font-weight:600;margin-bottom:14px}
+  .modal label{display:block;color:var(--muted);font-size:12px;text-transform:uppercase;
+    letter-spacing:.6px;margin:10px 0 4px}
+  .modal input{width:100%;background:var(--panel2);border:1px solid var(--line);border-radius:9px;
+    color:var(--txt);padding:10px 12px;font-size:15px;outline:none}
+  .modal input:focus{border-color:var(--accent)}
+  .modal .total{margin:14px 0;font-size:15px}
+  .modal .total b{font-size:19px}
+  .modal .actions{display:flex;gap:10px;margin-top:14px}
+  .modal .actions .btn{flex:1}
+  .btn.ghost{background:var(--panel2);box-shadow:none;color:var(--muted);border:1px solid var(--line)}
+  .modal .result{margin-top:12px;padding:11px 13px;border-radius:9px;font-size:13.5px;display:none}
+  .modal .result.ok{display:block;background:rgba(47,212,138,.14);color:var(--green)}
+  .modal .result.err{display:block;background:rgba(255,93,108,.14);color:var(--red)}
+  .modal .steps{color:var(--muted);font-size:12.5px;margin-top:10px;line-height:1.5}
+
+  .empty{color:var(--muted);text-align:center;padding:60px 0;font-size:15px}
+  footer{margin-top:34px;color:var(--muted);font-size:12.5px;text-align:center}
+  @media(max-width:760px){.row{grid-template-columns:56px 1fr;grid-auto-rows:auto}
+    .row .badge-cell{grid-column:2}.sum{grid-column:1/-1}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="logo">
+      <div class="logo-mark">O</div>
+      <h1>OptiScan<span>Scanner d'opportunités options — alertes uniquement</span></h1>
+    </div>
+    <div class="spacer"></div>
+    <a class="guide-link" href="guide.html">📖 Guide débutant</a>
+    <div class="meta">Dernier scan<br><b id="last-scan">—</b></div>
+    <select id="source" title="Source de données">
+      <option value="ib" selected>Interactive Brokers</option>
+      <option value="yahoo">Yahoo (différé 15 min)</option>
+    </select>
+    <button class="btn" id="btn-scan">Scanner maintenant</button>
+  </header>
+
+  <div class="progress" id="progress">
+    <div class="lbl"><span id="prog-label">Scan en cours…</span><span id="prog-count"></span></div>
+    <div class="bar"><i id="prog-bar"></i></div>
+  </div>
+
+  <div class="tiles">
+    <div class="tile"><div class="k">Opportunités</div><div class="v" id="t-total">0</div></div>
+    <div class="tile"><div class="k">Meilleur score</div><div class="v" id="t-best">—</div></div>
+    <div class="tile"><div class="k">Achats call / put</div><div class="v" id="t-flux">0</div></div>
+    <div class="tile"><div class="k">Setups vendeur</div><div class="v" id="t-vendeur">0 <small>prime riche + CSP</small></div></div>
+  </div>
+
+  <div class="controls" id="presets">
+    <span class="chip preset on" data-p="tout">Tout</span>
+    <span class="chip preset" data-p="achats">🎯 Achats call / put</span>
+    <span class="chip preset" data-p="europe">💶 Europe</span>
+    <span class="chip preset" data-p="cheap">💵 ≤ 150 $/contrat</span>
+    <span class="chip preset" data-p="clean">✅ Sans earnings</span>
+  </div>
+  <div class="controls">
+    <input type="search" id="search" placeholder="Ticker…">
+    <div id="chips"></div>
+    <div class="score-filter">Score min <input type="range" id="minscore" min="0" max="100" value="0">
+      <b id="minscore-v">0</b></div>
+  </div>
+  <div class="controls" id="dte-row">
+    <span style="color:var(--muted);font-size:13px">Échéance :</span>
+    <span class="chip dte" data-min="0" data-max="10">Court &le; 10 j</span>
+    <span class="chip dte" data-min="11" data-max="30">Moyen 11-30 j</span>
+    <span class="chip dte" data-min="31" data-max="999">Long &gt; 30 j</span>
+  </div>
+
+  <div id="list"></div>
+  <footer>Les ordres préparés depuis l'interface restent <b>INACTIFS</b> dans TWS tant que tu ne cliques
+    pas « Transmettre » toi-même. Sans abonnement temps réel, données différées ~15 min.
+    Les options comportent un risque de perte élevé.</footer>
+</div>
+
+<div class="modal-bg" id="modal-bg">
+  <div class="modal">
+    <h3 id="m-title">Préparer l'ordre</h3>
+    <div class="contract" id="m-contract"></div>
+    <label>Quantité (contrats)</label>
+    <input type="number" id="m-qty" min="1" max="5" step="1" value="1">
+    <label>Prix limite ($ par action)</label>
+    <input type="number" id="m-price" min="0.01" step="0.01">
+    <div class="total" id="m-total"></div>
+    <div class="actions">
+      <button class="btn ghost" id="m-cancel">Annuler</button>
+      <button class="btn" id="m-send">Préparer dans TWS</button>
+    </div>
+    <div class="result" id="m-result"></div>
+    <div class="steps">1. L'ordre apparaît dans TWS, <b>inactif</b> (rouge).<br>
+      2. Vérifie-le puis clique <b>Transmettre</b> dans TWS pour l'envoyer réellement.<br>
+      3. Rien ne part tant que tu ne transmets pas.</div>
+  </div>
+</div>
+
+<script>
+const KINDS = {
+  achat_call:{label:'ACHAT CALL — hausse', color:'var(--green)'},
+  achat_put:{label:'ACHAT PUT — baisse', color:'var(--red)'},
+  ml_mouvement:{label:'🤖 IA : mouvement imminent', color:'var(--accent)'},
+  activite_inhabituelle:{label:'Flux inhabituel', color:'var(--red)'},
+  prime_riche:{label:'Prime riche', color:'var(--green)'},
+  options_bon_marche:{label:'IV bon marché', color:'var(--cyan)'},
+  skew_peur:{label:'Skew extrême', color:'var(--magenta)'},
+  skew_inverse:{label:'Skew inversé', color:'var(--magenta)'},
+  earnings_iv:{label:'Earnings / IV', color:'var(--yellow)'},
+  put_cash_secured:{label:'Put cash-secured', color:'var(--green)'},
+  strategie_optimale:{label:'Stratégie optimale', color:'var(--yellow)'},
+};
+let DATA = [], activeKinds = new Set(), search = '', minScore = 0, dteRange = null, preset = 'tout';
+
+const PRESET_FILTERS = {
+  tout: () => true,
+  achats: o => o.kind === 'achat_call' || o.kind === 'achat_put',
+  europe: o => o.ticker.includes('(EUR)'),
+  cheap: o => {
+    const d = o.details || {};
+    const cost = d.cout_par_contrat ?? (d.risque_max_par_action != null ? d.risque_max_par_action * 100 : d.capital_requis);
+    return cost != null && cost <= 150;
+  },
+  clean: o => !(o.details || {}).attention_earnings,
+};
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+const fmtExp = e => {
+  const s = String(e).replace(/-/g,'');
+  return s.length === 8 ? `${s.slice(6,8)}/${s.slice(4,6)}/${s.slice(0,4)}` : e;
+};
+const usd = x => (x >= 1e6 ? (x/1e6).toFixed(2)+' M$'
+  : Math.abs(x) < 10 && x !== 0 ? x.toFixed(2).replace('.', ',')+' $'
+  : Math.round(x).toLocaleString('fr-FR')+' $');
+const pct = x => Math.round(x*100)+' %';
+const fact = (label, value, cls='') =>
+  `<div class="fact ${cls}"><div class="l">${label}</div><div class="v">${value}</div></div>`;
+
+function fiche(o){
+  const d = o.details || {};
+  let expl = '', facts = [], warn = '';
+  const exp = d.expiry ? fmtExp(d.expiry) : '';
+
+  if(o.kind === 'strategie_optimale'){
+    const credit = d.credit_par_action ?? 0;
+    expl = credit > 0
+      ? "Tu encaisses une prime tout de suite. Si l'action reste du bon côté jusqu'à l'échéance, tu gardes tout. Ta perte est plafonnée quoi qu'il arrive."
+      : "Tu paies une prime pour parier sur un GROS mouvement (peu importe le sens). Perte plafonnée à ce que tu paies.";
+    facts = [
+      fact('Ce que tu fais', (d.jambes||[]).join('<br>')),
+      fact('Échéance', `${exp} <small>(${d.dte} j)</small>`),
+      credit > 0 ? fact('Tu encaisses', usd(credit*100)+' <small>/spread</small>', 'good')
+                 : fact('Tu paies', usd(-credit*100)+' <small>/spread</small>'),
+      fact('Perte maximum', usd((d.risque_max_par_action||0)*100)+' <small>/spread</small>', 'bad'),
+      fact('Chances de gagner', pct(d.prob_profit||0), 'good'),
+      fact('Avantage net (après frais)', ((d.ev_prudent_apres_frais??d.esperance_gain_EV)>=0?'+':'')+usd(((d.ev_prudent_apres_frais??d.esperance_gain_EV)||0)*100)+' <small>/spread</small>'),
+      fact('Gain max sur la durée', pct(d.ratio_gain_risque||0)+' <small>du risque</small>'),
+      fact('Taille conseillée', pct(d.demi_kelly_conseillee||0)+' <small>du capital max</small>'),
+    ];
+    if(d.greeks){
+      const g = d.greeks;
+      facts.push(fact('Thêta — le temps te paie', (g.theta_jour>=0?'+':'')+usd(g.theta_jour*100)+' <small>/jour</small>', g.theta_jour>=0?'good':'bad'));
+      facts.push(fact('Delta position', (g.delta>=0?'+':'')+g.delta.toFixed(2)+' <small>sensibilité au prix</small>'));
+      facts.push(fact('Gamma', g.gamma.toFixed(4)+' <small>accélération du delta</small>'));
+    }
+    if(d.attention_earnings) warn = '⚠ Résultats financiers AVANT l\'expiration — risque de gros écart. ' + esc(d.attention_earnings);
+  }
+  else if(o.kind === 'achat_call' || o.kind === 'achat_put'){
+    const haussier = o.kind === 'achat_call';
+    const s = d.signaux || {};
+    expl = (haussier
+      ? "Plusieurs signaux indépendants pointent vers une HAUSSE : flux d'argent sur les calls, momentum, cassure, skew. "
+      : "Plusieurs signaux indépendants pointent vers une BAISSE : flux d'argent sur les puts, momentum, cassure, skew. ")
+      + "Tu achètes l'option : perte limitée à la prime, gain potentiellement multiple si le mouvement arrive.";
+    facts = [
+      fact('Ce que tu fais', `ACHETER ${d.side} ${d.strike}`, haussier ? 'good' : 'bad'),
+      fact('Échéance', `${exp} <small>(${d.dte} j)</small>`),
+      fact('Tu paies', usd(d.cout_par_contrat||0)+' <small>/contrat</small>'),
+      fact('Perte maximum', usd(d.cout_par_contrat||0)+' <small>la prime, jamais plus</small>', 'bad'),
+      fact('Breakeven', (d.breakeven||0)+' $ <small>('+pct(Math.abs(d.mouvement_necessaire||0))+' de mouvement)</small>'),
+      fact('Mouvement attendu (1σ)', pct(Math.abs(d.mouvement_attendu_1sigma||0))),
+      fact('Gain si mouvement 1σ', (d.gain_si_mouvement_1sigma>=0?'+':'')+pct(d.gain_si_mouvement_1sigma||0), 'good'),
+      fact('Chances de profit', pct(d.prob_profit_a_echeance||0)),
+      fact('Force du signal', (d.score_direction>=0?'+':'')+(d.score_direction||0).toFixed(2)+' <small>/ ±1</small>'),
+      fact('Flux d\'options', (s.flux>=0?'+':'')+pct(s.flux||0)+' <small>calls vs puts</small>'),
+      fact('Momentum 20j', (s.momentum_20j>=0?'+':'')+pct(s.momentum_20j||0)+' <small>RSI '+(s.rsi||'—')+'</small>'),
+      fact('Delta', (d.delta||0).toFixed(2)),
+    ];
+    warn = '⚠ Acheter une option = pari directionnel : la prime peut être perdue à 100 %. Mise petite (1-2 % du capital max).';
+    if(d.attention_earnings) warn += ' ⚠ ' + esc(d.attention_earnings);
+  }
+  else if(o.kind === 'put_cash_secured'){
+    expl = `Tu promets d'acheter 100 actions à ${d.strike} $ si l'action descend sous ce prix d'ici l'échéance. En échange, tu encaisses la prime immédiatement. Si l'action reste au-dessus : prime gagnée. Sinon : tu achètes une action que tu voulais, moins cher.`;
+    facts = [
+      fact('Ce que tu fais', `Vendre le put ${d.strike}`),
+      fact('Échéance', `${exp} <small>(${d.dte} j)</small>`),
+      fact('Tu encaisses', usd((d.mid||0)*100)+' <small>/contrat</small>', 'good'),
+      fact('Capital à bloquer', usd(d.capital_requis||0), 'bad'),
+      fact('Chances de garder la prime', pct(d.prob_profit||0), 'good'),
+      fact('Rendement annualisé', pct(d.annual_yield||0)),
+    ];
+    if(d.greeks){
+      facts.push(fact('Thêta — le temps te paie', '+'+usd((d.greeks.theta_jour||0)*100)+' <small>/jour</small>', 'good'));
+      facts.push(fact('Gamma', (d.greeks.gamma||0).toFixed(4)));
+    }
+  }
+  else if(o.kind === 'activite_inhabituelle'){
+    const sens = d.side === 'call' ? 'HAUSSE 📈' : 'BAISSE (ou couverture) 📉';
+    expl = "Quelqu'un vient d'ouvrir une très grosse position nouvelle sur ce contrat précis — souvent le signe d'un acteur bien informé. À surveiller, pas à copier aveuglément.";
+    facts = [
+      fact('Contrat visé', `${d.side} ${d.strike}`),
+      fact('Échéance', `${exp} <small>(${d.dte} j)</small>`),
+      fact('Pari sur', sens),
+      fact('Argent engagé', usd(d.premium_flow_usd||0), 'good'),
+      fact('Volume aujourd\'hui', (d.volume||0).toLocaleString('fr-FR')),
+      fact('vs positions existantes', 'x'+(d.ratio_vol_oi||0)),
+    ];
+  }
+  else if(o.kind === 'prime_riche' || o.kind === 'options_bon_marche'){
+    const riche = o.kind === 'prime_riche';
+    expl = riche
+      ? "Le marché fait payer les options plus cher que ce que l'action bouge réellement. Avantage statistique à celui qui VEND la prime."
+      : "Les options coûtent moins cher que ce que l'action bouge réellement. Avantage statistique à celui qui ACHÈTE.";
+    facts = [
+      fact('Prix de la volatilité (IV)', pct(d.iv_atm||0)),
+      fact('Mouvement réel (20 j)', pct(d.rv_20d||0)),
+      fact('Rapport', 'x'+(d.ratio||0), riche?'bad':'good'),
+      fact('À faire', riche ? 'Vendre de la prime' : 'Acheter des options', 'good'),
+    ];
+  }
+  else if(o.kind === 'skew_peur' || o.kind === 'skew_inverse'){
+    expl = o.kind === 'skew_peur'
+      ? "La protection contre la baisse (puts) se paie anormalement cher : le marché a peur. Vendre cette peur est souvent payant."
+      : "Signal RARE : les calls valent plus cher que les puts — spéculation haussière agressive en cours.";
+    facts = [
+      fact('IV des puts (-5 %)', pct(d.put_iv||0)),
+      fact('IV des calls (+5 %)', pct(d.call_iv||0)),
+      fact('Écart', (d.skew_pts>0?'+':'')+d.skew_pts+' pts'),
+      fact('Échéance', `${exp} <small>(${d.dte} j)</small>`),
+    ];
+  }
+  else if(o.kind === 'earnings_iv'){
+    expl = "Résultats financiers imminents : la volatilité est gonflée et va s'écraser juste après l'annonce. Éviter d'acheter des options sèches maintenant.";
+    facts = [
+      fact('Résultats dans', (d.earnings_days??'?')+' jours', 'bad'),
+      fact('IV actuelle', pct(d.iv_atm||0)),
+      fact('Gonflement', 'x'+(d.iv_inflation||1)),
+    ];
+  }
+  else if(o.kind === 'ml_mouvement'){
+    const s = d.straddle || {};
+    expl = "Le modèle d'IA (entraîné sur 3 ans × 133 titres) détecte les conditions qui précèdent souvent un GROS mouvement — sans connaître le sens. Les options facturent ce mouvement moins cher que sa probabilité réelle : acheter le mouvement (straddle = call + put) est statistiquement bon marché.";
+    facts = [
+      fact('Prob. de gros mouvement (5 séances)', pct(d.prob_modele_5j||0), 'good'),
+      fact('Confiance vs moyenne', esc(d.confiance_vs_moyenne||'—')+' <small>taux de base '+pct(d.taux_de_base||0)+'</small>'),
+      fact('Ce que les options facturent', pct(d.prob_implicite_options||0)),
+      fact('Ratio modèle / options', 'x'+(d.ratio_modele_options||0)),
+      fact('Mouvement seuil', '±'+pct(d.mouvement_seuil||0)),
+      fact('Fiabilité du modèle (AUC test)', String(d.auc_test_du_modele||'—')+' <small>0.5 = hasard</small>'),
+    ];
+    if(s.strike) facts.push(
+      fact('Straddle suggéré', `${s.strike} exp ${fmtExp(s.expiry)} <small>(${s.dte} j)</small>`),
+      fact('Coût du straddle', usd(s.cout_par_contrat||0)+' <small>/contrat — perte max</small>', 'bad'));
+    warn = '⚠ Le modèle prédit le MOUVEMENT, pas le sens. Après thêta et fourchettes, l\'achat sec de straddle est rarement gagnant (audit) : utilise plutôt ce signal comme TIMING pour tes achats call/put.';
+    if(d.attention_earnings) warn += ' ⚠ ' + esc(d.attention_earnings);
+  }
+  else {
+    facts = Object.entries(d).slice(0,8).map(([k,v]) => fact(esc(k), esc(String(v))));
+  }
+
+  // bouton d'ordre : achats directionnels (BUY) et puts cash-secured (SELL)
+  let stageBtn = '';
+  const orderable = (o.kind === 'achat_call' || o.kind === 'achat_put' || o.kind === 'put_cash_secured');
+  if(orderable && d.strike && d.expiry){
+    const symbol = o.ticker.split(' ')[0];
+    const currency = o.ticker.includes('(EUR)') ? 'EUR' : 'USD';
+    const isCSP = o.kind === 'put_cash_secured';
+    const payload = {
+      symbol, currency,
+      side: isCSP ? 'put' : d.side,
+      action: isCSP ? 'SELL' : 'BUY',
+      strike: d.strike, expiry: d.expiry,
+      price: isCSP ? d.mid : d.prime_par_action,
+      label: (isCSP ? `VENDRE put ${d.strike} ${symbol}` : `ACHETER ${d.side} ${d.strike} ${symbol}`)
+             + ` — exp ${fmtExp(d.expiry)}`,
+    };
+    stageBtn = `<div class="stage-row">
+      <button class="btn stage" data-o="${esc(JSON.stringify(payload))}">🛒 Préparer l'ordre dans TWS</button>
+      <span class="stage-hint">L'ordre reste inactif tant que tu ne cliques pas Transmettre dans TWS</span>
+    </div>`;
+  }
+
+  return `<div class="expl">${expl}</div><div class="facts">${facts.join('')}</div>`
+       + (warn ? `<div class="warnbox">${warn}</div>` : '') + stageBtn;
+}
+
+function scoreColor(s){ return s >= 70 ? 'var(--red)' : s >= 50 ? 'var(--yellow)' : 'var(--accent)'; }
+
+function render(){
+  const list = $('list');
+  const filtered = DATA.filter(o =>
+    (PRESET_FILTERS[preset] || (() => true))(o) &&
+    (!activeKinds.size || activeKinds.has(o.kind)) &&
+    o.score >= minScore &&
+    (!search || o.ticker.toUpperCase().includes(search)) &&
+    (!dteRange || (o.details?.dte != null
+      && o.details.dte >= dteRange[0] && o.details.dte <= dteRange[1])));
+
+  $('t-total').textContent = DATA.length;
+  $('t-best').textContent = DATA.length ? Math.round(Math.max(...DATA.map(o=>o.score))) : '—';
+  $('t-flux').textContent = DATA.filter(o=>['achat_call','achat_put'].includes(o.kind)).length;
+  $('t-vendeur').innerHTML = DATA.filter(o=>['prime_riche','put_cash_secured','skew_peur'].includes(o.kind)).length
+    + ' <small>prime riche + CSP</small>';
+
+  const counts = {};
+  DATA.forEach(o => counts[o.kind] = (counts[o.kind]||0)+1);
+  $('chips').innerHTML = Object.entries(KINDS)
+    .filter(([k]) => counts[k])
+    .map(([k,v]) => `<span class="chip ${activeKinds.has(k)?'on':''}" data-k="${k}"
+       style="--bc:${v.color}">${v.label} <b>${counts[k]}</b></span>`).join(' ');
+  document.querySelectorAll('#chips .chip').forEach(c => c.onclick = () => {
+    const k = c.dataset.k;
+    activeKinds.has(k) ? activeKinds.delete(k) : activeKinds.add(k);
+    render();
+  });
+
+  if(!filtered.length){
+    list.innerHTML = `<div class="empty">${DATA.length ? 'Aucun résultat avec ces filtres.'
+      : 'Aucun scan disponible — clique sur « Scanner maintenant ».'}</div>`;
+    return;
+  }
+  list.innerHTML = filtered.map((o,i) => {
+    const k = KINDS[o.kind] || {label:o.kind, color:'var(--accent)'};
+    return `<div class="card" data-i="${i}">
+      <div class="row">
+        <div class="score" style="--p:${o.score};--c:${scoreColor(o.score)}"><span>${Math.round(o.score)}</span></div>
+        <div class="tick">${esc(o.ticker)}</div>
+        <div class="badge-cell"><span class="badge" style="--bc:${k.color}">${k.label}</span></div>
+        <div class="sum">${esc(o.summary)}<span class="strat">→ ${esc(o.strategy)}</span></div>
+      </div>
+      <div class="details">${fiche(o)}</div>
+    </div>`;
+  }).join('');
+  document.querySelectorAll('.card').forEach(c =>
+    c.querySelector('.row').onclick = () => c.classList.toggle('open'));
+  document.querySelectorAll('.btn.stage').forEach(b =>
+    b.onclick = e => { e.stopPropagation(); openOrderModal(JSON.parse(b.dataset.o)); });
+}
+
+async function loadLatest(){
+  try{
+    let d;
+    try{
+      const r = await fetch('/api/latest');
+      if(!r.ok) throw new Error('api absente');
+      d = await r.json();
+    }catch(e){
+      // mode statique (GitHub Pages) : données committées par le scan cloud,
+      // pas de serveur -> scan manuel et préparation d'ordres masqués
+      d = await (await fetch('data/latest.json')).json();
+      document.body.classList.add('static');
+    }
+    DATA = d.opportunities || [];
+    $('last-scan').textContent = d.generated_at
+      ? new Date(d.generated_at).toLocaleString('fr-FR') : 'aucun';
+    render();
+  }catch(e){ $('list').innerHTML = `<div class="empty">Erreur de chargement : ${esc(e.message)}</div>`; }
+}
+
+let polling = null;
+async function pollStatus(){
+  const s = await (await fetch('/api/status')).json();
+  const p = $('progress'), btn = $('btn-scan');
+  if(s.running){
+    p.classList.add('on'); btn.disabled = true;
+    $('prog-label').textContent = s.current ? `Analyse de ${s.current}…` : 'Démarrage…';
+    $('prog-count').textContent = `${s.done}/${s.total}`;
+    $('prog-bar').style.width = s.total ? (100*s.done/s.total)+'%' : '0';
+  }else{
+    if(polling){ clearInterval(polling); polling = null;
+      p.classList.remove('on'); btn.disabled = false;
+      if(s.error) alert('Erreur de scan : ' + s.error); else loadLatest();
+    }
+  }
+}
+
+$('btn-scan').onclick = async () => {
+  const r = await fetch('/api/scan', {method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({source: $('source').value})});
+  if(!r.ok){ alert((await r.json()).error || 'Erreur'); return; }
+  $('btn-scan').disabled = true;
+  polling = setInterval(pollStatus, 1200);
+  pollStatus();
+};
+// ---- modal de préparation d'ordre (transmit=False : rien ne part sans clic dans TWS)
+let modalOrder = null;
+function openOrderModal(p){
+  modalOrder = p;
+  $('m-title').textContent = p.label;
+  $('m-contract').textContent = `${p.symbol} ${p.side} ${p.strike} — ${p.currency} — ordre ${p.action} limite`;
+  $('m-qty').value = 1;
+  $('m-price').value = (p.price || 0).toFixed(2);
+  const r = $('m-result'); r.className = 'result'; r.textContent = '';
+  updateModalTotal();
+  $('m-send').disabled = false;
+  $('modal-bg').classList.add('on');
+}
+function updateModalTotal(){
+  if(!modalOrder) return;
+  const q = +$('m-qty').value || 1, px = +$('m-price').value || 0;
+  const total = q * px * 100;
+  $('m-total').innerHTML = modalOrder.action === 'BUY'
+    ? `Coût total : <b>${usd(total)}</b> <small>(perte max)</small>`
+    : `Prime encaissée : <b>${usd(total)}</b> <small>(capital bloqué : ${usd(modalOrder.strike * 100 * q)})</small>`;
+}
+$('m-qty').oninput = updateModalTotal;
+$('m-price').oninput = updateModalTotal;
+$('m-cancel').onclick = () => $('modal-bg').classList.remove('on');
+$('modal-bg').onclick = e => { if(e.target === $('modal-bg')) $('modal-bg').classList.remove('on'); };
+$('m-send').onclick = async () => {
+  const r = $('m-result');
+  $('m-send').disabled = true;
+  r.className = 'result'; r.textContent = 'Préparation en cours…'; r.classList.add('ok');
+  try{
+    const resp = await fetch('/api/order/stage', {
+      method: 'POST', headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({...modalOrder, quantity: +$('m-qty').value, limit_price: +$('m-price').value}),
+    });
+    const j = await resp.json();
+    r.className = 'result ' + (j.ok ? 'ok' : 'err');
+    r.textContent = j.ok ? '✅ ' + j.message : '❌ ' + (j.error || 'erreur inconnue');
+  }catch(e){
+    r.className = 'result err'; r.textContent = '❌ ' + e.message;
+  }
+  $('m-send').disabled = false;
+};
+
+document.querySelectorAll('#presets .chip').forEach(c => c.onclick = () => {
+  document.querySelectorAll('#presets .chip').forEach(x => x.classList.remove('on'));
+  c.classList.add('on');
+  preset = c.dataset.p;
+  render();
+});
+
+// rafraîchissement automatique (hors scan en cours)
+setInterval(() => { if(!polling) loadLatest(); }, 90000);
+
+document.querySelectorAll('.chip.dte').forEach(c => c.onclick = () => {
+  const r = [+c.dataset.min, +c.dataset.max];
+  const same = dteRange && dteRange[0] === r[0];
+  document.querySelectorAll('.chip.dte').forEach(x => x.classList.remove('on'));
+  dteRange = same ? null : r;
+  if(!same) c.classList.add('on');
+  render();
+});
+$('search').oninput = e => { search = e.target.value.trim().toUpperCase(); render(); };
+$('minscore').oninput = e => { minScore = +e.target.value; $('minscore-v').textContent = minScore; render(); };
+
+loadLatest();
+fetch('/api/status').then(r=>r.json()).then(s=>{ if(s.running){ polling=setInterval(pollStatus,1200); pollStatus(); } }).catch(()=>{});
+</script>
+</body>
+</html>

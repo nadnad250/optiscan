@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guide — Comprendre les options</title>
+<style>
+  :root{
+    --bg:#0b0e14; --panel:#12161f; --panel2:#171c28; --line:#232a3a;
+    --txt:#e7ecf5; --muted:#8b94a7; --accent:#4f8cff; --accent2:#7c5cff;
+    --green:#2fd48a; --red:#ff5d6c; --yellow:#ffc555; --radius:14px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--txt);
+    font:15.5px/1.6 -apple-system,'Segoe UI',Roboto,sans-serif;min-height:100vh}
+  body::before{content:'';position:fixed;inset:0;pointer-events:none;
+    background:radial-gradient(900px 400px at 80% -10%,rgba(79,140,255,.14),transparent 60%)}
+  .wrap{max-width:980px;margin:0 auto;padding:26px 20px 70px;position:relative}
+
+  .back{color:var(--accent);text-decoration:none;font-size:14px;font-weight:600}
+  h1{font-size:26px;margin:14px 0 6px}
+  .sub{color:var(--muted);margin-bottom:30px}
+  h2{font-size:19px;margin:38px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+
+  .terms{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+  .term{background:var(--panel);border:1px solid var(--line);border-radius:12px;
+    padding:14px 16px;cursor:pointer;transition:.15s}
+  .term:hover{border-color:var(--accent)}
+  .term .w{font-weight:800;font-size:16px}
+  .term .short{color:var(--muted);font-size:13px;margin-top:3px}
+  .term .more{display:none;margin-top:10px;font-size:13.5px;padding-top:10px;
+    border-top:1px dashed var(--line)}
+  .term.open .more{display:block}
+  .term .more b{color:var(--yellow)}
+
+  .strat{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+    padding:20px;margin-bottom:18px}
+  .strat-head{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:8px}
+  .strat-head h3{font-size:18px}
+  .tag{padding:4px 11px;border-radius:99px;font-size:12px;font-weight:700}
+  .tag.prudent{background:rgba(47,212,138,.15);color:var(--green)}
+  .tag.moyen{background:rgba(255,197,85,.15);color:var(--yellow)}
+  .tag.risque{background:rgba(255,93,108,.15);color:var(--red)}
+  .pop{margin-left:auto;text-align:right}
+  .pop .n{font-size:22px;font-weight:800;color:var(--green)}
+  .pop .l{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+  .popbar{height:6px;border-radius:99px;background:var(--panel2);margin-top:4px;width:130px;overflow:hidden}
+  .popbar i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--green))}
+  .strat p{color:var(--muted);font-size:14.5px;margin-bottom:6px}
+  .strat p b{color:var(--txt)}
+
+  .sim{display:grid;grid-template-columns:1fr 240px;gap:18px;margin-top:14px;
+    background:var(--panel2);border-radius:12px;padding:16px}
+  @media(max-width:640px){.sim{grid-template-columns:1fr}}
+  svg{width:100%;height:150px;display:block}
+  .sim-right{display:flex;flex-direction:column;justify-content:center;gap:10px}
+  input[type=range]{width:100%;accent-color:var(--accent)}
+  .price{font-size:14px;color:var(--muted)}
+  .price b{color:var(--txt);font-size:17px}
+  .result{font-size:19px;font-weight:800;padding:10px 14px;border-radius:10px;text-align:center}
+  .result.win{background:rgba(47,212,138,.15);color:var(--green)}
+  .result.lose{background:rgba(255,93,108,.15);color:var(--red)}
+
+  footer{margin-top:44px;color:var(--muted);font-size:12.5px;text-align:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="index.html">← Retour au scanner</a>
+  <h1>Comprendre les options, simplement</h1>
+  <div class="sub">Clique sur un mot pour l'explication. Sur chaque opération, <b>bouge le curseur</b> pour voir ce que tu gagnes ou perds selon le prix de l'action à l'échéance.</div>
+
+  <h2>📖 Les mots de base</h2>
+  <div class="terms" id="terms"></div>
+
+  <h2>🎯 Les opérations que le bot détecte</h2>
+  <p style="color:var(--muted);margin-bottom:18px">Exemples avec une action à <b style="color:var(--txt)">100 $</b>. Les montants sont pour 1 contrat = 100 actions. Le <b style="color:var(--txt)">% de réussite</b> est la probabilité typique de finir gagnant avec les réglages du bot.</p>
+  <div id="strats"></div>
+
+  <footer>Guide pédagogique — pas un conseil en investissement. Les % de réussite sont des probabilités typiques : gagner souvent de petits montants peut coexister avec de rares grosses pertes.</footer>
+</div>
+
+<script>
+const TERMS = [
+  ["Call", "Le droit d'ACHETER l'action à un prix fixé.",
+   "Comme une <b>réservation de prix</b> : tu bloques le droit d'acheter à 100 $ même si l'action monte à 130 $. Tu achètes un call quand tu penses que ça va <b>monter</b>."],
+  ["Put", "Le droit de VENDRE l'action à un prix fixé.",
+   "Comme une <b>assurance</b> : même si l'action s'effondre à 60 $, tu peux la vendre 100 $. Tu achètes un put quand tu penses que ça va <b>baisser</b> (ou pour te protéger)."],
+  ["Strike", "Le prix fixé dans le contrat.",
+   "C'est le prix d'exercice. Un call strike 105 = le droit d'acheter à <b>105 $</b>, peu importe le prix réel."],
+  ["Prime", "Le prix de l'option elle-même.",
+   "Ce que paie l'acheteur et qu'encaisse le vendeur, tout de suite. Prime 2,50 $ = <b>250 $</b> par contrat (× 100 actions)."],
+  ["Échéance", "La date limite du contrat.",
+   "Après cette date, l'option n'existe plus. Plus l'échéance est loin, plus la prime est chère. <b>DTE</b> = jours restants."],
+  ["Acheter vs Vendre", "Deux camps opposés.",
+   "L'<b>acheteur</b> paie la prime : perte limitée, gros gain possible, mais il gagne rarement. Le <b>vendeur</b> encaisse la prime : il gagne souvent, mais doit plafonner son risque (c'est ce que fait le bot avec les spreads)."],
+  ["IV (volatilité implicite)", "Le mouvement que le marché anticipe.",
+   "IV 50 % = le marché s'attend à ±50 % de variation sur un an. <b>IV haute = options chères</b> (bon pour vendre), IV basse = options pas chères (bon pour acheter)."],
+  ["Delta", "La sensibilité au prix + la probabilité approx.",
+   "Delta 0,30 ≈ <b>30 % de chances</b> que l'option finisse dans la monnaie. Le bot vend des puts à delta 0,30 → ~70 % de chances de garder la prime."],
+  ["Open Interest (OI)", "Le nombre de contrats déjà ouverts.",
+   "Si le volume du jour dépasse largement l'OI, <b>quelqu'un ouvre une grosse position nouvelle</b> — le signal « flux inhabituel » du bot."],
+  ["Spread", "Deux options combinées pour plafonner le risque.",
+   "On vend une option (on encaisse) et on en achète une autre plus loin (protection). Résultat : gain plafonné, <b>perte plafonnée</b>. La base des stratégies du bot."],
+];
+
+const STRATS = [
+  {
+    nom: "Acheter un call", tag: "risque", tagTxt: "RISQUÉ", pop: 35,
+    quoi: "Tu paies une prime pour parier sur la <b>hausse</b>.",
+    ex: "Call strike 100, prime 3 $ → tu paies <b>300 $</b>. Rentable si l'action dépasse 103 $.",
+    gain: "Illimité si ça monte fort", perte: "300 $ (la prime, c'est tout)",
+    payoff: S => (Math.max(S - 100, 0) - 3) * 100,
+  },
+  {
+    nom: "Acheter un put", tag: "risque", tagTxt: "RISQUÉ", pop: 35,
+    quoi: "Tu paies une prime pour parier sur la <b>baisse</b> (ou te protéger).",
+    ex: "Put strike 100, prime 3 $ → tu paies <b>300 $</b>. Rentable si l'action passe sous 97 $.",
+    gain: "Gros si ça chute fort", perte: "300 $ (la prime, c'est tout)",
+    payoff: S => (Math.max(100 - S, 0) - 3) * 100,
+  },
+  {
+    nom: "Put cash-secured (vendre un put)", tag: "prudent", tagTxt: "PRUDENT", pop: 70,
+    quoi: "Tu promets d'acheter l'action à 95 $ si elle descend dessous. En échange tu encaisses <b>200 $ tout de suite</b>.",
+    ex: "Put strike 95 vendu 2 $, capital bloqué 9 500 $. Si l'action reste au-dessus de 95 $ → prime gagnée.",
+    gain: "200 $ (la prime)", perte: "Tu achètes à 95 $ une action qui vaut moins (mais que tu voulais)",
+    payoff: S => (2 - Math.max(95 - S, 0)) * 100,
+  },
+  {
+    nom: "Bull put spread (le favori du bot)", tag: "prudent", tagTxt: "PRUDENT", pop: 70,
+    quoi: "Tu vends un put à 95 et tu en achètes un à 90 en protection. Tu encaisses <b>150 $</b>, perte plafonnée quoi qu'il arrive.",
+    ex: "Rentable tant que l'action reste au-dessus de ~93,5 $. C'est un pari « ça ne va PAS s'effondrer ».",
+    gain: "150 $ (le crédit)", perte: "350 $ maximum, jamais plus",
+    payoff: S => (1.5 - Math.max(95 - S, 0) + Math.max(90 - S, 0)) * 100,
+  },
+  {
+    nom: "Bear call spread", tag: "prudent", tagTxt: "PRUDENT", pop: 70,
+    quoi: "Le miroir : tu vends un call à 105 et tu en achètes un à 110. Pari « ça ne va PAS exploser à la hausse ».",
+    ex: "Tu encaisses 150 $. Rentable tant que l'action reste sous ~106,5 $.",
+    gain: "150 $ (le crédit)", perte: "350 $ maximum, jamais plus",
+    payoff: S => (1.5 - Math.max(S - 105, 0) + Math.max(S - 110, 0)) * 100,
+  },
+  {
+    nom: "Iron condor", tag: "moyen", tagTxt: "MOYEN", pop: 63,
+    quoi: "Les deux spreads en même temps : tu gagnes si l'action reste <b>dans un couloir</b> (entre 95 et 105).",
+    ex: "Tu encaisses 300 $. Parfait quand tu penses que rien de fou ne va se passer.",
+    gain: "300 $ si l'action reste dans le couloir", perte: "200 $ maximum",
+    payoff: S => (3 - Math.max(95 - S, 0) + Math.max(90 - S, 0) - Math.max(S - 105, 0) + Math.max(S - 110, 0)) * 100,
+  },
+  {
+    nom: "Straddle acheté", tag: "risque", tagTxt: "RISQUÉ", pop: 40,
+    quoi: "Tu achètes un call ET un put au même strike : tu paries sur un <b>GROS mouvement</b>, peu importe le sens.",
+    ex: "Call 100 + put 100 = 600 $ payés. Rentable si l'action sort de la zone 94-106.",
+    gain: "Gros si ça bouge fort (dans n'importe quel sens)", perte: "600 $ si ça ne bouge pas",
+    payoff: S => (Math.max(S - 100, 0) + Math.max(100 - S, 0) - 6) * 100,
+  },
+];
+
+// ---- rendu des termes
+document.getElementById('terms').innerHTML = TERMS.map(([w, s, m], i) =>
+  `<div class="term" data-i="${i}"><div class="w">${w}</div><div class="short">${s}</div><div class="more">${m}</div></div>`).join('');
+document.querySelectorAll('.term').forEach(t => t.onclick = () => t.classList.toggle('open'));
+
+// ---- rendu des stratégies avec simulateur
+const X0 = 70, X1 = 130, W = 560, H = 150, PAD = 8;
+function svgFor(fn, marker){
+  const vals = []; let vmin = 0, vmax = 0;
+  for(let s = X0; s <= X1; s++){ const v = fn(s); vals.push([s, v]); vmin = Math.min(vmin, v); vmax = Math.max(vmax, v); }
+  vmax = Math.max(vmax, 100); vmin = Math.min(vmin, -100);
+  const x = s => PAD + (s - X0) / (X1 - X0) * (W - 2 * PAD);
+  const y = v => PAD + (vmax - v) / (vmax - vmin) * (H - 2 * PAD);
+  const pts = vals.map(([s, v]) => `${x(s).toFixed(1)},${y(v).toFixed(1)}`).join(' ');
+  const mv = fn(marker);
+  return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">
+    <line x1="${PAD}" y1="${y(0)}" x2="${W-PAD}" y2="${y(0)}" stroke="#39415a" stroke-dasharray="4 4"/>
+    <polyline points="${pts}" fill="none" stroke="url(#g)" stroke-width="2.5"/>
+    <defs><linearGradient id="g"><stop offset="0%" stop-color="#4f8cff"/><stop offset="100%" stop-color="#7c5cff"/></linearGradient></defs>
+    <circle cx="${x(marker)}" cy="${y(mv)}" r="6" fill="${mv >= 0 ? '#2fd48a' : '#ff5d6c'}" stroke="#0b0e14" stroke-width="2"/>
+    <text x="${PAD}" y="${y(0)-6}" fill="#8b94a7" font-size="11">0 $</text>
+  </svg>`;
+}
+
+document.getElementById('strats').innerHTML = STRATS.map((st, i) => `
+  <div class="strat" data-i="${i}">
+    <div class="strat-head">
+      <h3>${st.nom}</h3>
+      <span class="tag ${st.tag}">${st.tagTxt}</span>
+      <div class="pop"><div class="n">${st.pop} %</div><div class="l">réussite typique</div>
+        <div class="popbar"><i style="width:${st.pop}%"></i></div></div>
+    </div>
+    <p>${st.quoi}</p>
+    <p>${st.ex}</p>
+    <p>✅ <b>Gain :</b> ${st.gain} &nbsp;&nbsp; ❌ <b>Perte :</b> ${st.perte}</p>
+    <div class="sim">
+      <div class="graph">${svgFor(st.payoff, 100)}</div>
+      <div class="sim-right">
+        <div class="price">Prix de l'action à l'échéance : <b class="pval">100 $</b></div>
+        <input type="range" min="${X0}" max="${X1}" value="100" step="0.5">
+        <div class="result win">Tu gagnes 0 $</div>
+      </div>
+    </div>
+  </div>`).join('');
+
+document.querySelectorAll('.strat').forEach(card => {
+  const st = STRATS[+card.dataset.i];
+  const slider = card.querySelector('input');
+  const update = () => {
+    const S = +slider.value;
+    const pnl = st.payoff(S);
+    card.querySelector('.pval').textContent = S.toFixed(1).replace('.0','') + ' $';
+    card.querySelector('.graph').innerHTML = svgFor(st.payoff, S);
+    const res = card.querySelector('.result');
+    res.className = 'result ' + (pnl >= 0 ? 'win' : 'lose');
+    res.textContent = (pnl >= 0 ? 'Tu gagnes ' : 'Tu perds ') + Math.abs(Math.round(pnl)).toLocaleString('fr-FR') + ' $';
+  };
+  slider.oninput = update;
+  update();
+});
+</script>
+</body>
+</html>

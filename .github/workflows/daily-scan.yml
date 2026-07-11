@@ -1,0 +1,44 @@
+name: Scan quotidien (journal prospectif)
+
+on:
+  schedule:
+    # 09h45 New York toute l'année : 13h45 UTC (heure d'été US) et
+    # 14h45 UTC (heure d'hiver). La fenêtre 09h40-10h30 NY codée dans
+    # daily_scan.py + la garde anti-doublon empêchent tout double scan.
+    - cron: "45 13 * * 1-5"
+    - cron: "45 14 * * 1-5"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Dépendances
+        run: pip install -r requirements.txt
+
+      - name: Scan quotidien (protocole gelé)
+        run: python -m scanner.daily_scan
+
+      - name: Site statique (GitHub Pages)
+        run: python tools/build_docs.py
+
+      - name: Commit des résultats
+        run: |
+          git config user.name "optiscan-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add output docs
+          git diff --cached --quiet && echo "Rien à committer" || {
+            git commit -m "scan quotidien $(date -u +%F)"
+            git push
+          }

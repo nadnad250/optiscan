@@ -27,8 +27,9 @@ COLUMNS = [
     "prob_ml", "seuil_ml", "prob_implicite", "ratio", "direction", "decision", "raison",
     "side", "strike", "expiry", "dte", "bid", "ask", "mid",
     "iv", "delta", "theta_jour", "vega", "cout_entree_ask",
-    "ret_1s", "ret_3s", "ret_5s", "pnl_option_est_5s_pct",
-    "resultat_direction_seule", "statut",
+    "ret_1s", "ret_3s", "ret_5s",
+    "exit_bid_1s", "exit_bid_3s", "exit_bid_5s",
+    "pnl_option_est_5s_pct", "resultat_direction_seule", "statut",
 ]
 
 # symboles Yahoo des titres européens (pour la capture des résultats)
@@ -163,6 +164,36 @@ def update_outcomes() -> dict:
     if pending.empty:
         return {"maj": 0, "completes": 0}
 
+    chain_cache: dict = {}
+
+    def _real_exit_bid(ysym: str, row) -> float | None:
+        """VRAI bid du contrat au moment de la capture (revue n°15) —
+        pas une estimation Black-Scholes. US uniquement (chaînes Yahoo)."""
+        if "(EUR)" in str(row["ticker"]) or pd.isna(row.get("strike")):
+            return None
+        exp = str(row["expiry"]).replace("-", "").replace(".0", "")
+        if len(exp) != 8:
+            return None
+        exp_iso = f"{exp[:4]}-{exp[4:6]}-{exp[6:]}"
+        key = (ysym, exp_iso)
+        if key not in chain_cache:
+            try:
+                oc = yf.Ticker(ysym).option_chain(exp_iso)
+                chain_cache[key] = {"call": oc.calls, "put": oc.puts}
+            except Exception:
+                chain_cache[key] = None
+        chains = chain_cache[key]
+        if not chains:
+            return None
+        df_side = chains.get(str(row["side"]))
+        if df_side is None or df_side.empty:
+            return None
+        match = df_side[abs(df_side["strike"] - float(row["strike"])) < 0.01]
+        if match.empty:
+            return None
+        bid = float(match.iloc[0].get("bid") or 0)
+        return round(bid, 3) if bid > 0 else None
+
     updated = completed = 0
     hist_cache: dict[str, pd.DataFrame] = {}
     for idx, row in pending.iterrows():
@@ -186,6 +217,13 @@ def update_outcomes() -> dict:
             if pd.isna(row.get(col)) and len(after) >= h:
                 df.at[idx, col] = round(float(after.iloc[h - 1]) / spot0 - 1, 5)
                 changed = True
+            # VRAI bid de sortie, capturé LE JOUR de l'horizon (updater quotidien)
+            bcol = f"exit_bid_{h}s"
+            if bcol in df.columns and pd.isna(row.get(bcol)) and len(after) == h:
+                real_bid = _real_exit_bid(ysym, row)
+                if real_bid is not None:
+                    df.at[idx, bcol] = real_bid
+                    changed = True
         if len(after) >= 5:
             # P&L option estimé à +5 séances : réévaluation Black-Scholes avec
             # l'IV d'entrée FIGÉE (approximation documentée, pas une quote réelle)

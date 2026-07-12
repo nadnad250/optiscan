@@ -175,9 +175,16 @@ class Handler(BaseHTTPRequestHandler):
         if body.get("activate"):
             KILL_SWITCH.parent.mkdir(parents=True, exist_ok=True)
             KILL_SWITCH.write_text("kill switch activé manuellement", encoding="utf-8")
+            # annulation des ordres préparés par CE système (revue n°9)
+            from .broker import cancel_staged_orders
+            try:
+                res = cancel_staged_orders(load_config())
+            except Exception as exc:
+                res = {"annules": 0, "error": str(exc)}
             self._send_json({"ok": True, "kill_switch": True,
+                             "ordres_annules": res.get("annules", 0),
                              "message": "KILL SWITCH ACTIVÉ : plus aucune préparation "
-                                        "d'ordre. Annule les ordres en attente dans TWS."})
+                                        f"d'ordre. {res.get('message', res.get('error', ''))}"})
         else:
             KILL_SWITCH.unlink(missing_ok=True)
             self._send_json({"ok": True, "kill_switch": False,

@@ -1,3 +1,7 @@
 __pycache__/
 *.pyc
 output/daily_scan.log
+# registre des ordres et kill switch : locaux, JAMAIS dans git (revue n°10)
+output/ordres.db
+output/ordres_prepares.json
+output/KILL_SWITCH

@@ -27,15 +27,24 @@ def detect(snap: MarketSnapshot, cfg: dict) -> list[Opportunity]:
             delta = abs(put_delta(snap.spot, strike, iv, t))
             if not (target - 0.08 <= delta <= target + 0.08):
                 continue
-            mid = (float(row["bid"]) + float(row["ask"])) / 2
-            if mid < MIN_MID_PRICE:
+            bid, ask = float(row["bid"]), float(row["ask"])
+            if ask < bid:      # quote croisée = données corrompues (revue n°13)
                 continue
-            annual_yield = (mid / strike) * (365 / dte)
+            mid = (bid + ask) / 2
+            if mid < MIN_MID_PRICE or (ask - bid) / mid > 0.35:
+                continue
+            # rendement RÉALISTE : on vend au BID, commissions déduites
+            commission = cfg.get("commission_par_contrat", 1.0) / 100
+            income = bid - commission
+            if income <= 0:
+                continue
+            annual_yield = (income / strike) * (365 / dte)
             if annual_yield < MIN_ANNUAL_YIELD:
                 continue
             pop = prob_otm_put(snap.spot, strike, iv, t)
             cand = {
                 "expiry": expiry, "dte": dte, "strike": strike, "mid": round(mid, 2),
+                "bid_vente": round(bid, 2), "commission_incluse": round(commission * 100, 2),
                 "delta": round(delta, 2), "annual_yield": round(annual_yield, 3),
                 "prob_profit": round(pop, 2), "capital_requis": int(strike * 100),
                 # grecs de la position (put vendu => thêta positif : le temps te paie)

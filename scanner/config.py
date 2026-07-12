@@ -53,16 +53,56 @@ DEFAULTS = {
     "enable_order_staging": False,   # préparation d'ordres DÉSACTIVÉE par défaut
     "live_confirmation": "",         # phrase exacte requise pour le mode live
     "risk": {},                      # limites de risque (voir web/risk.py)
+    "ib_account": "",                # compte EXPLICITE si plusieurs comptes gérés
+    "commission_par_contrat": 1.0,   # commission aller estimée ($/contrat)
 }
+
+_RISK_KEYS_NUM = {"max_risk_per_trade_pct", "max_daily_loss_pct",
+                  "max_total_options_risk_pct", "max_positions",
+                  "max_contracts_per_order", "min_excess_liquidity_pct",
+                  "max_quote_spread_pct"}
+_RISK_KEYS_BOOL = {"allow_naked_options", "allow_market_orders",
+                   "allow_earnings_trades"}
+
+
+def _validate_config(cfg: dict) -> None:
+    """Schéma strict (revue n°11) : une config invalide DOIT échouer bruyamment,
+    pas être silencieusement remplacée par des valeurs par défaut."""
+    errors = []
+    if cfg["trading_mode"] not in ("paper", "live"):
+        errors.append(f"trading_mode doit être paper|live, reçu : {cfg['trading_mode']}")
+    for key in ("enable_order_staging",):
+        if not isinstance(cfg[key], bool):
+            errors.append(f"{key} doit être true/false")
+    if not (0 < cfg["min_dte"] < cfg["max_dte"] <= 400):
+        errors.append("min_dte/max_dte incohérents")
+    if not (1 <= cfg["max_expirations"] <= 10):
+        errors.append("max_expirations hors bornes [1, 10]")
+    for entry in cfg["watchlist"]:
+        if isinstance(entry, str):
+            continue
+        if not (isinstance(entry, dict) and entry.get("symbol")):
+            errors.append(f"entrée de watchlist invalide : {entry!r}")
+    risk = cfg.get("risk") or {}
+    for k, v in risk.items():
+        if k in _RISK_KEYS_NUM:
+            if not isinstance(v, (int, float)) or v < 0:
+                errors.append(f"risk.{k} doit être un nombre >= 0")
+        elif k in _RISK_KEYS_BOOL:
+            if not isinstance(v, bool):
+                errors.append(f"risk.{k} doit être true/false")
+        else:
+            errors.append(f"clé de risque INCONNUE : risk.{k} (faute de frappe ?)")
+    if errors:
+        raise ValueError("config.json invalide :\n- " + "\n- ".join(errors))
 
 
 def load_config(path: str | None = None) -> dict:
     cfg = dict(DEFAULTS)
     cfg_path = Path(path) if path else Path(__file__).resolve().parent.parent / "config.json"
     if cfg_path.exists():
-        try:
-            user_cfg = json.loads(cfg_path.read_text(encoding="utf-8"))
-            cfg.update({k: v for k, v in user_cfg.items() if k in DEFAULTS})
-        except (json.JSONDecodeError, OSError) as exc:
-            print(f"[config] fichier {cfg_path} illisible ({exc}), valeurs par défaut utilisées")
+        # un JSON illisible doit ARRÊTER le programme, pas être ignoré
+        user_cfg = json.loads(cfg_path.read_text(encoding="utf-8"))
+        cfg.update({k: v for k, v in user_cfg.items() if k in DEFAULTS})
+    _validate_config(cfg)
     return cfg

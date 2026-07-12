@@ -9,6 +9,7 @@ Endpoints :
 """
 import argparse
 import json
+import secrets
 import threading
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -21,6 +22,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent   # options-scanner/
 OUTPUT_DIR = BASE_DIR / "output"
 INDEX_HTML = Path(__file__).resolve().parent / "index.html"
 GUIDE_HTML = Path(__file__).resolve().parent / "guide.html"
+
+# jeton de session : injecté dans la page servie, exigé sur les POST sensibles.
+# Empêche toute requête forgée par un autre site ouvert dans le navigateur.
+SESSION_TOKEN = secrets.token_hex(16)
+ALLOWED_ORIGINS = {"http://127.0.0.1", "http://localhost"}
 
 _lock = threading.Lock()
 _status = {"running": False, "done": 0, "total": 0, "current": "", "error": None}
@@ -75,21 +81,47 @@ class Handler(BaseHTTPRequestHandler):
         self._send(code, json.dumps(payload, ensure_ascii=False).encode("utf-8"),
                    "application/json; charset=utf-8")
 
+    def _origin_ok(self) -> bool:
+        """Rejette toute requête venant d'une autre origine (protection CSRF)."""
+        origin = self.headers.get("Origin")
+        if origin and not any(origin.startswith(a) for a in ALLOWED_ORIGINS):
+            return False
+        return self.headers.get("X-OptiScan-Token") == SESSION_TOKEN
+
     def do_GET(self):
         if self.path in ("/", "/index.html"):
-            self._send(200, INDEX_HTML.read_bytes(), "text/html; charset=utf-8")
+            html = INDEX_HTML.read_text(encoding="utf-8").replace(
+                "__OPTISCAN_TOKEN__", SESSION_TOKEN)
+            self._send(200, html.encode("utf-8"), "text/html; charset=utf-8")
         elif self.path in ("/guide", "/guide.html"):
             self._send(200, GUIDE_HTML.read_bytes(), "text/html; charset=utf-8")
         elif self.path == "/api/latest":
             self._send_json(_latest_scan())
         elif self.path == "/api/status":
             self._send_json(_get_status())
+        elif self.path == "/api/config":
+            from .broker import KILL_SWITCH
+            cfg = load_config()
+            self._send_json({
+                "trading_mode": cfg.get("trading_mode", "paper"),
+                "enable_order_staging": bool(cfg.get("enable_order_staging", False)),
+                "kill_switch": KILL_SWITCH.exists(),
+            })
         else:
             self._send_json({"error": "introuvable"}, 404)
 
     def do_POST(self):
         if self.path == "/api/order/stage":
+            if not self._origin_ok():
+                self._send_json({"ok": False, "error": "origine ou jeton invalide"}, 403)
+                return
             self._handle_stage_order()
+            return
+        if self.path == "/api/killswitch":
+            if not self._origin_ok():
+                self._send_json({"ok": False, "error": "origine ou jeton invalide"}, 403)
+                return
+            self._handle_killswitch()
             return
         if self.path != "/api/scan":
             self._send_json({"error": "introuvable"}, 404)
@@ -129,6 +161,27 @@ class Handler(BaseHTTPRequestHandler):
             return
         result = stage_order(body, load_config(), dry_run=bool(body.get("dry_run")))
         self._send_json(result, 200 if result.get("ok") else 422)
+
+    def _handle_killswitch(self):
+        """Active/désactive le kill switch (P0.9) : bloque instantanément
+        toute nouvelle préparation d'ordre, même si le scanner est bloqué."""
+        from .broker import KILL_SWITCH
+        length = int(self.headers.get("Content-Length") or 0)
+        try:
+            body = json.loads(self.rfile.read(length) or b"{}") if length else {}
+        except json.JSONDecodeError:
+            self._send_json({"ok": False, "error": "JSON invalide"}, 400)
+            return
+        if body.get("activate"):
+            KILL_SWITCH.parent.mkdir(parents=True, exist_ok=True)
+            KILL_SWITCH.write_text("kill switch activé manuellement", encoding="utf-8")
+            self._send_json({"ok": True, "kill_switch": True,
+                             "message": "KILL SWITCH ACTIVÉ : plus aucune préparation "
+                                        "d'ordre. Annule les ordres en attente dans TWS."})
+        else:
+            KILL_SWITCH.unlink(missing_ok=True)
+            self._send_json({"ok": True, "kill_switch": False,
+                             "message": "Kill switch désarmé."})
 
 
 def main():

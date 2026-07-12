@@ -49,6 +49,10 @@ DEFAULTS = {
     "ib_host": "127.0.0.1",
     "ib_port": 7497,               # 7497 = paper TWS, 4002 = paper Gateway
     "ib_client_id": 42,
+    "trading_mode": "paper",         # paper|live — live exige live_confirmation
+    "enable_order_staging": False,   # préparation d'ordres DÉSACTIVÉE par défaut
+    "live_confirmation": "",         # phrase exacte requise pour le mode live
+    "risk": {},                      # limites de risque (voir web/risk.py)
 }
 
 

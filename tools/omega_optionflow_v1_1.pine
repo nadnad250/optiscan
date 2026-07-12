@@ -1,0 +1,471 @@
+//@version=6
+indicator("OMEGA OptionFlow Stock Engine [v1.1]", shorttitle="OMEGA Options", overlay=true, max_labels_count=300, max_lines_count=50)
+
+// ============================================================================
+// OMEGA OPTIONFLOW STOCK ENGINE — v1.1
+//
+// CHANGELOG v1.0 -> v1.1
+//  1. Filtre EARNINGS : aucun setup si des résultats tombent avant le DTE
+//     de planification (+ tampon). request.earnings(), affiché au dashboard.
+//  2. Détection de COMPRESSION (squeeze) : percentile de la largeur des
+//     bandes de Bollinger — la compression précède souvent l'explosion.
+//     Un breakout depuis une compression abaisse légèrement le seuil requis.
+//  3. TRACKER DE PERFORMANCE HONNÊTE : chaque setup est suivi jusqu'au stop,
+//     au target 2 ou au retournement. Win rate et espérance (en R) affichés.
+//     Un signal sans statistiques n'est qu'une décoration.
+//  4. Mouvement attendu en JOURS DE BOURSE (DTE x 5/7), pas calendaires.
+//  5. hvPercentile protégé contre na dans le choix de stratégie.
+//  6. Alertes JSON optionnelles (webhook -> journal externe type OptiScan).
+//  7. Clôture d'idée au signal inverse (comptée dans les statistiques).
+//
+// IMPORTANT — inchangé :
+// - À appliquer sur le SOUS-JACENT, pas sur un contrat d'option.
+// - Pine ne lit ni l'IV réelle, ni les Greeks : confirmer dans la chaîne.
+// - CALL/PUT = setups de recherche directionnelle, pas des conseils.
+// ============================================================================
+
+// ---------- Helpers ---------------------------------------------------------
+f_clamp(float value, float minimum, float maximum) =>
+    math.max(minimum, math.min(maximum, value))
+
+f_sign(float value) =>
+    value > 0 ? 1.0 : value < 0 ? -1.0 : 0.0
+
+f_daily_hv(int length) =>
+    float logReturn = math.log(close / close[1])
+    ta.stdev(logReturn, length) * math.sqrt(252.0) * 100.0
+
+f_fmt(float value, string format) =>
+    na(value) ? "n/a" : str.tostring(value, format)
+
+f_json_num(float value, string format) =>
+    na(value) ? "null" : str.tostring(value, format)
+
+f_state_color(float score) =>
+    color result = color.rgb(105, 115, 130)
+    if score >= 60
+        result := color.rgb(0, 180, 110)
+    else if score >= 25
+        result := color.rgb(43, 153, 255)
+    else if score <= -60
+        result := color.rgb(230, 55, 75)
+    else if score <= -25
+        result := color.rgb(255, 145, 45)
+    result
+
+// ---------- Inputs ----------------------------------------------------------
+string GRP_CORE = "01 — Core engine"
+string setupMode       = input.string("Hybrid", "Setup mode", options=["Hybrid", "Breakout", "Trend pullback"], group=GRP_CORE)
+string profile         = input.string("Balanced", "Risk profile", options=["Conservative", "Balanced", "Aggressive"], group=GRP_CORE)
+string higherTf        = input.timeframe("D", "Confirmed trend timeframe", group=GRP_CORE, tooltip="Choose a timeframe higher than the chart timeframe.")
+string benchmarkTicker = input.symbol("AMEX:SPY", "Relative-strength benchmark", group=GRP_CORE)
+bool useVix            = input.bool(true, "Use VIX market filter", group=GRP_CORE)
+string vixTicker       = input.symbol("CBOE:VIX", "VIX symbol", group=GRP_CORE)
+bool requireConfirmed  = input.bool(true, "Wait for bar close", group=GRP_CORE, tooltip="Recommended. Prevents intrabar signals from disappearing.")
+bool alertAsJson       = input.bool(false, "JSON webhook alerts", group=GRP_CORE, tooltip="Format machine (webhook vers un journal externe).")
+
+string GRP_TREND = "02 — Trend and momentum"
+int fastLen       = input.int(21, "Fast EMA", minval=2, group=GRP_TREND)
+int midLen        = input.int(50, "Medium EMA", minval=5, group=GRP_TREND)
+int slowLen       = input.int(200, "Slow EMA", minval=20, group=GRP_TREND)
+int rsiLen        = input.int(14, "RSI length", minval=2, group=GRP_TREND)
+int dmiLen        = input.int(14, "DMI length", minval=2, group=GRP_TREND)
+int adxSmooth     = input.int(14, "ADX smoothing", minval=2, group=GRP_TREND)
+float minAdxInput = input.float(18.0, "Minimum ADX", minval=0.0, step=0.5, group=GRP_TREND)
+
+string GRP_STRUCTURE = "03 — Setup structure"
+int breakoutLen       = input.int(20, "Breakout lookback", minval=3, group=GRP_STRUCTURE)
+float pullbackAtrTol  = input.float(0.35, "Pullback EMA tolerance (ATR)", minval=0.0, step=0.05, group=GRP_STRUCTURE)
+int cooldownBars      = input.int(8, "Signal cooldown bars", minval=0, group=GRP_STRUCTURE)
+bool requireVolume    = input.bool(true, "Require volume confirmation", group=GRP_STRUCTURE)
+float minVolumeZ      = input.float(0.0, "Minimum volume Z-score", minval=-2.0, maxval=5.0, step=0.1, group=GRP_STRUCTURE)
+
+string GRP_SESSION = "04 — Trading window"
+bool useSession     = input.bool(true, "Restrict intraday signals to a session", group=GRP_SESSION)
+string tradeSession = input.session("0935-1530", "Signal session (exchange time)", group=GRP_SESSION)
+
+string GRP_VOL = "05 — Volatility and options framework"
+int hvLen        = input.int(20, "Daily historical volatility length", minval=5, group=GRP_VOL)
+int hvRankLen    = input.int(126, "HV percentile lookback (days)", minval=20, group=GRP_VOL)
+int preferredDte = input.int(35, "Planning DTE", minval=1, maxval=365, group=GRP_VOL)
+float strikeStep = input.float(1.0, "Underlying strike increment", minval=0.01, step=0.01, group=GRP_VOL)
+float maxHvRank  = input.float(92.0, "Block long-premium setups above HV percentile", minval=50.0, maxval=100.0, step=1.0, group=GRP_VOL, tooltip="Historical volatility is not implied volatility. This is only a risk filter.")
+
+string GRP_RISK = "06 — Risk map"
+int atrLen        = input.int(14, "ATR length", minval=2, group=GRP_RISK)
+float atrStop     = input.float(1.5, "ATR invalidation multiplier", minval=0.25, step=0.25, group=GRP_RISK)
+int swingLen      = input.int(7, "Swing invalidation lookback", minval=2, group=GRP_RISK)
+float targetR1    = input.float(1.5, "Target 1 (R)", minval=0.25, step=0.25, group=GRP_RISK)
+float targetR2    = input.float(2.5, "Target 2 (R)", minval=0.5, step=0.25, group=GRP_RISK)
+float accountSize = input.float(10000.0, "Reference account size", minval=100.0, step=100.0, group=GRP_RISK)
+float riskPct     = input.float(1.0, "Maximum risk per idea (%)", minval=0.1, maxval=10.0, step=0.1, group=GRP_RISK)
+
+string GRP_EVENTS = "07 — Events (v1.1)"
+bool blockEarnings     = input.bool(true, "Block setups if earnings before planning DTE", group=GRP_EVENTS, tooltip="Acheter de la prime qui enjambe des résultats = payer l'IV gonflée qui s'écrasera (IV crush).")
+int earningsBufferDays = input.int(2, "Earnings buffer (days)", minval=0, maxval=30, group=GRP_EVENTS)
+
+string GRP_SQUEEZE = "08 — Compression (v1.1)"
+bool useSqueeze       = input.bool(true, "Detect volatility compression (squeeze)", group=GRP_SQUEEZE)
+int bbwLen            = input.int(20, "Bollinger width length", minval=5, group=GRP_SQUEEZE)
+int bbwRankLen        = input.int(126, "Compression percentile lookback", minval=30, group=GRP_SQUEEZE)
+float squeezePctl     = input.float(20.0, "Compression threshold (percentile)", minval=5.0, maxval=50.0, step=1.0, group=GRP_SQUEEZE)
+float squeezeDiscount = input.float(6.0, "Score threshold discount when coiled", minval=0.0, maxval=15.0, step=1.0, group=GRP_SQUEEZE)
+
+string GRP_STATS = "09 — Honest performance tracker (v1.1)"
+bool showStats = input.bool(true, "Track and display signal performance", group=GRP_STATS, tooltip="Stop touché = -1R, Target 2 = +R du target, retournement = R au prix de clôture. Sans ces chiffres, les labels ne prouvent rien.")
+
+string GRP_DISPLAY = "10 — Display"
+bool showEma       = input.bool(true, "Show EMAs", group=GRP_DISPLAY)
+bool showVwap      = input.bool(true, "Show intraday VWAP", group=GRP_DISPLAY)
+bool showRiskMap   = input.bool(true, "Show active entry / stop / targets", group=GRP_DISPLAY)
+bool showBg        = input.bool(true, "Color market regime background", group=GRP_DISPLAY)
+bool showDashboard = input.bool(true, "Show options dashboard", group=GRP_DISPLAY)
+bool showLabels    = input.bool(true, "Show detailed signal labels", group=GRP_DISPLAY)
+
+// ---------- Adaptive profile ----------------------------------------------
+float scoreThreshold = profile == "Conservative" ? 70.0 : profile == "Aggressive" ? 52.0 : 61.0
+float minAdx         = profile == "Conservative" ? math.max(minAdxInput, 22.0) : profile == "Aggressive" ? math.min(minAdxInput, 15.0) : minAdxInput
+
+// ---------- Core calculations ---------------------------------------------
+float emaFast = ta.ema(close, fastLen)
+float emaMid  = ta.ema(close, midLen)
+float emaSlow = ta.ema(close, slowLen)
+float vwapLine = ta.vwap(hlc3)
+float atr = ta.atr(atrLen)
+float atrPct = close != 0 ? atr / close * 100.0 : na
+float rsi = ta.rsi(close, rsiLen)
+[macdLine, macdSignal, macdHist] = ta.macd(close, 12, 26, 9)
+float stoch = ta.stoch(close, high, low, 14)
+[plusDi, minusDi, adx] = ta.dmi(dmiLen, adxSmooth)
+
+[htfClose, htfEmaMid, htfEmaSlow] = request.security(
+     syminfo.tickerid,
+     higherTf,
+     [close[1], ta.ema(close, midLen)[1], ta.ema(close, slowLen)[1]],
+     gaps=barmerge.gaps_off,
+     lookahead=barmerge.lookahead_on)
+
+float benchmarkClose = request.security(
+     benchmarkTicker,
+     timeframe.period,
+     close,
+     gaps=barmerge.gaps_off,
+     lookahead=barmerge.lookahead_off,
+     ignore_invalid_symbol=true)
+
+[vixClose, vixEma] = request.security(
+     vixTicker,
+     timeframe.period,
+     [close, ta.ema(close, 20)],
+     gaps=barmerge.gaps_off,
+     lookahead=barmerge.lookahead_off,
+     ignore_invalid_symbol=true)
+
+float historicalVol = request.security(
+     syminfo.tickerid,
+     "D",
+     f_daily_hv(hvLen)[1],
+     gaps=barmerge.gaps_off,
+     lookahead=barmerge.lookahead_on)
+
+bool supportedChartTf = timeframe.in_seconds() <= timeframe.in_seconds("1D")
+bool higherTfOk = timeframe.in_seconds(higherTf) >= timeframe.in_seconds()
+
+float hvPercentile = request.security(
+     syminfo.tickerid,
+     "D",
+     ta.percentrank(f_daily_hv(hvLen), hvRankLen)[1],
+     gaps=barmerge.gaps_off,
+     lookahead=barmerge.lookahead_on)
+float hvPctSafe = nz(hvPercentile, 50.0)
+
+// ---------- v1.1 : filtre earnings -----------------------------------------
+float nextEarningsTime = request.earnings(syminfo.tickerid, earnings.future_time,
+     gaps=barmerge.gaps_off, lookahead=barmerge.lookahead_off, ignore_invalid_symbol=true)
+float daysToEarnings = not na(nextEarningsTime) and nextEarningsTime > time ?
+     (nextEarningsTime - time) / 86400000.0 : na
+bool earningsOk = not blockEarnings or na(daysToEarnings) or
+     daysToEarnings > preferredDte + earningsBufferDays
+
+// ---------- v1.1 : compression (la compression précède l'explosion) --------
+float bbBasis = ta.sma(close, bbwLen)
+float bbw = bbBasis != 0 ? 4.0 * ta.stdev(close, bbwLen) / bbBasis : na
+float bbwPercentile = ta.percentrank(bbw, bbwRankLen)
+bool squeeze = useSqueeze and not na(bbwPercentile) and bbwPercentile <= squeezePctl
+float effectiveThreshold = squeeze ? math.max(scoreThreshold - squeezeDiscount, 45.0) : scoreThreshold
+
+// Volume quality and accumulation/distribution pressure.
+float safeVolume = nz(volume, 0.0)
+float volumeMean = ta.sma(safeVolume, 30)
+float volumeStd  = ta.stdev(safeVolume, 30)
+float volumeZ    = volumeStd > 0 ? (safeVolume - volumeMean) / volumeStd : 0.0
+float barRange   = high - low
+float moneyFlowMultiplier = barRange > 0 ? ((close - low) - (high - close)) / barRange : 0.0
+float moneyFlowVolume = moneyFlowMultiplier * safeVolume
+float volumeSum = math.sum(safeVolume, 20)
+float cmf = volumeSum > 0 ? math.sum(moneyFlowVolume, 20) / volumeSum : 0.0
+
+float rsRatio = not na(benchmarkClose) and benchmarkClose != 0 ? close / benchmarkClose : na
+float rsEma   = ta.ema(rsRatio, 20)
+float rsSlope = rsEma - rsEma[5]
+
+// ---------- Multi-factor directional score --------------------------------
+float trendScore = 0.0
+trendScore += close > emaFast ? 5.0 : -5.0
+trendScore += emaFast > emaMid ? 8.0 : -8.0
+trendScore += emaMid > emaSlow ? 9.0 : -9.0
+trendScore += htfClose > htfEmaMid ? 6.0 : -6.0
+trendScore += htfEmaMid > htfEmaSlow ? 7.0 : -7.0
+
+float rsiComponent   = f_clamp((rsi - 50.0) / 20.0 * 10.0, -10.0, 10.0)
+float macdComponent  = atr > 0 ? f_clamp(macdHist / atr * 100.0, -6.0, 6.0) : 0.0
+float stochComponent = f_clamp((stoch - 50.0) / 50.0 * 4.0, -4.0, 4.0)
+float momentumScore  = rsiComponent + macdComponent + stochComponent
+
+float candleDirection = close > open ? 1.0 : close < open ? -1.0 : 0.0
+float volumeImpulse = f_clamp(math.max(volumeZ, 0.0) / 3.0 * 7.0, 0.0, 7.0) * candleDirection
+float flowComponent = f_clamp(cmf * 15.0, -3.0, 3.0)
+float volumeScore = volumeImpulse + flowComponent
+
+float relativeScore = 0.0
+if not na(rsRatio) and not na(rsEma)
+    relativeScore += rsRatio > rsEma ? 9.0 : -9.0
+    relativeScore += f_clamp(f_sign(rsSlope) * 6.0, -6.0, 6.0)
+
+float macroScore = 0.0
+if useVix and not na(vixClose) and not na(vixEma)
+    macroScore += vixClose < vixEma ? 5.0 : -5.0
+    macroScore += f_clamp((20.0 - vixClose) / 20.0 * 5.0, -5.0, 5.0)
+
+float vwapScore = timeframe.isintraday ? (close > vwapLine ? 5.0 : -5.0) : 0.0
+float rawScore = trendScore + momentumScore + volumeScore + relativeScore + macroScore + vwapScore
+float score = f_clamp(rawScore, -100.0, 100.0)
+
+string regime = score >= 70 ? "STRONG BULL" : score >= 35 ? "BULL" : score <= -70 ? "STRONG BEAR" : score <= -35 ? "BEAR" : "NEUTRAL"
+color regimeColor = f_state_color(score)
+
+// ---------- Structure and signal engine -----------------------------------
+float priorHigh = ta.highest(high, breakoutLen)[1]
+float priorLow  = ta.lowest(low, breakoutLen)[1]
+bool bullBreakout = not na(priorHigh) and close > priorHigh and close[1] <= priorHigh
+bool bearBreakout = not na(priorLow) and close < priorLow and close[1] >= priorLow
+
+bool bullPullback = low <= emaFast + atr * pullbackAtrTol and low >= emaMid - atr * pullbackAtrTol and close > emaFast and close > open
+bool bearPullback = high >= emaFast - atr * pullbackAtrTol and high <= emaMid + atr * pullbackAtrTol and close < emaFast and close < open
+
+bool bullStructure = setupMode == "Breakout" ? bullBreakout : setupMode == "Trend pullback" ? bullPullback : bullBreakout or bullPullback
+bool bearStructure = setupMode == "Breakout" ? bearBreakout : setupMode == "Trend pullback" ? bearPullback : bearBreakout or bearPullback
+
+bool sessionOk = not useSession or not timeframe.isintraday or not na(time(timeframe.period, tradeSession))
+bool volumeOk = not requireVolume or volumeZ >= minVolumeZ
+bool confirmedOk = not requireConfirmed or barstate.isconfirmed
+bool trendStrengthOk = adx >= minAdx
+bool volRiskOk = na(hvPercentile) or hvPercentile <= maxHvRank
+
+var int lastSignalBar = na
+bool cooldownOk = na(lastSignalBar) or bar_index - lastSignalBar > cooldownBars
+
+bool timeframeOk = supportedChartTf and higherTfOk
+bool callSetup = timeframeOk and confirmedOk and cooldownOk and sessionOk and volumeOk and trendStrengthOk and volRiskOk and earningsOk and bullStructure and score >= effectiveThreshold and plusDi > minusDi
+bool putSetup  = timeframeOk and confirmedOk and cooldownOk and sessionOk and volumeOk and trendStrengthOk and volRiskOk and earningsOk and bearStructure and score <= -effectiveThreshold and minusDi > plusDi
+
+if callSetup or putSetup
+    lastSignalBar := bar_index
+
+// ---------- Active risk map + honest performance tracker (v1.1) ------------
+var int activeDirection = 0
+var float activeEntry = na
+var float activeStop = na
+var float activeTarget1 = na
+var float activeTarget2 = na
+
+var int statWins = 0
+var int statLosses = 0
+var float statSumR = 0.0
+
+// 1) sorties du trade actif (stop touché = -1R, target 2 = +R du target ;
+//    si les deux sont touchés dans la même barre, le stop compte : pessimiste)
+if activeDirection == 1
+    if low <= activeStop
+        statLosses += 1
+        statSumR -= 1.0
+        activeDirection := 0
+    else if high >= activeTarget2
+        statWins += 1
+        statSumR += targetR2
+        activeDirection := 0
+else if activeDirection == -1
+    if high >= activeStop
+        statLosses += 1
+        statSumR -= 1.0
+        activeDirection := 0
+    else if low <= activeTarget2
+        statWins += 1
+        statSumR += targetR2
+        activeDirection := 0
+
+// 2) retournement : le signal inverse clôture l'idée au prix courant
+if activeDirection == 1 and putSetup
+    float unitRisk = math.max(activeEntry - activeStop, syminfo.mintick)
+    float flipR = (close - activeEntry) / unitRisk
+    statSumR += flipR
+    if flipR >= 0
+        statWins += 1
+    else
+        statLosses += 1
+    activeDirection := 0
+if activeDirection == -1 and callSetup
+    float unitRisk = math.max(activeStop - activeEntry, syminfo.mintick)
+    float flipR = (activeEntry - close) / unitRisk
+    statSumR += flipR
+    if flipR >= 0
+        statWins += 1
+    else
+        statLosses += 1
+    activeDirection := 0
+
+// 3) nouveau setup
+if callSetup
+    float swingStop = ta.lowest(low, swingLen)
+    float volatilityStop = close - atr * atrStop
+    activeDirection := 1
+    activeEntry := close
+    activeStop := math.min(close - syminfo.mintick, math.max(swingStop, volatilityStop))
+    float unitRisk = math.max(activeEntry - activeStop, syminfo.mintick)
+    activeTarget1 := activeEntry + unitRisk * targetR1
+    activeTarget2 := activeEntry + unitRisk * targetR2
+else if putSetup
+    float swingStop = ta.highest(high, swingLen)
+    float volatilityStop = close + atr * atrStop
+    activeDirection := -1
+    activeEntry := close
+    activeStop := math.max(close + syminfo.mintick, math.min(swingStop, volatilityStop))
+    float unitRisk = math.max(activeStop - activeEntry, syminfo.mintick)
+    activeTarget1 := activeEntry - unitRisk * targetR1
+    activeTarget2 := activeEntry - unitRisk * targetR2
+
+if activeDirection == 0 and not (callSetup or putSetup)
+    activeEntry := na
+    activeStop := na
+    activeTarget1 := na
+    activeTarget2 := na
+
+int statTrades = statWins + statLosses
+float statWinRate = statTrades > 0 ? 100.0 * statWins / statTrades : na
+float statExpectancy = statTrades > 0 ? statSumR / statTrades : na
+
+// ---------- Options planning framework ------------------------------------
+// v1.1 : jours de BOURSE (DTE x 5/7), pas jours calendaires
+float expectedMove = not na(historicalVol) ? close * historicalVol / 100.0 * math.sqrt(preferredDte * 5.0 / 7.0 / 252.0) : na
+float expectedUpper = not na(expectedMove) ? close + expectedMove : na
+float expectedLower = not na(expectedMove) ? math.max(0.0, close - expectedMove) : na
+float atmStrike = math.round(close / strikeStep) * strikeStep
+float maxIdeaRisk = accountSize * riskPct / 100.0
+float maxPremiumPerContract = maxIdeaRisk / 100.0
+
+string optionBias = score >= scoreThreshold ? "CALL BIAS" : score <= -scoreThreshold ? "PUT BIAS" : "NO TRADE"
+string optionFramework = "WAIT / CHECK CHAIN"
+string deltaGuide = "n/a"
+if score >= scoreThreshold
+    optionFramework := hvPctSafe < 35 ? "CALL or CALL DEBIT SPREAD" : hvPctSafe > 70 ? "DEFINED-RISK BULL SPREAD" : "CALL DEBIT SPREAD"
+    deltaGuide := "Long delta 0.55–0.70"
+else if score <= -scoreThreshold
+    optionFramework := hvPctSafe < 35 ? "PUT or PUT DEBIT SPREAD" : hvPctSafe > 70 ? "DEFINED-RISK BEAR SPREAD" : "PUT DEBIT SPREAD"
+    deltaGuide := "Long |delta| 0.55–0.70"
+
+// ---------- Visuals --------------------------------------------------------
+plot(showEma ? emaFast : na, "EMA Fast", color=color.rgb(50, 190, 255), linewidth=1)
+plot(showEma ? emaMid : na, "EMA Medium", color=color.rgb(255, 180, 45), linewidth=2)
+plot(showEma ? emaSlow : na, "EMA Slow", color=color.rgb(190, 80, 255), linewidth=2)
+plot(showVwap and timeframe.isintraday ? vwapLine : na, "Session VWAP", color=color.rgb(245, 245, 245), linewidth=1)
+
+plot(showRiskMap and activeDirection != 0 ? activeEntry : na, "Active Entry", color=color.new(color.white, 0), linewidth=2, style=plot.style_linebr)
+plot(showRiskMap and activeDirection != 0 ? activeStop : na, "Invalidation", color=color.new(color.red, 0), linewidth=2, style=plot.style_linebr)
+plot(showRiskMap and activeDirection != 0 ? activeTarget1 : na, "Target 1", color=color.new(color.aqua, 10), linewidth=1, style=plot.style_linebr)
+plot(showRiskMap and activeDirection != 0 ? activeTarget2 : na, "Target 2", color=color.new(color.lime, 0), linewidth=2, style=plot.style_linebr)
+
+plotshape(callSetup, title="CALL setup", text="CALL", style=shape.labelup, location=location.belowbar, color=color.rgb(0, 180, 110), textcolor=color.white, size=size.tiny)
+plotshape(putSetup, title="PUT setup", text="PUT", style=shape.labeldown, location=location.abovebar, color=color.rgb(220, 50, 70), textcolor=color.white, size=size.tiny)
+
+color bgColor = score >= 60 ? color.new(color.green, 92) : score <= -60 ? color.new(color.red, 92) : color.new(color.gray, 100)
+bgcolor(showBg ? bgColor : na, title="Market regime")
+
+if showLabels and callSetup
+    label.new(bar_index, low, "CALL SETUP" + (squeeze ? " (coiled)" : "") + "\nScore: " + f_fmt(score, "#.0") + "\nADX: " + f_fmt(adx, "#.0") + "\nHV%ile: " + f_fmt(hvPercentile, "#.0") + "\nEarnings: " + (na(daysToEarnings) ? "none known" : f_fmt(daysToEarnings, "#") + "d") + "\nATM ref: " + f_fmt(atmStrike, "#.##") + "\nConfirm IV/Greeks in chain", yloc=yloc.belowbar, style=label.style_label_up, color=color.rgb(0, 150, 95), textcolor=color.white, size=size.small)
+
+if showLabels and putSetup
+    label.new(bar_index, high, "PUT SETUP" + (squeeze ? " (coiled)" : "") + "\nScore: " + f_fmt(score, "#.0") + "\nADX: " + f_fmt(adx, "#.0") + "\nHV%ile: " + f_fmt(hvPercentile, "#.0") + "\nEarnings: " + (na(daysToEarnings) ? "none known" : f_fmt(daysToEarnings, "#") + "d") + "\nATM ref: " + f_fmt(atmStrike, "#.##") + "\nConfirm IV/Greeks in chain", yloc=yloc.abovebar, style=label.style_label_down, color=color.rgb(200, 45, 65), textcolor=color.white, size=size.small)
+
+// ---------- Dashboard ------------------------------------------------------
+var table dashboard = table.new(position.top_right, 2, 19, border_width=1, border_color=color.new(color.gray, 70))
+
+if barstate.islast and showDashboard
+    color headerBg = color.rgb(12, 20, 32)
+    color cellBg = color.new(color.rgb(15, 23, 36), 8)
+    color muted = color.rgb(160, 170, 185)
+    table.cell(dashboard, 0, 0, "OMEGA OPTIONS", bgcolor=headerBg, text_color=color.white, text_size=size.small)
+    table.cell(dashboard, 1, 0, "v1.1", bgcolor=headerBg, text_color=color.aqua, text_size=size.small)
+    table.cell(dashboard, 0, 1, "Underlying", bgcolor=cellBg, text_color=muted)
+    table.cell(dashboard, 1, 1, syminfo.ticker, bgcolor=cellBg, text_color=color.white)
+    table.cell(dashboard, 0, 2, "Composite score", bgcolor=cellBg, text_color=muted)
+    table.cell(dashboard, 1, 2, f_fmt(score, "#.0") + " / 100", bgcolor=color.new(regimeColor, 25), text_color=color.white)
+    table.cell(dashboard, 0, 3, "Regime", bgcolor=cellBg, text_color=muted)
+    table.cell(dashboard, 1, 3, regime, bgcolor=cellBg, text_color=regimeColor)
+    table.cell(dashboard, 0, 4, "Options bias", bgcolor=cellBg, text_color=muted)
+    table.cell(dashboard, 1, 4, optionBias, bgcolor=cellBg, text_color=optionBias == "CALL BIAS" ? color.lime : optionBias == "PUT BIAS" ? color.red : color.silver)
+    table.cell(dashboard, 0, 5, "Framework", bgcolor=cellBg, text_color=muted)
+    table.cell(dashboard, 1, 5, optionFramework, bgcolor=cellBg, text_color=color.white, text_size=size.tiny)
+    table.cell(dashboard, 0, 6, "Delta guide", bgcolor=cellBg, text_color=muted)
+    table.cell(dashboard, 1, 6, deltaGuide, bgcolor=cellBg, text_color=color.white, text_size=size.tiny)
+    table.cell(dashboard, 0, 7, "HV / percentile", bgcolor=cellBg, text_color=muted)
+    table.cell(dashboard, 1, 7, f_fmt(historicalVol, "#.0") + "% / " + f_fmt(hvPercentile, "#.0"), bgcolor=cellBg, text_color=color.white)
+    table.cell(dashboard, 0, 8, "Expected move (DTE)", bgcolor=cellBg, text_color=muted)
+    table.cell(dashboard, 1, 8, "±" + f_fmt(expectedMove, "#.##") + " (" + str.tostring(preferredDte) + "d)", bgcolor=cellBg, text_color=color.white)
+    table.cell(dashboard, 0, 9, "Expected range", bgcolor=cellBg, text_color=muted)
+    table.cell(dashboard, 1, 9, f_fmt(expectedLower, "#.##") + " — " + f_fmt(expectedUpper, "#.##"), bgcolor=cellBg, text_color=color.white)
+    table.cell(dashboard, 0, 10, "ADX / Volume Z", bgcolor=cellBg, text_color=muted)
+    table.cell(dashboard, 1, 10, f_fmt(adx, "#.0") + " / " + f_fmt(volumeZ, "#.1"), bgcolor=cellBg, text_color=color.white)
+    table.cell(dashboard, 0, 11, "ATR % / VIX", bgcolor=cellBg, text_color=muted)
+    table.cell(dashboard, 1, 11, f_fmt(atrPct, "#.2") + "% / " + f_fmt(vixClose, "#.1"), bgcolor=cellBg, text_color=color.white)
+    table.cell(dashboard, 0, 12, "ATM strike reference", bgcolor=cellBg, text_color=muted)
+    table.cell(dashboard, 1, 12, f_fmt(atmStrike, "#.##"), bgcolor=cellBg, text_color=color.white)
+    table.cell(dashboard, 0, 13, "Max idea risk", bgcolor=cellBg, text_color=muted)
+    table.cell(dashboard, 1, 13, "$" + f_fmt(maxIdeaRisk, "#.##") + " | premium ≤ $" + f_fmt(maxPremiumPerContract, "#.##"), bgcolor=cellBg, text_color=color.white, text_size=size.tiny)
+    // ---- v1.1
+    table.cell(dashboard, 0, 14, "Earnings", bgcolor=cellBg, text_color=muted)
+    string earnTxt = na(daysToEarnings) ? "none known" : f_fmt(daysToEarnings, "#") + "d" + (earningsOk ? "" : " — BLOCKED")
+    table.cell(dashboard, 1, 14, earnTxt, bgcolor=cellBg, text_color=earningsOk ? color.white : color.orange)
+    table.cell(dashboard, 0, 15, "Compression", bgcolor=cellBg, text_color=muted)
+    table.cell(dashboard, 1, 15, (squeeze ? "COILED " : "no ") + "(" + f_fmt(bbwPercentile, "#") + " %ile)", bgcolor=cellBg, text_color=squeeze ? color.yellow : muted)
+    table.cell(dashboard, 0, 16, "Signals W/L", bgcolor=cellBg, text_color=muted)
+    table.cell(dashboard, 1, 16, str.tostring(statWins) + "W / " + str.tostring(statLosses) + "L (" + f_fmt(statWinRate, "#.0") + "%)", bgcolor=cellBg, text_color=color.white)
+    table.cell(dashboard, 0, 17, "Expectancy (R)", bgcolor=cellBg, text_color=muted)
+    string expTxt = na(statExpectancy) ? "n/a" : f_fmt(statExpectancy, "#.##") + " R" + (statTrades < 30 ? " (n<30 !)" : "")
+    table.cell(dashboard, 1, 17, expTxt, bgcolor=cellBg, text_color=na(statExpectancy) ? muted : statExpectancy > 0 ? color.lime : color.red)
+    string scopeWarning = not supportedChartTf ? "USE 1D OR LOWER" : not higherTfOk ? "HTF MUST BE ≥ CHART TF" : "UNDERLYING ONLY — CHECK CHAIN"
+    table.cell(dashboard, 0, 18, "Data scope", bgcolor=color.new(color.orange, 82), text_color=color.orange)
+    table.cell(dashboard, 1, 18, scopeWarning, bgcolor=color.new(color.orange, 82), text_color=color.orange, text_size=size.tiny)
+
+// ---------- Alerts ---------------------------------------------------------
+alertcondition(callSetup, title="OMEGA CALL setup", message="OMEGA CALL setup on {{ticker}} at {{close}}. Confirm IV, Greeks, liquidity, strike and expiration in the options chain.")
+alertcondition(putSetup, title="OMEGA PUT setup", message="OMEGA PUT setup on {{ticker}} at {{close}}. Confirm IV, Greeks, liquidity, strike and expiration in the options chain.")
+alertcondition(callSetup or putSetup, title="OMEGA Any setup", message="OMEGA options setup on {{ticker}} at {{close}}. Open the chart and confirm the options chain.")
+
+f_alert_payload(string side) =>
+    alertAsJson ?
+         '{"engine":"omega_v1.1","signal":"' + side + '","ticker":"' + syminfo.ticker +
+         '","close":' + f_json_num(close, "#.####") +
+         ',"score":' + f_json_num(score, "#.0") +
+         ',"hv_pct":' + f_json_num(hvPercentile, "#.0") +
+         ',"squeeze":' + (squeeze ? "true" : "false") +
+         ',"days_to_earnings":' + f_json_num(daysToEarnings, "#.0") +
+         ',"atm":' + f_json_num(atmStrike, "#.##") + '}' :
+         "OMEGA " + side + " | " + syminfo.ticker + " | score=" + f_fmt(score, "#.0") +
+         " | close=" + f_fmt(close, "#.##") + " | HVpct=" + f_fmt(hvPercentile, "#.0") +
+         " | Confirm IV/Greeks/liquidity in chain."
+
+if callSetup
+    alert(f_alert_payload("CALL"), alert.freq_once_per_bar_close)
+
+if putSetup
+    alert(f_alert_payload("PUT"), alert.freq_once_per_bar_close)

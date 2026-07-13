@@ -149,8 +149,14 @@ def fetch_snapshot(entry, cfg: dict) -> MarketSnapshot | None:
     entry = normalize_entry(entry)
     ticker, currency = entry["symbol"], entry["currency"]
     label = ticker if currency == "USD" else f"{ticker} ({currency})"
+    # ib_async absent (ex. cloud) : RuntimeError => la source ib échoue
+    # FRANCHEMENT et le scan quotidien bascule sur yahoo — plus jamais de
+    # scan « ib » silencieusement vide (bug du 13/07/2026)
     try:
         from ib_async import Stock
+    except ImportError as exc:
+        raise RuntimeError(f"ib_async n'est pas installé : {exc}") from exc
+    try:
         ib = _connect(cfg)
 
         stock = Stock(ticker, "SMART", currency,

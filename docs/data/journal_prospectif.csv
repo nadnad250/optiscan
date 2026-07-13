@@ -1,34 +1,40 @@
 horodatage;timezone;sha_model;groupe;ticker;source;spot;prob_ml;seuil_ml;prob_implicite;ratio;direction;decision;raison;side;strike;expiry;dte;bid;ask;mid;iv;delta;theta_jour;vega;cout_entree_ask;ret_1s;ret_3s;ret_5s;exit_bid_1s;exit_bid_3s;exit_bid_5s;pnl_option_est_5s_pct;resultat_direction_seule;statut
-2026-07-13T15:00:54-04:00;America/New_York;;scan;AAPL;yahoo;317.05;;;;;;erreur;No module named '_loss';;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-13T15:00:55-04:00;America/New_York;;scan;NVDA;yahoo;203.71;;;;;;erreur;No module named '_loss';;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-13T15:00:56-04:00;America/New_York;;scan;TSLA;yahoo;392.1601;;;;;;erreur;No module named '_loss';;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-13T15:00:56-04:00;America/New_York;;scan;AMD;yahoo;535.75;;;;;;erreur;No module named '_loss';;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-13T15:00:58-04:00;America/New_York;;scan;META;yahoo;662.4;;;;;;erreur;No module named '_loss';;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-13T15:00:59-04:00;America/New_York;;scan;SPY;yahoo;749.33;;;;;;erreur;No module named '_loss';;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-13T15:01:01-04:00;America/New_York;;scan;QQQ;yahoo;712.18;;;;;;erreur;No module named '_loss';;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-13T15:01:02-04:00;America/New_York;;scan;COIN;yahoo;156.35;;;;;;erreur;No module named '_loss';;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-13T15:01:03-04:00;America/New_York;;scan;PLTR;yahoo;129.67;;;;;;erreur;No module named '_loss';;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-13T15:01:03-04:00;America/New_York;;C;PLTR;yahoo;129.67;;;;;;controle_aleatoire;contrôle apparié, direction aléatoire hausse;;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-13T15:01:04-04:00;America/New_York;;scan;SOFI;yahoo;18.15;;;;;;erreur;No module named '_loss';;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-13T15:01:05-04:00;America/New_York;;scan;MARA;yahoo;12.065;;;;;;erreur;No module named '_loss';;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-13T15:01:05-04:00;America/New_York;;scan;F;yahoo;13.855;;;;;;erreur;No module named '_loss';;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-13T15:01:06-04:00;America/New_York;;scan;T;yahoo;21.49;;;;;;erreur;No module named '_loss';;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-13T15:01:07-04:00;America/New_York;;scan;PFE;yahoo;24.44;;;;;;erreur;No module named '_loss';;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-13T15:01:08-04:00;America/New_York;;scan;AAL;yahoo;16.3077;;;;;;erreur;No module named '_loss';;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-13T15:01:08-04:00;America/New_York;;scan;NIO;yahoo;4.92;;;;;;erreur;No module named '_loss';;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-13T15:01:09-04:00;America/New_York;;scan;INTC;yahoo;102.36;;;;;;erreur;No module named '_loss';;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-13T15:01:10-04:00;America/New_York;;scan;PLUG;yahoo;2.165;;;;;;erreur;No module named '_loss';;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-13T15:01:11-04:00;America/New_York;;scan;RIVN;yahoo;17.125;;;;;;erreur;No module named '_loss';;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-13T15:01:12-04:00;America/New_York;;scan;LCID;yahoo;5.51;;;;;;erreur;No module named '_loss';;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-13T15:01:12-04:00;America/New_York;;scan;SNAP;yahoo;4.685;;;;;;erreur;No module named '_loss';;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-13T15:01:13-04:00;America/New_York;;scan;WBD;yahoo;27.265;;;;;;erreur;No module named '_loss';;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-13T15:01:14-04:00;America/New_York;;scan;VALE;yahoo;14.11;;;;;;erreur;No module named '_loss';;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-13T15:01:15-04:00;America/New_York;;scan;PBR;yahoo;17.895;;;;;;erreur;No module named '_loss';;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-13T15:01:16-04:00;America/New_York;;scan;GOLD;yahoo;38.18;;;;;;erreur;No module named '_loss';;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-13T15:01:16-04:00;America/New_York;;scan;CLF;yahoo;9.755;;;;;;erreur;No module named '_loss';;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-13T15:01:17-04:00;America/New_York;;scan;CCL;yahoo;26.7;;;;;;erreur;No module named '_loss';;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-13T15:01:18-04:00;America/New_York;;scan;RIOT;yahoo;19.82;;;;;;erreur;No module named '_loss';;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-13T15:01:18-04:00;America/New_York;;scan;TLRY;yahoo;4.475;;;;;;erreur;No module named '_loss';;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-13T15:01:19-04:00;America/New_York;;scan;BAC;yahoo;59.355;;;;;;erreur;No module named '_loss';;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-13T15:01:20-04:00;America/New_York;;scan;AGNC;yahoo;10.9889;;;;;;erreur;No module named '_loss';;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-13T15:01:21-04:00;America/New_York;;scan;KVUE;yahoo;19.155;;;;;;erreur;No module named '_loss';;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-13T15:32:56-04:00;America/New_York;11fa6982d2cf3659;scan;AAPL;yahoo;316.28;0.0219;0.323;0.0612;0.358;0.411;rejet_prob;prob 0.022 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-13T15:32:57-04:00;America/New_York;11fa6982d2cf3659;scan;NVDA;yahoo;204.13;0.2616;0.323;0.1647;1.588;0.261;rejet_prob;prob 0.262 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-13T15:32:58-04:00;America/New_York;11fa6982d2cf3659;scan;TSLA;yahoo;392.4;0.2202;0.323;0.0563;3.911;0.114;rejet_prob;prob 0.220 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-13T15:32:59-04:00;America/New_York;11fa6982d2cf3659;scan;AMD;yahoo;535.35;0.2483;0.323;0.1683;1.475;0.231;rejet_prob;prob 0.248 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-13T15:32:59-04:00;America/New_York;11fa6982d2cf3659;scan;META;yahoo;658.5799;0.0472;0.323;0.1334;0.354;0.712;rejet_prob;prob 0.047 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-13T15:33:00-04:00;America/New_York;11fa6982d2cf3659;scan;SPY;yahoo;748.7;0.2996;0.323;0.1252;2.393;-0.174;rejet_prob;prob 0.300 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-13T15:33:01-04:00;America/New_York;11fa6982d2cf3659;scan;QQQ;yahoo;711.13;0.2136;0.323;0.074;2.886;-0.419;rejet_prob;prob 0.214 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-13T15:33:02-04:00;America/New_York;11fa6982d2cf3659;scan;COIN;yahoo;155.77;0.1883;0.323;0.2926;0.644;0.102;rejet_prob;prob 0.188 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-13T15:33:02-04:00;America/New_York;11fa6982d2cf3659;scan;PLTR;yahoo;128.2;0.1093;0.323;0.2002;0.546;0.183;rejet_prob;prob 0.109 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-13T15:33:02-04:00;America/New_York;11fa6982d2cf3659;C;PLTR;yahoo;128.2;0.1093;0.323;0.2002;0.546;0.183;controle_aleatoire;contrôle apparié, direction aléatoire hausse;;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-13T15:33:03-04:00;America/New_York;11fa6982d2cf3659;scan;SOFI;yahoo;18.1464;0.2169;0.323;0.4136;0.524;0.41;rejet_prob;prob 0.217 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-13T15:33:03-04:00;America/New_York;11fa6982d2cf3659;A;SOFI;yahoo;18.1464;0.2169;0.323;0.4136;0.524;0.41;rejet_prob;prob 0.217 < seuil 0.323;call;19.5;2026-08-07;25.0;0.85;0.89;0.87;0.7227;0.394;-0.0272;0.0183;89.0;;;;;;;;;en_attente
+2026-07-13T15:33:03-04:00;America/New_York;11fa6982d2cf3659;scan;MARA;yahoo;12.0543;0.1526;0.323;0.2638;0.578;-0.183;rejet_prob;prob 0.153 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-13T15:33:04-04:00;America/New_York;11fa6982d2cf3659;scan;F;yahoo;13.8423;0.2543;0.323;0.4107;0.619;0.099;rejet_prob;prob 0.254 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-13T15:33:05-04:00;America/New_York;11fa6982d2cf3659;scan;T;yahoo;21.4702;0.0665;0.323;0.1578;0.421;-0.083;rejet_prob;prob 0.067 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-13T15:33:05-04:00;America/New_York;11fa6982d2cf3659;scan;PFE;yahoo;24.4998;0.1953;0.323;0.173;1.129;0.162;rejet_prob;prob 0.195 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-13T15:33:06-04:00;America/New_York;11fa6982d2cf3659;scan;AAL;yahoo;16.3302;0.1917;0.323;0.2435;0.787;-0.001;rejet_prob;prob 0.192 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-13T15:33:06-04:00;America/New_York;11fa6982d2cf3659;scan;NIO;yahoo;4.895;0.3521;0.323;0.3206;1.098;0.244;rejet_ratio;options déjà chères : ratio 1.10 < 1.5 (p_implicite 0.321);;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-13T15:33:07-04:00;America/New_York;11fa6982d2cf3659;scan;INTC;yahoo;102.27;0.1836;0.323;0.141;1.302;-0.282;rejet_prob;prob 0.184 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-13T15:33:07-04:00;America/New_York;11fa6982d2cf3659;scan;PLUG;yahoo;2.155;0.4752;0.323;0.501;0.949;-0.316;rejet_ratio;options déjà chères : ratio 0.95 < 1.5 (p_implicite 0.501);;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-13T15:33:08-04:00;America/New_York;11fa6982d2cf3659;scan;RIVN;yahoo;17.125;0.037;0.323;0.0275;1.345;0.202;rejet_prob;prob 0.037 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-13T15:33:08-04:00;America/New_York;11fa6982d2cf3659;scan;LCID;yahoo;5.5001;0.034;0.323;0.1422;0.239;0.322;rejet_prob;prob 0.034 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-13T15:33:08-04:00;America/New_York;11fa6982d2cf3659;A;LCID;yahoo;5.5001;0.034;0.323;0.1422;0.239;0.322;rejet_prob;prob 0.034 < seuil 0.323;call;6.0;2026-08-07;25.0;0.36;0.46;0.41;1.0313;0.43;-0.0119;0.0057;46.0;;;;;;;;;en_attente
+2026-07-13T15:33:09-04:00;America/New_York;11fa6982d2cf3659;scan;SNAP;yahoo;4.665;0.0595;0.323;0.2673;0.223;0.21;rejet_prob;prob 0.059 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-13T15:33:09-04:00;America/New_York;11fa6982d2cf3659;scan;WBD;yahoo;27.19;0.1281;0.323;0.7844;0.163;0.337;rejet_prob;prob 0.128 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-13T15:33:09-04:00;America/New_York;11fa6982d2cf3659;A;WBD;yahoo;27.19;0.1281;0.323;0.7844;0.163;0.337;rejet_prob;prob 0.128 < seuil 0.323;call;28.0;2026-08-07;25.0;0.75;1.0;0.875;0.4668;0.439;-0.0275;0.0281;100.0;;;;;;;;;en_attente
+2026-07-13T15:33:10-04:00;America/New_York;11fa6982d2cf3659;scan;VALE;yahoo;14.115;0.3103;0.323;0.2396;1.295;-0.289;rejet_prob;prob 0.310 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-13T15:33:10-04:00;America/New_York;11fa6982d2cf3659;scan;PBR;yahoo;17.8302;0.1235;0.323;0.4217;0.293;0.381;rejet_prob;prob 0.123 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-13T15:33:10-04:00;America/New_York;11fa6982d2cf3659;A;PBR;yahoo;17.8302;0.1235;0.323;0.4217;0.293;0.381;rejet_prob;prob 0.123 < seuil 0.323;call;18.5;2026-08-07;25.0;0.04;0.75;0.395;0.5439;0.434;-0.0208;0.0184;75.0;;;;;;;;;en_attente
+2026-07-13T15:33:11-04:00;America/New_York;11fa6982d2cf3659;scan;GOLD;yahoo;38.07;0.1904;0.323;0.3089;0.616;0.103;rejet_prob;prob 0.190 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-13T15:33:11-04:00;America/New_York;11fa6982d2cf3659;scan;CLF;yahoo;9.645;0.051;0.323;0.4376;0.117;-0.19;rejet_prob;prob 0.051 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-13T15:33:12-04:00;America/New_York;11fa6982d2cf3659;scan;CCL;yahoo;26.56;0.2253;0.323;0.1624;1.387;-0.186;rejet_prob;prob 0.225 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-13T15:33:13-04:00;America/New_York;11fa6982d2cf3659;scan;RIOT;yahoo;19.855;0.1151;0.323;0.2949;0.39;-0.168;rejet_prob;prob 0.115 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-13T15:33:13-04:00;America/New_York;11fa6982d2cf3659;scan;TLRY;yahoo;4.44;0.2739;0.323;0.6333;0.432;0.021;rejet_prob;prob 0.274 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-13T15:33:14-04:00;America/New_York;11fa6982d2cf3659;scan;BAC;yahoo;59.365;0.2569;0.323;0.265;0.969;0.405;rejet_prob;prob 0.257 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-13T15:33:14-04:00;America/New_York;11fa6982d2cf3659;A;BAC;yahoo;59.365;0.2569;0.323;0.265;0.969;0.405;rejet_prob;prob 0.257 < seuil 0.323;call;61.0;2026-08-07;25.0;0.98;1.02;1.0;0.2676;0.379;-0.0343;0.0591;102.0;;;;;;;;;en_attente
+2026-07-13T15:33:14-04:00;America/New_York;11fa6982d2cf3659;scan;AGNC;yahoo;10.985;0.14;0.323;0.2501;0.56;0.561;rejet_prob;prob 0.140 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-13T15:33:14-04:00;America/New_York;11fa6982d2cf3659;A;AGNC;yahoo;10.985;0.14;0.323;0.2501;0.56;0.561;rejet_prob;prob 0.140 < seuil 0.323;call;11.0;2026-08-07;25.0;0.23;0.27;0.25;0.2363;0.523;-0.0061;0.0114;27.0;;;;;;;;;en_attente
+2026-07-13T15:33:15-04:00;America/New_York;11fa6982d2cf3659;scan;KVUE;yahoo;19.19;0.1503;0.323;0.4543;0.331;-0.288;rejet_prob;prob 0.150 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente

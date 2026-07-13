@@ -66,7 +66,15 @@
     padding:9px 14px;border:1px solid var(--line);border-radius:10px;transition:.15s}
   .guide-link:hover{border-color:var(--accent)}
   /* mode statique (GitHub Pages) : pas de serveur -> actions masquées */
-  body.static #btn-scan, body.static #source, body.static .stage-row{display:none}
+  body.static #btn-scan, body.static #source, body.static .stage-row,
+  body.static #btn-kill, body.static #mode-badge{display:none}
+  .mode-badge{padding:7px 13px;border-radius:99px;font-size:12.5px;font-weight:800;
+    letter-spacing:.5px;border:1px solid var(--line);color:var(--muted)}
+  .mode-badge.paper{background:rgba(47,212,138,.15);color:var(--green);border-color:rgba(47,212,138,.4)}
+  .mode-badge.live{background:rgba(255,93,108,.2);color:var(--red);border-color:var(--red);
+    animation:pulse 1.5s infinite}
+  .mode-badge.kill{background:rgba(255,93,108,.25);color:var(--red);border-color:var(--red)}
+  @keyframes pulse{50%{opacity:.6}}
   .score-filter{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:13px}
   input[type=range]{accent-color:var(--accent)}
 
@@ -139,6 +147,8 @@
       <h1>OptiScan<span>Scanner d'opportunités options — alertes uniquement</span></h1>
     </div>
     <div class="spacer"></div>
+    <span id="mode-badge" class="mode-badge" title="Mode de trading configuré">…</span>
+    <button class="btn ghost" id="btn-kill" title="Bloque immédiatement toute préparation d'ordre">🛑 Kill switch</button>
     <a class="guide-link" href="guide.html">📖 Guide débutant</a>
     <div class="meta">Dernier scan<br><b id="last-scan">—</b></div>
     <select id="source" title="Source de données">
@@ -220,7 +230,24 @@ const KINDS = {
   put_cash_secured:{label:'Put cash-secured', color:'var(--green)'},
   strategie_optimale:{label:'Stratégie optimale', color:'var(--yellow)'},
 };
+// jeton injecté par le serveur local (protection anti-CSRF des ordres) ;
+// reste le littéral '__OPTISCAN_TOKEN__' en mode statique GitHub Pages
+const OPTISCAN_TOKEN = '__OPTISCAN_TOKEN__';
 let DATA = [], activeKinds = new Set(), search = '', minScore = 0, dteRange = null, preset = 'tout';
+let KILL_ACTIVE = false;
+
+async function loadModeBadge(){
+  try{
+    const c = await (await fetch('/api/config')).json();
+    KILL_ACTIVE = !!c.kill_switch;
+    const b = $('mode-badge');
+    if(c.kill_switch){ b.className = 'mode-badge kill'; b.textContent = '🛑 KILL SWITCH ACTIF'; }
+    else if(c.trading_mode === 'live'){ b.className = 'mode-badge live'; b.textContent = '🔴 LIVE — ARGENT RÉEL'; }
+    else { b.className = 'mode-badge paper'; b.textContent = '🟢 PAPER (simulation)'; }
+    if(!c.enable_order_staging) b.textContent += ' · ordres OFF';
+    $('btn-kill').textContent = c.kill_switch ? '✅ Réarmer' : '🛑 Kill switch';
+  }catch(e){ /* mode statique : badge masqué par CSS */ }
+}
 
 const PRESET_FILTERS = {
   tout: () => true,
@@ -535,7 +562,8 @@ $('m-send').onclick = async () => {
   r.className = 'result'; r.textContent = 'Préparation en cours…'; r.classList.add('ok');
   try{
     const resp = await fetch('/api/order/stage', {
-      method: 'POST', headers: {'Content-Type': 'application/json'},
+      method: 'POST',
+      headers: {'Content-Type': 'application/json', 'X-OptiScan-Token': OPTISCAN_TOKEN},
       body: JSON.stringify({...modalOrder, quantity: +$('m-qty').value, limit_price: +$('m-price').value}),
     });
     const j = await resp.json();
@@ -568,7 +596,22 @@ document.querySelectorAll('.chip.dte').forEach(c => c.onclick = () => {
 $('search').oninput = e => { search = e.target.value.trim().toUpperCase(); render(); };
 $('minscore').oninput = e => { minScore = +e.target.value; $('minscore-v').textContent = minScore; render(); };
 
+$('btn-kill').onclick = async () => {
+  const activate = !KILL_ACTIVE;
+  if(activate){
+    if(!confirm('Activer le KILL SWITCH ?\n\nPlus AUCUN ordre ne pourra être préparé.')) return;
+    if(!confirm('Confirme une seconde fois : bloquer toutes les préparations d\'ordres ?')) return;
+  }
+  const r = await fetch('/api/killswitch', {method:'POST',
+    headers:{'Content-Type':'application/json','X-OptiScan-Token':OPTISCAN_TOKEN},
+    body: JSON.stringify({activate})});
+  const j = await r.json();
+  alert(j.message || j.error || 'erreur');
+  loadModeBadge();
+};
+
 loadLatest();
+loadModeBadge();
 fetch('/api/status').then(r=>r.json()).then(s=>{ if(s.running){ polling=setInterval(pollStatus,1200); pollStatus(); } }).catch(()=>{});
 </script>
 </body>

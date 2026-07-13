@@ -92,6 +92,18 @@
 const $ = id => document.getElementById(id);
 const esc = s => String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
+// clic sur un ticker -> graphique TradingView (bourse correcte pour l'Europe)
+const TV_EU = {DTE:'XETR:DTE', LHA:'XETR:LHA', EOAN:'XETR:EOAN', CBK:'XETR:CBK',
+  TEF:'BME:TEF', SAN:'BME:SAN', IBE:'BME:IBE', ORA:'EURONEXT:ORA',
+  ENGI:'EURONEXT:ENGI', AF:'EURONEXT:AF', ENEL:'MIL:ENEL', ISP:'MIL:ISP'};
+function tvLink(t){
+  const sym = String(t).split(' ')[0];
+  const full = String(t).includes('(EUR)') ? (TV_EU[sym] || sym) : sym;
+  const url = 'https://www.tradingview.com/chart/?symbol=' + encodeURIComponent(full);
+  return `<a href="${url}" target="_blank" rel="noopener" style="color:inherit;text-decoration:none"
+    title="Ouvrir le graphique TradingView">${esc(t)} <small style="color:var(--muted)">↗</small></a>`;
+}
+
 function pct(v){ if(v==null||v===''||isNaN(v)) return '<span class="pend">—</span>';
   const n=+v*100; const c=n>=0?'pos':'neg'; return `<span class="${c}">${n>=0?'+':''}${n.toFixed(1)}%</span>`; }
 function num(v,d=2){ return (v==null||v===''||isNaN(v))?'<span class="pend">—</span>':(+v).toFixed(d); }
@@ -146,7 +158,7 @@ function render(rows){
     return `<tr>
       <td>${esc(String(r.horodatage).slice(0,10))}</td>
       <td><span class="pill ${grp}">${esc(r.groupe)}</span></td>
-      <td class="tick">${esc(r.ticker)}</td>
+      <td class="tick">${tvLink(r.ticker)}</td>
       <td class="${sideCls}">${esc(r.side||'—')}</td>
       <td>${esc(r.strike||'—')}</td>
       <td>${esc(String(r.expiry||'—').slice(0,10))}</td>
@@ -165,7 +177,7 @@ function render(rows){
     const col = dec==='signal_combine'?'pos':dec.startsWith('rejet')?'pend':'';
     return `<tr>
       <td>${esc(String(r.horodatage).slice(0,10))}</td>
-      <td class="tick">${esc(r.ticker)}</td>
+      <td class="tick">${tvLink(r.ticker)}</td>
       <td class="${col}">${esc(dec)}</td>
       <td>${num(r.prob_ml)}</td>
       <td>${num(r.seuil_ml)}</td>

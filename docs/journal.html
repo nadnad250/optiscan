@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OptiScan — Journal prospectif</title>
+<style>
+  :root{
+    --bg:#0b0e14; --panel:#12161f; --panel2:#171c28; --line:#232a3a;
+    --txt:#e7ecf5; --muted:#8b94a7; --accent:#4f8cff; --accent2:#7c5cff;
+    --green:#2fd48a; --red:#ff5d6c; --yellow:#ffc555; --radius:14px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--txt);
+    font:15px/1.55 -apple-system,'Segoe UI',Roboto,sans-serif;min-height:100vh}
+  body::before{content:'';position:fixed;inset:0;pointer-events:none;
+    background:radial-gradient(900px 400px at 80% -10%,rgba(79,140,255,.14),transparent 60%)}
+  .wrap{max-width:1180px;margin:0 auto;padding:26px 22px 60px;position:relative}
+  header{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-bottom:8px}
+  h1{font-size:21px;font-weight:700}
+  h1 span{display:block;color:var(--muted);font-weight:500;font-size:13px}
+  .spacer{flex:1}
+  .back{color:var(--accent);text-decoration:none;font-size:14px;font-weight:600;
+    padding:9px 14px;border:1px solid var(--line);border-radius:10px}
+  .intro{color:var(--muted);font-size:13.5px;margin:6px 0 22px;line-height:1.6}
+  .intro b{color:var(--txt)}
+
+  .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-bottom:22px}
+  .tile{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px}
+  .tile .k{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.7px}
+  .tile .v{font-size:25px;font-weight:700;margin-top:4px;font-variant-numeric:tabular-nums}
+  .tile .v small{font-size:12px;color:var(--muted);font-weight:500}
+
+  h2{font-size:16px;margin:24px 0 12px;display:flex;align-items:center;gap:10px}
+  .pill{font-size:11px;font-weight:800;padding:3px 9px;border-radius:99px;letter-spacing:.4px}
+  .pill.a{background:rgba(79,140,255,.16);color:var(--accent)}
+  .pill.b{background:rgba(124,92,255,.18);color:var(--accent2)}
+  .pill.c{background:rgba(160,170,185,.16);color:var(--muted)}
+
+  .tbl{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);
+    border-radius:var(--radius);overflow:hidden;font-size:13.5px}
+  .tbl th{text-align:left;padding:10px 12px;color:var(--muted);font-weight:600;font-size:11.5px;
+    text-transform:uppercase;letter-spacing:.5px;background:var(--panel2);border-bottom:1px solid var(--line)}
+  .tbl td{padding:10px 12px;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}
+  .tbl tr:last-child td{border-bottom:none}
+  .tbl .tick{font-weight:700}
+  .call{color:var(--green)} .put{color:var(--red)}
+  .pos{color:var(--green)} .neg{color:var(--red)} .pend{color:var(--muted)}
+  .wrap-scroll{overflow-x:auto}
+  .empty{color:var(--muted);text-align:center;padding:34px 0;font-size:14px}
+  footer{margin-top:34px;color:var(--muted);font-size:12.5px;text-align:center;line-height:1.6}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Journal prospectif<span>Le test honnête, en direct — protocole gelé</span></h1>
+    <div class="spacer"></div>
+    <a class="back" href="index.html">← Scanner</a>
+    <a class="back" href="guide.html">📖 Guide</a>
+  </header>
+  <div class="intro">
+    Chaque jour de bourse, le bot enregistre <b>tous</b> les tickers scannés puis, pour les setups,
+    trois groupes comparés : <b class="call">A</b> = direction seule, <b>B</b> = direction + timing IA,
+    <b>C</b> = contrôle aléatoire. Les résultats sont capturés à <b>+1, +3 et +5 séances</b> avec les
+    vrais prix. Verdict quand on atteindra <b>50+ signaux</b> : si B bat A après frais, l'IA a une valeur.
+    Rien n'est retouché, les échecs de données sont comptés.
+  </div>
+
+  <div class="tiles" id="tiles"></div>
+
+  <h2><span class="pill a">A / B</span> Trades suivis</h2>
+  <div class="wrap-scroll"><table class="tbl" id="tbl-trades"><thead><tr>
+    <th>Date</th><th>Grp</th><th>Ticker</th><th>Sens</th><th>Strike</th><th>Éch.</th>
+    <th>Entrée (ask)</th><th>prob IA</th><th>Dir</th>
+    <th>+1s</th><th>+3s</th><th>+5s</th><th>Statut</th>
+  </tr></thead><tbody id="rows-trades"></tbody></table></div>
+
+  <h2>Activité de scan (décisions du modèle)</h2>
+  <div class="wrap-scroll"><table class="tbl" id="tbl-scan"><thead><tr>
+    <th>Date</th><th>Ticker</th><th>Décision</th><th>prob IA</th><th>seuil</th><th>Raison</th>
+  </tr></thead><tbody id="rows-scan"></tbody></table></div>
+
+  <footer>
+    Résultats en R non affichés ici : on montre le rendement du sous-jacent (ret) à chaque horizon
+    et le vrai bid de sortie de l'option. Le P&L option réel (thêta, IV, fourchette) se lit sur exit_bid.<br>
+    Outil d'aide à la décision — aucun ordre n'est envoyé. Les options comportent un risque de perte élevé.
+  </footer>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+const esc = s => String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+function pct(v){ if(v==null||v===''||isNaN(v)) return '<span class="pend">—</span>';
+  const n=+v*100; const c=n>=0?'pos':'neg'; return `<span class="${c}">${n>=0?'+':''}${n.toFixed(1)}%</span>`; }
+function num(v,d=2){ return (v==null||v===''||isNaN(v))?'<span class="pend">—</span>':(+v).toFixed(d); }
+
+function parseCSV(text){
+  const lines = text.trim().split(/\r?\n/);
+  const head = lines[0].split(';');
+  return lines.slice(1).map(line=>{
+    // pas de virgules dans nos champs (remplacées par des espaces à l'écriture)
+    const cells = line.split(';');
+    const o = {}; head.forEach((h,i)=> o[h]=cells[i]); return o;
+  });
+}
+
+async function load(){
+  let rows = [];
+  for(const url of ['/api/journal', 'data/journal_prospectif.csv']){
+    try{
+      const r = await fetch(url); if(!r.ok) continue;
+      const ct = r.headers.get('content-type')||'';
+      rows = ct.includes('json') ? await r.json() : parseCSV(await r.text());
+      if(rows.length) break;
+    }catch(e){}
+  }
+  render(rows);
+}
+
+function render(rows){
+  if(!rows.length){
+    $('rows-trades').innerHTML = '<tr><td colspan="13" class="empty">Journal vide — le premier scan le remplira.</td></tr>';
+    $('rows-scan').innerHTML = '';
+    $('tiles').innerHTML = '';
+    return;
+  }
+  const trades = rows.filter(r=>['A','B','C'].includes(r.groupe));
+  const scans = rows.filter(r=>r.groupe==='scan');
+  const jours = new Set(rows.map(r=>String(r.horodatage).slice(0,10)));
+  const complets = trades.filter(r=>r.statut==='complet').length;
+
+  $('tiles').innerHTML = [
+    ['Jours enregistrés', jours.size, ''],
+    ['Trades suivis', trades.length, `${complets} complétés (+5s)`],
+    ['Groupe A', trades.filter(r=>r.groupe==='A').length, 'direction seule'],
+    ['Groupe B', trades.filter(r=>r.groupe==='B').length, 'direction + IA'],
+    ['Signaux IA acceptés', scans.filter(r=>r.decision==='signal_combine').length, 'toutes dates'],
+  ].map(([k,v,s])=>`<div class="tile"><div class="k">${k}</div>
+     <div class="v">${v} ${s?`<small>${s}</small>`:''}</div></div>`).join('');
+
+  $('rows-trades').innerHTML = trades.length ? trades.slice().reverse().map(r=>{
+    const grp = (r.groupe||'').toLowerCase();
+    const sideCls = r.side==='call'?'call':r.side==='put'?'put':'';
+    return `<tr>
+      <td>${esc(String(r.horodatage).slice(0,10))}</td>
+      <td><span class="pill ${grp}">${esc(r.groupe)}</span></td>
+      <td class="tick">${esc(r.ticker)}</td>
+      <td class="${sideCls}">${esc(r.side||'—')}</td>
+      <td>${esc(r.strike||'—')}</td>
+      <td>${esc(String(r.expiry||'—').slice(0,10))}</td>
+      <td>${r.cout_entree_ask?('$'+esc(r.cout_entree_ask)):'—'}</td>
+      <td>${num(r.prob_ml)}</td>
+      <td>${num(r.direction)}</td>
+      <td>${pct(r.ret_1s)}</td>
+      <td>${pct(r.ret_3s)}</td>
+      <td>${pct(r.ret_5s)}</td>
+      <td>${r.statut==='complet'?'<span class="pos">complet</span>':'<span class="pend">en attente</span>'}</td>
+    </tr>`;
+  }).join('') : '<tr><td colspan="13" class="empty">Aucun trade suivi pour l\'instant.</td></tr>';
+
+  $('rows-scan').innerHTML = scans.slice(-60).reverse().map(r=>{
+    const dec = r.decision||'';
+    const col = dec==='signal_combine'?'pos':dec.startsWith('rejet')?'pend':'';
+    return `<tr>
+      <td>${esc(String(r.horodatage).slice(0,10))}</td>
+      <td class="tick">${esc(r.ticker)}</td>
+      <td class="${col}">${esc(dec)}</td>
+      <td>${num(r.prob_ml)}</td>
+      <td>${num(r.seuil_ml)}</td>
+      <td style="color:var(--muted);max-width:340px">${esc(r.raison||'')}</td>
+    </tr>`;
+  }).join('');
+}
+load();
+</script>
+</body>
+</html>

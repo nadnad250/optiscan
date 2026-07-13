@@ -18,6 +18,7 @@ def build() -> None:
     web = BASE / "scanner" / "web"
     shutil.copy(web / "index.html", DOCS / "index.html")
     shutil.copy(web / "guide.html", DOCS / "guide.html")
+    shutil.copy(web / "journal.html", DOCS / "journal.html")
 
     outputs = sorted((BASE / "output").glob("opportunites_*.json"))
     if outputs:

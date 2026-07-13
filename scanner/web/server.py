@@ -22,6 +22,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent   # options-scanner/
 OUTPUT_DIR = BASE_DIR / "output"
 INDEX_HTML = Path(__file__).resolve().parent / "index.html"
 GUIDE_HTML = Path(__file__).resolve().parent / "guide.html"
+JOURNAL_HTML = Path(__file__).resolve().parent / "journal.html"
+JOURNAL_CSV = OUTPUT_DIR / "journal_prospectif.csv"
 
 # jeton de session : injecté dans la page servie, exigé sur les POST sensibles.
 # Empêche toute requête forgée par un autre site ouvert dans le navigateur.
@@ -95,6 +97,10 @@ class Handler(BaseHTTPRequestHandler):
             self._send(200, html.encode("utf-8"), "text/html; charset=utf-8")
         elif self.path in ("/guide", "/guide.html"):
             self._send(200, GUIDE_HTML.read_bytes(), "text/html; charset=utf-8")
+        elif self.path in ("/journal", "/journal.html"):
+            self._send(200, JOURNAL_HTML.read_bytes(), "text/html; charset=utf-8")
+        elif self.path == "/api/journal":
+            self._send_journal()
         elif self.path == "/api/latest":
             self._send_json(_latest_scan())
         elif self.path == "/api/status":
@@ -148,6 +154,19 @@ class Handler(BaseHTTPRequestHandler):
         threading.Thread(target=_scan_worker, args=(source, tickers), daemon=True).start()
         self._send_json({"ok": True, "message": "scan lancé"})
 
+
+    def _send_journal(self):
+        """Journal prospectif en JSON (lignes = dicts colonne->valeur)."""
+        if not JOURNAL_CSV.exists():
+            self._send_json([])
+            return
+        import csv
+        try:
+            with open(JOURNAL_CSV, encoding="utf-8", newline="") as fh:
+                rows = list(csv.DictReader(fh, delimiter=";"))
+            self._send_json(rows)
+        except (OSError, csv.Error) as exc:
+            self._send_json({"error": str(exc)}, 500)
 
     def _handle_stage_order(self):
         """Prépare un ordre INACTIF dans TWS (transmit=False, l'utilisateur

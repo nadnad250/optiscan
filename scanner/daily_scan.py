@@ -24,6 +24,17 @@ NY = ZoneInfo("America/New_York")
 # ne peuvent jamais tomber tous les deux dedans -> pas de double scan
 WINDOW = ((9, 40), (10, 30))   # fenêtre de tir acceptée, heure de New York
 
+# Les crons GitHub Actions sont exécutés en RETARD (parfois 2-3 h) en période
+# chargée — constaté le 13/07/2026 : deux runs tombés hors fenêtre, jour perdu.
+# Dans le cloud, on accepte donc tout le reste de la séance : la garde
+# anti-doublon garantit UN SEUL scan/jour, et l'horodatage réel est journalisé.
+WINDOW_CI = ((9, 40), (15, 45))
+
+
+def _window() -> tuple:
+    import os
+    return WINDOW_CI if os.environ.get("GITHUB_ACTIONS") == "true" else WINDOW
+
 
 def _market_open_today() -> bool:
     """Jour férié US ? SPY n'a pas de bougie du jour -> marché fermé."""
@@ -52,10 +63,11 @@ def main():
         if now.weekday() >= 5:
             print("Week-end : pas de scan.")
             return
+        window = _window()
         hm = (now.hour, now.minute)
-        if not (WINDOW[0] <= hm <= WINDOW[1]):
-            print(f"Hors fenêtre {WINDOW[0][0]}:{WINDOW[0][1]:02d}-"
-                  f"{WINDOW[1][0]}:{WINDOW[1][1]:02d} NY : pas de scan.")
+        if not (window[0] <= hm <= window[1]):
+            print(f"Hors fenêtre {window[0][0]}:{window[0][1]:02d}-"
+                  f"{window[1][0]}:{window[1][1]:02d} NY : pas de scan.")
             return
         if not _market_open_today():
             print("Jour férié US (pas de bougie SPY du jour) : pas de scan.")

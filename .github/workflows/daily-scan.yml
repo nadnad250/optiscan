@@ -2,11 +2,14 @@ name: Scan quotidien (journal prospectif)
 
 on:
   schedule:
-    # 09h45 New York toute l'année : 13h45 UTC (heure d'été US) et
-    # 14h45 UTC (heure d'hiver). La fenêtre 09h40-10h30 NY codée dans
-    # daily_scan.py + la garde anti-doublon empêchent tout double scan.
+    # Cible : 09h45 New York (13h45 UTC été / 14h45 UTC hiver). Les crons
+    # GitHub sont souvent exécutés en retard (2-3 h constatées) : les tirs
+    # supplémentaires servent de filet de sécurité — la garde anti-doublon
+    # de daily_scan.py garantit UN SEUL scan journalisé par jour (le premier).
     - cron: "45 13 * * 1-5"
     - cron: "45 14 * * 1-5"
+    - cron: "45 15 * * 1-5"
+    - cron: "45 17 * * 1-5"
   workflow_dispatch: {}
 
 permissions:

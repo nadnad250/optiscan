@@ -194,6 +194,11 @@
     <span class="chip dte" data-min="31" data-max="999">Long &gt; 30 j</span>
   </div>
 
+  <div id="orders-panel" style="display:none">
+    <h3 style="font-size:15px;margin:6px 0 10px;color:var(--muted)">🗂 Ordres préparés dans TWS
+      <small>(inactifs tant que tu ne cliques pas Transmettre)</small></h3>
+    <div id="orders-list" style="margin-bottom:18px"></div>
+  </div>
   <div id="list"></div>
   <footer>Les ordres préparés depuis l'interface restent <b>INACTIFS</b> dans TWS tant que tu ne cliques
     pas « Transmettre » toi-même. Sans abonnement temps réel, données différées ~15 min.
@@ -586,6 +591,7 @@ $('m-send').onclick = async () => {
     const j = await resp.json();
     r.className = 'result ' + (j.ok ? 'ok' : 'err');
     r.textContent = j.ok ? '✅ ' + j.message : '❌ ' + (j.error || 'erreur inconnue');
+    if(j.ok) loadOrders();
   }catch(e){
     r.className = 'result err'; r.textContent = '❌ ' + e.message;
   }
@@ -613,6 +619,27 @@ document.querySelectorAll('.chip.dte').forEach(c => c.onclick = () => {
 $('search').oninput = e => { search = e.target.value.trim().toUpperCase(); render(); };
 $('minscore').oninput = e => { minScore = +e.target.value; $('minscore-v').textContent = minScore; render(); };
 
+async function loadOrders(){
+  try{
+    const d = await (await fetch('/api/orders')).json();
+    const rows = (d.ordres || []).filter(o => o.statut !== 'reserved');
+    const panel = $('orders-panel');
+    if(!rows.length){ panel.style.display = 'none'; return; }
+    panel.style.display = 'block';
+    $('orders-list').innerHTML = rows.map(o => {
+      const col = o.statut === 'staged' ? 'var(--yellow)' : o.statut === 'cancelled' ? 'var(--red)' : 'var(--muted)';
+      const lbl = o.statut === 'staged' ? 'EN ATTENTE DANS TWS' : o.statut === 'cancelled' ? 'ANNULÉ' : o.statut;
+      return `<div class="card" style="padding:10px 16px;display:flex;gap:14px;align-items:center;flex-wrap:wrap">
+        <b>${esc(o.contrat || o.intent)}</b>
+        <span style="color:var(--muted)">${esc(String(o.date).slice(0,16).replace('T',' '))}</span>
+        <span>qté ${esc(o.quantite ?? '?')} · limite ${esc(o.limite ?? '?')}</span>
+        <span style="color:var(--muted)">${esc(o.mode || '')} ${esc(o.compte || '')}</span>
+        <span style="margin-left:auto;color:${col};font-weight:700">${lbl}</span>
+      </div>`;
+    }).join('');
+  }catch(e){ /* mode statique : pas de panneau */ }
+}
+
 $('btn-kill').onclick = async () => {
   const activate = !KILL_ACTIVE;
   if(activate){
@@ -629,6 +656,7 @@ $('btn-kill').onclick = async () => {
 
 loadLatest();
 loadModeBadge();
+loadOrders();
 fetch('/api/status').then(r=>r.json()).then(s=>{ if(s.running){ polling=setInterval(pollStatus,1200); pollStatus(); } }).catch(()=>{});
 </script>
 </body>

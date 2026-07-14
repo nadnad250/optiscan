@@ -1,0 +1,426 @@
+{
+  "generated_at": "2026-07-14T13:24:11",
+  "count": 16,
+  "opportunities": [
+    {
+      "ticker": "EOAN (EUR)",
+      "kind": "achat_call",
+      "strategy": "ACHETER call 19.6 exp 20260807 @ ~0.33$ (33$/contrat, perte max = la prime)",
+      "score": 84.9,
+      "summary": "EOAN (EUR) : 4/4 signaux hausse convergents (flux +98%, momentum +5.8%, RSI 63, skew +0.15) → call 19.6 (24j) @ 0.33$ — si mouvement 1σ (6.3%) : +155% sur la prime",
+      "details": {
+        "sens": "HAUSSE",
+        "side": "call",
+        "strike": 19.6,
+        "expiry": "20260807",
+        "dte": 24,
+        "prime_par_action": 0.33,
+        "cout_par_contrat": 33,
+        "delta": 0.4,
+        "breakeven": 19.93,
+        "mouvement_necessaire": 0.036,
+        "mouvement_attendu_1sigma": 0.063,
+        "gain_si_mouvement_1sigma": 1.55,
+        "prob_profit_a_echeance": 0.27,
+        "score_direction": 0.68,
+        "signaux": {
+          "direction": 0.6814914974075434,
+          "flux": 0.98,
+          "momentum_20j": 0.058,
+          "rsi": 63.0,
+          "breakout": 1.0,
+          "skew": 0.15
+        },
+        "iv_contrat": 0.219,
+        "vol_realisee": 0.26,
+        "spot": 19.23
+      }
+    },
+    {
+      "ticker": "LHA (EUR)",
+      "kind": "achat_put",
+      "strategy": "ACHETER put 8.8 exp 20260807 @ ~0.40$ (39$/contrat, perte max = la prime)",
+      "score": 72.8,
+      "summary": "LHA (EUR) : 3/4 signaux baisse convergents (flux -96%, momentum +0.5%, RSI 45, skew -0.54) → put 8.8 (24j) @ 0.40$ — si mouvement 1σ (11.1%) : +116% sur la prime",
+      "details": {
+        "sens": "BAISSE",
+        "side": "put",
+        "strike": 8.8,
+        "expiry": "20260807",
+        "dte": 24,
+        "prime_par_action": 0.4,
+        "cout_par_contrat": 39,
+        "delta": 0.42,
+        "breakeven": 8.41,
+        "mouvement_necessaire": -0.06,
+        "mouvement_attendu_1sigma": -0.111,
+        "gain_si_mouvement_1sigma": 1.16,
+        "prob_profit_a_echeance": 0.31,
+        "score_direction": -0.61,
+        "signaux": {
+          "direction": -0.6108313526186967,
+          "flux": -0.96,
+          "momentum_20j": 0.005,
+          "rsi": 45.0,
+          "breakout": -0.89,
+          "skew": -0.54
+        },
+        "iv_contrat": 0.478,
+        "vol_realisee": 0.41,
+        "spot": 8.94
+      }
+    },
+    {
+      "ticker": "DTE (EUR)",
+      "kind": "achat_call",
+      "strategy": "ACHETER call 27.5 exp 20260807 @ ~0.53$ (53$/contrat, perte max = la prime)",
+      "score": 65.1,
+      "summary": "DTE (EUR) : 3/4 signaux hausse convergents (flux +85%, momentum -3.9%, RSI 52, skew +0.44) → call 27.5 (24j) @ 0.53$ — si mouvement 1σ (9.1%) : +177% sur la prime",
+      "details": {
+        "sens": "HAUSSE",
+        "side": "call",
+        "strike": 27.5,
+        "expiry": "20260807",
+        "dte": 24,
+        "prime_par_action": 0.53,
+        "cout_par_contrat": 53,
+        "delta": 0.37,
+        "breakeven": 28.03,
+        "mouvement_necessaire": 0.056,
+        "mouvement_attendu_1sigma": 0.091,
+        "gain_si_mouvement_1sigma": 1.77,
+        "prob_profit_a_echeance": 0.26,
+        "score_direction": 0.46,
+        "signaux": {
+          "direction": 0.4589285530586999,
+          "flux": 0.85,
+          "momentum_20j": -0.039,
+          "rsi": 52.0,
+          "breakout": 0.75,
+          "skew": 0.44
+        },
+        "iv_contrat": 0.341,
+        "vol_realisee": 0.365,
+        "spot": 26.55
+      }
+    },
+    {
+      "ticker": "AF (EUR)",
+      "kind": "achat_put",
+      "strategy": "ACHETER put 12.2 exp 20260821 @ ~0.74$ (74$/contrat, perte max = la prime)",
+      "score": 56.9,
+      "summary": "AF (EUR) : 2/4 signaux baisse convergents (flux -100%, momentum +2.4%, RSI 48, skew +0.03) → put 12.2 (38j) @ 0.74$ — si mouvement 1σ (16.3%) : +130% sur la prime",
+      "details": {
+        "sens": "BAISSE",
+        "side": "put",
+        "strike": 12.2,
+        "expiry": "20260821",
+        "dte": 38,
+        "prime_par_action": 0.74,
+        "cout_par_contrat": 74,
+        "delta": 0.39,
+        "breakeven": 11.46,
+        "mouvement_necessaire": -0.087,
+        "mouvement_attendu_1sigma": -0.163,
+        "gain_si_mouvement_1sigma": 1.3,
+        "prob_profit_a_echeance": 0.32,
+        "score_direction": -0.38,
+        "signaux": {
+          "direction": -0.38363576059998583,
+          "flux": -1.0,
+          "momentum_20j": 0.024,
+          "rsi": 48.0,
+          "breakout": -0.44,
+          "skew": 0.03
+        },
+        "iv_contrat": 0.571,
+        "vol_realisee": 0.469,
+        "spot": 12.55
+      }
+    },
+    {
+      "ticker": "ENGI (EUR)",
+      "kind": "achat_call",
+      "strategy": "ACHETER call 28 exp 20260807 @ ~0.40$ (40$/contrat, perte max = la prime)",
+      "score": 56.7,
+      "summary": "ENGI (EUR) : 2/4 signaux hausse convergents (flux +100%, momentum +1.0%, RSI 51, skew -0.05) → call 28 (24j) @ 0.40$ — si mouvement 1σ (6.5%) : +140% sur la prime",
+      "details": {
+        "sens": "HAUSSE",
+        "side": "call",
+        "strike": 28.0,
+        "expiry": "20260807",
+        "dte": 24,
+        "prime_par_action": 0.4,
+        "cout_par_contrat": 40,
+        "delta": 0.35,
+        "breakeven": 28.4,
+        "mouvement_necessaire": 0.044,
+        "mouvement_attendu_1sigma": 0.065,
+        "gain_si_mouvement_1sigma": 1.4,
+        "prob_profit_a_echeance": 0.24,
+        "score_direction": 0.38,
+        "signaux": {
+          "direction": 0.3807163193326864,
+          "flux": 1.0,
+          "momentum_20j": 0.01,
+          "rsi": 51.0,
+          "breakout": 0.11,
+          "skew": -0.05
+        },
+        "iv_contrat": 0.242,
+        "vol_realisee": 0.25,
+        "spot": 27.2
+      }
+    },
+    {
+      "ticker": "AF (EUR)",
+      "kind": "put_cash_secured",
+      "strategy": "Vendre put AF (EUR) 12 exp 20260821 @ ~0.66$ (capital requis 1,200$)",
+      "score": 53.4,
+      "summary": "AF (EUR) : put 12 (38j, delta 0.36) rapporte ~49% annualisé, prob. de profit ~57%",
+      "details": {
+        "expiry": "20260821",
+        "dte": 38,
+        "strike": 12.0,
+        "mid": 0.66,
+        "bid_vente": 0.62,
+        "commission_incluse": 1.0,
+        "delta": 0.36,
+        "annual_yield": 0.488,
+        "prob_profit": 0.57,
+        "capital_requis": 1200,
+        "greeks": {
+          "delta": 0.3601,
+          "gamma": -0.1603,
+          "theta_jour": 0.0109
+        }
+      }
+    },
+    {
+      "ticker": "CBK (EUR)",
+      "kind": "prime_riche",
+      "strategy": "Vente de prime : put cash-secured, covered call ou iron condor",
+      "score": 50.7,
+      "summary": "CBK (EUR) : IV 38% vs vol réalisée 23% (ratio x1.61) — les options sont chères, avantage au vendeur",
+      "details": {
+        "iv_atm": 0.3761,
+        "rv_20d": 0.2334,
+        "ratio": 1.61
+      }
+    },
+    {
+      "ticker": "LHA (EUR)",
+      "kind": "put_cash_secured",
+      "strategy": "Vendre put LHA (EUR) 8.6 exp 20260821 @ ~0.38$ (capital requis 860$)",
+      "score": 47.2,
+      "summary": "LHA (EUR) : put 8.6 (38j, delta 0.36) rapporte ~39% annualisé, prob. de profit ~58%",
+      "details": {
+        "expiry": "20260821",
+        "dte": 38,
+        "strike": 8.6,
+        "mid": 0.38,
+        "bid_vente": 0.36,
+        "commission_incluse": 1.0,
+        "delta": 0.36,
+        "annual_yield": 0.391,
+        "prob_profit": 0.58,
+        "capital_requis": 860,
+        "greeks": {
+          "delta": 0.3605,
+          "gamma": -0.2722,
+          "theta_jour": 0.0063
+        }
+      }
+    },
+    {
+      "ticker": "CBK (EUR)",
+      "kind": "put_cash_secured",
+      "strategy": "Vendre put CBK (EUR) 37.5 exp 20260807 @ ~1.01$ (capital requis 3,750$)",
+      "score": 47.1,
+      "summary": "CBK (EUR) : put 37.5 (24j, delta 0.36) rapporte ~36% annualisé, prob. de profit ~61%",
+      "details": {
+        "expiry": "20260807",
+        "dte": 24,
+        "strike": 37.5,
+        "mid": 1.01,
+        "bid_vente": 0.91,
+        "commission_incluse": 1.0,
+        "delta": 0.36,
+        "annual_yield": 0.365,
+        "prob_profit": 0.61,
+        "capital_requis": 3750,
+        "greeks": {
+          "delta": 0.3559,
+          "gamma": -0.0978,
+          "theta_jour": 0.0278
+        }
+      }
+    },
+    {
+      "ticker": "SAN (EUR)",
+      "kind": "achat_put",
+      "strategy": "ACHETER put 11.5 exp 20260807 @ ~0.26$ (26$/contrat, perte max = la prime)",
+      "score": 43.4,
+      "summary": "SAN (EUR) : 3/4 signaux baisse convergents (flux -48%, momentum +2.0%, RSI 52, skew -0.14) → put 11.5 (24j) @ 0.26$ — si mouvement 1σ (7.2%) : +94% sur la prime",
+      "details": {
+        "sens": "BAISSE",
+        "side": "put",
+        "strike": 11.5,
+        "expiry": "20260807",
+        "dte": 24,
+        "prime_par_action": 0.26,
+        "cout_par_contrat": 26,
+        "delta": 0.34,
+        "breakeven": 11.24,
+        "mouvement_necessaire": -0.051,
+        "mouvement_attendu_1sigma": -0.072,
+        "gain_si_mouvement_1sigma": 0.94,
+        "prob_profit_a_echeance": 0.24,
+        "score_direction": -0.33,
+        "signaux": {
+          "direction": -0.33362220984118984,
+          "flux": -0.48,
+          "momentum_20j": 0.02,
+          "rsi": 52.0,
+          "breakout": -0.89,
+          "skew": -0.14
+        },
+        "iv_contrat": 0.337,
+        "vol_realisee": 0.26,
+        "spot": 11.85
+      }
+    },
+    {
+      "ticker": "ENEL (EUR)",
+      "kind": "put_cash_secured",
+      "strategy": "Vendre put ENEL (EUR) 10 exp 20260820 @ ~0.26$ (capital requis 1,000$)",
+      "score": 40.6,
+      "summary": "ENEL (EUR) : put 10 (37j, delta 0.33) rapporte ~24% annualisé, prob. de profit ~65%",
+      "details": {
+        "expiry": "20260820",
+        "dte": 37,
+        "strike": 10.0,
+        "mid": 0.26,
+        "bid_vente": 0.25,
+        "commission_incluse": 1.0,
+        "delta": 0.33,
+        "annual_yield": 0.237,
+        "prob_profit": 0.65,
+        "capital_requis": 1000,
+        "greeks": {
+          "delta": 0.3288,
+          "gamma": -0.5788,
+          "theta_jour": 0.0026
+        }
+      }
+    },
+    {
+      "ticker": "ISP (EUR)",
+      "kind": "prime_riche",
+      "strategy": "Vente de prime : put cash-secured, covered call ou iron condor",
+      "score": 40.0,
+      "summary": "ISP (EUR) : IV 27% vs vol réalisée 19% (ratio x1.43) — les options sont chères, avantage au vendeur",
+      "details": {
+        "iv_atm": 0.2673,
+        "rv_20d": 0.1865,
+        "ratio": 1.43
+      }
+    },
+    {
+      "ticker": "DTE (EUR)",
+      "kind": "put_cash_secured",
+      "strategy": "Vendre put DTE (EUR) 25.5 exp 20260821 @ ~0.61$ (capital requis 2,550$)",
+      "score": 38.5,
+      "summary": "DTE (EUR) : put 25.5 (38j, delta 0.31) rapporte ~21% annualisé, prob. de profit ~65%",
+      "details": {
+        "expiry": "20260821",
+        "dte": 38,
+        "strike": 25.5,
+        "mid": 0.61,
+        "bid_vente": 0.56,
+        "commission_incluse": 1.0,
+        "delta": 0.31,
+        "annual_yield": 0.207,
+        "prob_profit": 0.65,
+        "capital_requis": 2550,
+        "greeks": {
+          "delta": 0.3128,
+          "gamma": -0.1292,
+          "theta_jour": 0.0117
+        }
+      }
+    },
+    {
+      "ticker": "ISP (EUR)",
+      "kind": "put_cash_secured",
+      "strategy": "Vendre put ISP (EUR) 6 exp 20260820 @ ~0.11$ (capital requis 600$)",
+      "score": 36.7,
+      "summary": "ISP (EUR) : put 6 (37j, delta 0.29) rapporte ~16% annualisé, prob. de profit ~68%",
+      "details": {
+        "expiry": "20260820",
+        "dte": 37,
+        "strike": 6.0,
+        "mid": 0.11,
+        "bid_vente": 0.1,
+        "commission_incluse": 1.0,
+        "delta": 0.29,
+        "annual_yield": 0.156,
+        "prob_profit": 0.68,
+        "capital_requis": 600,
+        "greeks": {
+          "delta": 0.2851,
+          "gamma": -0.5989,
+          "theta_jour": 0.0024
+        }
+      }
+    },
+    {
+      "ticker": "ENGI (EUR)",
+      "kind": "put_cash_secured",
+      "strategy": "Vendre put ENGI (EUR) 26.5 exp 20260821 @ ~0.55$ (capital requis 2,650$)",
+      "score": 36.0,
+      "summary": "ENGI (EUR) : put 26.5 (38j, delta 0.34) rapporte ~19% annualisé, prob. de profit ~63%",
+      "details": {
+        "expiry": "20260821",
+        "dte": 38,
+        "strike": 26.5,
+        "mid": 0.55,
+        "bid_vente": 0.53,
+        "commission_incluse": 1.0,
+        "delta": 0.34,
+        "annual_yield": 0.188,
+        "prob_profit": 0.63,
+        "capital_requis": 2650,
+        "greeks": {
+          "delta": 0.3369,
+          "gamma": -0.166,
+          "theta_jour": 0.0094
+        }
+      }
+    },
+    {
+      "ticker": "ORA (EUR)",
+      "kind": "put_cash_secured",
+      "strategy": "Vendre put ORA (EUR) 16 exp 20260821 @ ~0.34$ (capital requis 1,600$)",
+      "score": 34.6,
+      "summary": "ORA (EUR) : put 16 (38j, delta 0.36) rapporte ~19% annualisé, prob. de profit ~61%",
+      "details": {
+        "expiry": "20260821",
+        "dte": 38,
+        "strike": 16.0,
+        "mid": 0.34,
+        "bid_vente": 0.32,
+        "commission_incluse": 1.0,
+        "delta": 0.36,
+        "annual_yield": 0.186,
+        "prob_profit": 0.61,
+        "capital_requis": 1600,
+        "greeks": {
+          "delta": 0.3639,
+          "gamma": -0.2896,
+          "theta_jour": 0.0056
+        }
+      }
+    }
+  ]
+}

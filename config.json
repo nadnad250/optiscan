@@ -119,7 +119,7 @@
   "ib_port": 7497,
   "ib_client_id": 42,
   "trading_mode": "paper",
-  "enable_order_staging": false,
+  "enable_order_staging": true,
   "live_confirmation": "",
   "risk": {
     "max_risk_per_trade_pct": 0.25,

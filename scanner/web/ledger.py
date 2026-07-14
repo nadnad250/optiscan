@@ -69,6 +69,27 @@ def staged_order_ids() -> list[int]:
         con.close()
 
 
+def list_intents(limit: int = 30) -> list[dict]:
+    """Dernières intentions d'ordres (pour le panneau « Ordres préparés »)."""
+    con = _connect()
+    try:
+        rows = con.execute(
+            "SELECT id, reserved_at, status, order_id, info FROM intents "
+            "ORDER BY reserved_at DESC LIMIT ?", (limit,)).fetchall()
+        out = []
+        for rid, ts, status, order_id, info in rows:
+            entry = {"intent": rid, "date": ts, "statut": status, "order_id": order_id}
+            if info:
+                try:
+                    entry.update(json.loads(info))
+                except json.JSONDecodeError:
+                    pass
+            out.append(entry)
+        return out
+    finally:
+        con.close()
+
+
 def mark_cancelled(order_id: int) -> None:
     con = _connect()
     try:

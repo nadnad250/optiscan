@@ -105,6 +105,9 @@ class Handler(BaseHTTPRequestHandler):
             self._send_json(_latest_scan())
         elif self.path == "/api/status":
             self._send_json(_get_status())
+        elif self.path == "/api/orders":
+            from .ledger import list_intents
+            self._send_json({"ordres": list_intents()})
         elif self.path == "/api/config":
             from .broker import KILL_SWITCH
             cfg = load_config()

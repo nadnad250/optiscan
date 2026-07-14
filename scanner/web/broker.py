@@ -90,13 +90,19 @@ def _select_account(ib, cfg: dict) -> tuple[str | None, str | None]:
                   f"explicitement dans config.json")
 
 
-def _earnings_gate(clean: dict, risk: dict) -> str | None:
-    """Refus si des résultats tombent avant l'expiration (revue n°4)."""
+def _earnings_gate(clean: dict, risk: dict, mode: str) -> str | None:
+    """Refus si des résultats tombent avant l'expiration (revue n°4).
+
+    Titres non-US (dates invérifiables automatiquement) : REFUS en live,
+    simple avertissement en paper — le paper sert justement à s'entraîner.
+    """
     if risk["allow_earnings_trades"]:
         return None
     if clean["currency"] != "USD":
-        return ("date de résultats non vérifiable pour ce titre non-US : "
-                "ordre refusé (allow_earnings_trades=false)")
+        if mode == "live":
+            return ("date de résultats non vérifiable pour ce titre non-US : "
+                    "ordre refusé en LIVE (allow_earnings_trades=false)")
+        return None  # paper : autorisé, un avertissement est joint à la réponse
     try:
         import yfinance as yf
         from ..data.yahoo import _earnings_days
@@ -211,7 +217,11 @@ def stage_order(req: dict, cfg: dict, dry_run: bool = False) -> dict:
     if isinstance(clean, str):
         return {"ok": False, "error": clean}
 
-    refus = _earnings_gate(clean, risk)
+    avertissements = []
+    if clean["currency"] != "USD":
+        avertissements.append("dates de résultats NON vérifiées (titre non-US) : "
+                              "vérifie-les manuellement avant de transmettre")
+    refus = _earnings_gate(clean, risk, mode)
     if refus:
         return {"ok": False, "error": f"EARNINGS : {refus}"}
 
@@ -351,16 +361,20 @@ def stage_order(req: dict, cfg: dict, dry_run: bool = False) -> dict:
             "quantite": clean["quantity"], "limite": clean["price"],
             "quote": quote, "commission_estimee": whatif["commission"],
         })
+        message = (f"[{mode.upper()} — compte {account}] Ordre préparé : "
+                   f"{clean['action']} {clean['quantity']} x {contract.localSymbol} "
+                   f"limite {clean['price']:.2f} (bid/ask actuels "
+                   f"{quote['bid']}/{quote['ask']}, {quote['data_type']}, "
+                   f"commission estimée {whatif['commission'] or '?'}$) — "
+                   f"INACTIF dans TWS, clique TRANSMETTRE pour l'envoyer")
+        if avertissements:
+            message += " | ⚠ " + " | ⚠ ".join(avertissements)
         return {"ok": True, "order_id": trade.order.orderId, "status": status,
                 "contract": contract.localSymbol, "mode": mode, "compte": account,
                 "quote": quote, "commission_estimee": whatif["commission"],
                 "marge_apres": whatif["init_margin_after"],
-                "message": (f"[{mode.upper()} — compte {account}] Ordre préparé : "
-                            f"{clean['action']} {clean['quantity']} x {contract.localSymbol} "
-                            f"limite {clean['price']:.2f} (bid/ask actuels "
-                            f"{quote['bid']}/{quote['ask']}, {quote['data_type']}, "
-                            f"commission estimée {whatif['commission'] or '?'}$) — "
-                            f"INACTIF dans TWS, clique TRANSMETTRE pour l'envoyer")}
+                "avertissements": avertissements,
+                "message": message}
     except Exception as exc:
         if reserved:
             ledger.release(intent)

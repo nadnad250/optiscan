@@ -12,6 +12,8 @@ def parse_args():
     p.add_argument("--source", choices=["yahoo", "ib"], default="ib",
                    help="ib = Interactive Brokers (défaut, TWS/Gateway requis), yahoo = secours gratuit/différé")
     p.add_argument("--tickers", help="liste séparée par des virgules (sinon watchlist du config.json)")
+    p.add_argument("--europe", action="store_true",
+                   help="scanner uniquement les valeurs européennes de la watchlist (TWS requis)")
     p.add_argument("--config", help="chemin d'un config.json alternatif")
     p.add_argument("--top", type=int, help="nombre d'opportunités affichées")
     return p.parse_args()
@@ -22,7 +24,16 @@ def main():
     cfg = load_config(args.config)
     if args.top:
         cfg["top_n"] = args.top
-    watchlist = [t.strip().upper() for t in args.tickers.split(",")] if args.tickers else cfg["watchlist"]
+    if args.europe:
+        # entrées {symbol, currency, primary} = les valeurs européennes
+        watchlist = [e for e in cfg["watchlist"] if isinstance(e, dict)]
+        if not watchlist:
+            print("Aucune valeur européenne dans la watchlist.")
+            return
+    elif args.tickers:
+        watchlist = [t.strip().upper() for t in args.tickers.split(",")]
+    else:
+        watchlist = cfg["watchlist"]
 
     print(f"Scan de {len(watchlist)} tickers ({args.source})...")
     opportunities = run_scan(

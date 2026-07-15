@@ -192,7 +192,16 @@ def update_outcomes() -> dict:
         if match.empty:
             return None
         bid = float(match.iloc[0].get("bid") or 0)
-        return round(bid, 3) if bid > 0 else None
+        last = float(match.iloc[0].get("lastPrice") or 0)
+        if bid <= 0:
+            return None
+        # garde-fou de plausibilité (audit) : sur les strikes illiquides, le
+        # bid Yahoo est parfois un « stub » à 0.01-0.06 non représentatif
+        # (VALE affichait bid 0.01 alors que le contrat cotait 0.17/0.33) —
+        # on refuse un bid effondré à plus de 75 % sous le dernier échange
+        if last > 0 and bid < 0.25 * last:
+            return None
+        return round(bid, 3)
 
     updated = completed = 0
     hist_cache: dict[str, pd.DataFrame] = {}
@@ -208,7 +217,12 @@ def update_outcomes() -> dict:
             continue
         entry_date = pd.Timestamp(str(row["horodatage"])[:10])
         closes = hist["Close"]
-        after = closes[closes.index.tz_localize(None).normalize() > entry_date]
+        # UNIQUEMENT les séances TERMINÉES : la bougie du jour en cours est
+        # partielle (bug découvert par audit : LCID affichait +0.27% au moment
+        # de la capture matinale alors que la séance a clôturé à -16.15%)
+        today_ny = pd.Timestamp(datetime.now(TZ).date())
+        dates = closes.index.tz_localize(None).normalize()
+        after = closes[(dates > entry_date) & (dates < today_ny)]
         if after.empty:
             continue
         spot0 = float(row["spot"])

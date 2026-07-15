@@ -38,40 +38,79 @@ horodatage;timezone;sha_model;groupe;ticker;source;spot;prob_ml;seuil_ml;prob_im
 2026-07-13T15:33:14-04:00;America/New_York;11fa6982d2cf3659;scan;AGNC;yahoo;10.985;0.14;0.323;0.2501;0.56;0.561;rejet_prob;prob 0.140 < seuil 0.323;;;;;;;;;;;;;0.01957;;;;;;;;en_attente
 2026-07-13T15:33:14-04:00;America/New_York;11fa6982d2cf3659;A;AGNC;yahoo;10.985;0.14;0.323;0.2501;0.56;0.561;rejet_prob;prob 0.140 < seuil 0.323;call;11.0;2026-08-07;25.0;0.23;0.27;0.25;0.2363;0.523;-0.0061;0.0114;27.0;0.01957;;;0.32;;;;;en_attente
 2026-07-13T15:33:15-04:00;America/New_York;11fa6982d2cf3659;scan;KVUE;yahoo;19.19;0.1503;0.323;0.4543;0.331;-0.288;rejet_prob;prob 0.150 < seuil 0.323;;;;;;;;;;;;;-0.01355;;;;;;;;en_attente
-2026-07-14T11:10:55-04:00;America/New_York;11fa6982d2cf3659;scan;AAPL;yahoo;315.85;0.0284;0.323;0.062;0.458;0.288;rejet_prob;prob 0.028 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-14T11:10:56-04:00;America/New_York;11fa6982d2cf3659;scan;NVDA;yahoo;207.96;0.2728;0.323;0.1394;1.957;0.242;rejet_prob;prob 0.273 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-14T11:10:57-04:00;America/New_York;11fa6982d2cf3659;scan;TSLA;yahoo;401.93;0.2299;0.323;0.0561;4.098;0.12;rejet_prob;prob 0.230 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-14T11:10:57-04:00;America/New_York;11fa6982d2cf3659;scan;AMD;yahoo;563.435;0.195;0.323;0.1542;1.265;0.372;rejet_prob;prob 0.195 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-14T11:10:58-04:00;America/New_York;11fa6982d2cf3659;scan;META;yahoo;662.705;0.0411;0.323;0.1298;0.317;0.674;rejet_prob;prob 0.041 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-14T11:11:00-04:00;America/New_York;11fa6982d2cf3659;scan;SPY;yahoo;752.7;0.3652;0.323;0.0954;3.828;-0.058;signal_sans_direction;mouvement probable mais aucune direction claire : pas de trade;;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-14T11:11:01-04:00;America/New_York;11fa6982d2cf3659;scan;QQQ;yahoo;721.2362;0.1628;0.323;0.0592;2.75;-0.216;rejet_prob;prob 0.163 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-14T11:11:02-04:00;America/New_York;11fa6982d2cf3659;scan;COIN;yahoo;158.63;0.1473;0.323;0.3044;0.484;0.287;rejet_prob;prob 0.147 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-14T11:11:03-04:00;America/New_York;11fa6982d2cf3659;scan;PLTR;yahoo;133.035;0.1055;0.323;0.2121;0.497;0.47;rejet_prob;prob 0.105 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-14T11:11:04-04:00;America/New_York;11fa6982d2cf3659;scan;SOFI;yahoo;18.625;0.3035;0.323;0.4157;0.73;0.51;rejet_prob;prob 0.303 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-14T11:11:04-04:00;America/New_York;11fa6982d2cf3659;A;SOFI;yahoo;18.625;0.3035;0.323;0.4157;0.73;0.51;rejet_prob;prob 0.303 < seuil 0.323;call;20.0;2026-08-07;24.0;0.86;0.94;0.9;0.7393;0.395;-0.0291;0.0184;94.0;;;;;;;;;en_attente
-2026-07-14T11:11:05-04:00;America/New_York;11fa6982d2cf3659;scan;MARA;yahoo;12.195;0.1481;0.323;0.2976;0.498;-0.174;rejet_prob;prob 0.148 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-14T11:11:06-04:00;America/New_York;11fa6982d2cf3659;scan;F;yahoo;13.95;0.1533;0.323;0.4165;0.368;0.325;rejet_prob;prob 0.153 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-14T11:11:06-04:00;America/New_York;11fa6982d2cf3659;A;F;yahoo;13.95;0.1533;0.323;0.4165;0.368;0.325;rejet_prob;prob 0.153 < seuil 0.323;call;14.5;2026-08-07;24.0;0.38;0.43;0.405;0.4512;0.401;-0.0136;0.0138;43.0;;;;;;;;;en_attente
-2026-07-14T11:11:06-04:00;America/New_York;11fa6982d2cf3659;scan;T;yahoo;21.32;0.1588;0.323;0.171;0.929;-0.042;rejet_prob;prob 0.159 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-14T11:11:07-04:00;America/New_York;11fa6982d2cf3659;scan;PFE;yahoo;24.16;0.2976;0.323;0.1936;1.537;-0.093;rejet_prob;prob 0.298 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-14T11:11:08-04:00;America/New_York;11fa6982d2cf3659;scan;AAL;yahoo;16.125;0.1442;0.323;0.238;0.606;0.115;rejet_prob;prob 0.144 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-14T11:11:08-04:00;America/New_York;11fa6982d2cf3659;scan;NIO;yahoo;5.0501;0.3379;0.323;0.3459;0.977;0.088;rejet_ratio;options déjà chères : ratio 0.98 < 1.5 (p_implicite 0.346);;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-14T11:11:09-04:00;America/New_York;11fa6982d2cf3659;scan;INTC;yahoo;105.86;0.1721;0.323;0.1657;1.039;-0.296;rejet_prob;prob 0.172 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-14T11:11:10-04:00;America/New_York;11fa6982d2cf3659;scan;PLUG;yahoo;2.28;0.3567;0.323;0.43;0.83;0.056;rejet_ratio;options déjà chères : ratio 0.83 < 1.5 (p_implicite 0.430);;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-14T11:11:11-04:00;America/New_York;11fa6982d2cf3659;scan;RIVN;yahoo;17.485;0.0255;0.323;0.0298;0.856;0.286;rejet_prob;prob 0.025 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-14T11:11:12-04:00;America/New_York;11fa6982d2cf3659;scan;LCID;yahoo;5.52;0.0195;0.323;0.1612;0.121;-0.082;rejet_prob;prob 0.019 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-14T11:11:12-04:00;America/New_York;11fa6982d2cf3659;scan;SNAP;yahoo;4.6351;0.172;0.323;0.2914;0.59;-0.197;rejet_prob;prob 0.172 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-14T11:11:13-04:00;America/New_York;11fa6982d2cf3659;scan;WBD;yahoo;27.4969;0.1311;0.323;0.8916;0.147;0.081;rejet_prob;prob 0.131 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-14T11:11:14-04:00;America/New_York;11fa6982d2cf3659;scan;VALE;yahoo;14.645;0.2915;0.323;0.2512;1.16;-0.422;rejet_prob;prob 0.291 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-14T11:11:14-04:00;America/New_York;11fa6982d2cf3659;A;VALE;yahoo;14.645;0.2915;0.323;0.2512;1.16;-0.422;rejet_prob;prob 0.291 < seuil 0.323;put;14.0;2026-08-07;24.0;0.15;0.6;0.375;0.5928;0.348;-0.0164;0.0139;60.0;;;;;;;;;en_attente
-2026-07-14T11:11:15-04:00;America/New_York;11fa6982d2cf3659;scan;PBR;yahoo;17.835;0.1317;0.323;0.3555;0.37;0.537;rejet_prob;prob 0.132 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-14T11:11:15-04:00;America/New_York;11fa6982d2cf3659;A;PBR;yahoo;17.835;0.1317;0.323;0.3555;0.37;0.537;rejet_prob;prob 0.132 < seuil 0.323;call;18.5;2026-08-07;24.0;0.4;0.9;0.65;0.6348;0.45;-0.0248;0.0181;90.0;;;;;;;;;en_attente
-2026-07-14T11:11:15-04:00;America/New_York;11fa6982d2cf3659;scan;GOLD;yahoo;38.785;0.3675;0.323;0.3527;1.042;-0.106;rejet_ratio;options déjà chères : ratio 1.04 < 1.5 (p_implicite 0.353);;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-14T11:11:16-04:00;America/New_York;11fa6982d2cf3659;scan;CLF;yahoo;9.77;0.0431;0.323;0.4211;0.102;-0.117;rejet_prob;prob 0.043 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-14T11:11:17-04:00;America/New_York;11fa6982d2cf3659;scan;CCL;yahoo;26.6;0.1469;0.323;0.1972;0.745;0.056;rejet_prob;prob 0.147 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-14T11:11:18-04:00;America/New_York;11fa6982d2cf3659;scan;RIOT;yahoo;20.41;0.0602;0.323;0.318;0.189;-0.286;rejet_prob;prob 0.060 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-14T11:11:19-04:00;America/New_York;11fa6982d2cf3659;scan;TLRY;yahoo;4.33;0.3496;0.323;0.6555;0.533;-0.202;rejet_ratio;options déjà chères : ratio 0.53 < 1.5 (p_implicite 0.655);;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-14T11:11:19-04:00;America/New_York;11fa6982d2cf3659;scan;BAC;yahoo;61.005;0.2131;0.323;0.1836;1.161;0.45;rejet_prob;prob 0.213 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-14T11:11:19-04:00;America/New_York;11fa6982d2cf3659;A;BAC;yahoo;61.005;0.2131;0.323;0.1836;1.161;0.45;rejet_prob;prob 0.213 < seuil 0.323;call;62.0;2026-08-07;24.0;1.01;1.1;1.055;0.2412;0.427;-0.0339;0.0614;110.0;;;;;;;;;en_attente
-2026-07-14T11:11:20-04:00;America/New_York;11fa6982d2cf3659;scan;AGNC;yahoo;11.2;0.1601;0.323;0.2369;0.676;0.239;rejet_prob;prob 0.160 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
-2026-07-14T11:11:21-04:00;America/New_York;11fa6982d2cf3659;scan;KVUE;yahoo;18.93;0.1192;0.323;0.205;0.581;-0.243;rejet_prob;prob 0.119 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-14T11:10:55-04:00;America/New_York;11fa6982d2cf3659;scan;AAPL;yahoo;315.85;0.0284;0.323;0.062;0.458;0.288;rejet_prob;prob 0.028 < seuil 0.323;;;;;;;;;;;;;0.02599;;;;;;;;en_attente
+2026-07-14T11:10:56-04:00;America/New_York;11fa6982d2cf3659;scan;NVDA;yahoo;207.96;0.2728;0.323;0.1394;1.957;0.242;rejet_prob;prob 0.273 < seuil 0.323;;;;;;;;;;;;;0.00716;;;;;;;;en_attente
+2026-07-14T11:10:57-04:00;America/New_York;11fa6982d2cf3659;scan;TSLA;yahoo;401.93;0.2299;0.323;0.0561;4.098;0.12;rejet_prob;prob 0.230 < seuil 0.323;;;;;;;;;;;;;-0.01202;;;;;;;;en_attente
+2026-07-14T11:10:57-04:00;America/New_York;11fa6982d2cf3659;scan;AMD;yahoo;563.435;0.195;0.323;0.1542;1.265;0.372;rejet_prob;prob 0.195 < seuil 0.323;;;;;;;;;;;;;-0.07735;;;;;;;;en_attente
+2026-07-14T11:10:58-04:00;America/New_York;11fa6982d2cf3659;scan;META;yahoo;662.705;0.0411;0.323;0.1298;0.317;0.674;rejet_prob;prob 0.041 < seuil 0.323;;;;;;;;;;;;;0.03279;;;;;;;;en_attente
+2026-07-14T11:11:00-04:00;America/New_York;11fa6982d2cf3659;scan;SPY;yahoo;752.7;0.3652;0.323;0.0954;3.828;-0.058;signal_sans_direction;mouvement probable mais aucune direction claire : pas de trade;;;;;;;;;;;;;0.00132;;;;;;;;en_attente
+2026-07-14T11:11:01-04:00;America/New_York;11fa6982d2cf3659;scan;QQQ;yahoo;721.2362;0.1628;0.323;0.0592;2.75;-0.216;rejet_prob;prob 0.163 < seuil 0.323;;;;;;;;;;;;;-0.00747;;;;;;;;en_attente
+2026-07-14T11:11:02-04:00;America/New_York;11fa6982d2cf3659;scan;COIN;yahoo;158.63;0.1473;0.323;0.3044;0.484;0.287;rejet_prob;prob 0.147 < seuil 0.323;;;;;;;;;;;;;0.03253;;;;;;;;en_attente
+2026-07-14T11:11:03-04:00;America/New_York;11fa6982d2cf3659;scan;PLTR;yahoo;133.035;0.1055;0.323;0.2121;0.497;0.47;rejet_prob;prob 0.105 < seuil 0.323;;;;;;;;;;;;;0.01252;;;;;;;;en_attente
+2026-07-14T11:11:04-04:00;America/New_York;11fa6982d2cf3659;scan;SOFI;yahoo;18.625;0.3035;0.323;0.4157;0.73;0.51;rejet_prob;prob 0.303 < seuil 0.323;;;;;;;;;;;;;-0.01744;;;;;;;;en_attente
+2026-07-14T11:11:04-04:00;America/New_York;11fa6982d2cf3659;A;SOFI;yahoo;18.625;0.3035;0.323;0.4157;0.73;0.51;rejet_prob;prob 0.303 < seuil 0.323;call;20.0;2026-08-07;24.0;0.86;0.94;0.9;0.7393;0.395;-0.0291;0.0184;94.0;-0.01744;;;0.7;;;;;en_attente
+2026-07-14T11:11:05-04:00;America/New_York;11fa6982d2cf3659;scan;MARA;yahoo;12.195;0.1481;0.323;0.2976;0.498;-0.174;rejet_prob;prob 0.148 < seuil 0.323;;;;;;;;;;;;;-0.01927;;;;;;;;en_attente
+2026-07-14T11:11:06-04:00;America/New_York;11fa6982d2cf3659;scan;F;yahoo;13.95;0.1533;0.323;0.4165;0.368;0.325;rejet_prob;prob 0.153 < seuil 0.323;;;;;;;;;;;;;0.02545;;;;;;;;en_attente
+2026-07-14T11:11:06-04:00;America/New_York;11fa6982d2cf3659;A;F;yahoo;13.95;0.1533;0.323;0.4165;0.368;0.325;rejet_prob;prob 0.153 < seuil 0.323;call;14.5;2026-08-07;24.0;0.38;0.43;0.405;0.4512;0.401;-0.0136;0.0138;43.0;0.02545;;;0.53;;;;;en_attente
+2026-07-14T11:11:06-04:00;America/New_York;11fa6982d2cf3659;scan;T;yahoo;21.32;0.1588;0.323;0.171;0.929;-0.042;rejet_prob;prob 0.159 < seuil 0.323;;;;;;;;;;;;;0.0075;;;;;;;;en_attente
+2026-07-14T11:11:07-04:00;America/New_York;11fa6982d2cf3659;scan;PFE;yahoo;24.16;0.2976;0.323;0.1936;1.537;-0.093;rejet_prob;prob 0.298 < seuil 0.323;;;;;;;;;;;;;0.02152;;;;;;;;en_attente
+2026-07-14T11:11:08-04:00;America/New_York;11fa6982d2cf3659;scan;AAL;yahoo;16.125;0.1442;0.323;0.238;0.606;0.115;rejet_prob;prob 0.144 < seuil 0.323;;;;;;;;;;;;;-0.0124;;;;;;;;en_attente
+2026-07-14T11:11:08-04:00;America/New_York;11fa6982d2cf3659;scan;NIO;yahoo;5.0501;0.3379;0.323;0.3459;0.977;0.088;rejet_ratio;options déjà chères : ratio 0.98 < 1.5 (p_implicite 0.346);;;;;;;;;;;;;0.01483;;;;;;;;en_attente
+2026-07-14T11:11:09-04:00;America/New_York;11fa6982d2cf3659;scan;INTC;yahoo;105.86;0.1721;0.323;0.1657;1.039;-0.296;rejet_prob;prob 0.172 < seuil 0.323;;;;;;;;;;;;;-0.0358;;;;;;;;en_attente
+2026-07-14T11:11:10-04:00;America/New_York;11fa6982d2cf3659;scan;PLUG;yahoo;2.28;0.3567;0.323;0.43;0.83;0.056;rejet_ratio;options déjà chères : ratio 0.83 < 1.5 (p_implicite 0.430);;;;;;;;;;;;;-0.02851;;;;;;;;en_attente
+2026-07-14T11:11:11-04:00;America/New_York;11fa6982d2cf3659;scan;RIVN;yahoo;17.485;0.0255;0.323;0.0298;0.856;0.286;rejet_prob;prob 0.025 < seuil 0.323;;;;;;;;;;;;;0.04375;;;;;;;;en_attente
+2026-07-14T11:11:12-04:00;America/New_York;11fa6982d2cf3659;scan;LCID;yahoo;5.52;0.0195;0.323;0.1612;0.121;-0.082;rejet_prob;prob 0.019 < seuil 0.323;;;;;;;;;;;;;-0.01085;;;;;;;;en_attente
+2026-07-14T11:11:12-04:00;America/New_York;11fa6982d2cf3659;scan;SNAP;yahoo;4.6351;0.172;0.323;0.2914;0.59;-0.197;rejet_prob;prob 0.172 < seuil 0.323;;;;;;;;;;;;;0.03881;;;;;;;;en_attente
+2026-07-14T11:11:13-04:00;America/New_York;11fa6982d2cf3659;scan;WBD;yahoo;27.4969;0.1311;0.323;0.8916;0.147;0.081;rejet_prob;prob 0.131 < seuil 0.323;;;;;;;;;;;;;-0.00989;;;;;;;;en_attente
+2026-07-14T11:11:14-04:00;America/New_York;11fa6982d2cf3659;scan;VALE;yahoo;14.645;0.2915;0.323;0.2512;1.16;-0.422;rejet_prob;prob 0.291 < seuil 0.323;;;;;;;;;;;;;-0.00341;;;;;;;;en_attente
+2026-07-14T11:11:14-04:00;America/New_York;11fa6982d2cf3659;A;VALE;yahoo;14.645;0.2915;0.323;0.2512;1.16;-0.422;rejet_prob;prob 0.291 < seuil 0.323;put;14.0;2026-08-07;24.0;0.15;0.6;0.375;0.5928;0.348;-0.0164;0.0139;60.0;-0.00341;;;0.01;;;;;en_attente
+2026-07-14T11:11:15-04:00;America/New_York;11fa6982d2cf3659;scan;PBR;yahoo;17.835;0.1317;0.323;0.3555;0.37;0.537;rejet_prob;prob 0.132 < seuil 0.323;;;;;;;;;;;;;-0.0028;;;;;;;;en_attente
+2026-07-14T11:11:15-04:00;America/New_York;11fa6982d2cf3659;A;PBR;yahoo;17.835;0.1317;0.323;0.3555;0.37;0.537;rejet_prob;prob 0.132 < seuil 0.323;call;18.5;2026-08-07;24.0;0.4;0.9;0.65;0.6348;0.45;-0.0248;0.0181;90.0;-0.0028;;;0.06;;;;;en_attente
+2026-07-14T11:11:15-04:00;America/New_York;11fa6982d2cf3659;scan;GOLD;yahoo;38.785;0.3675;0.323;0.3527;1.042;-0.106;rejet_ratio;options déjà chères : ratio 1.04 < 1.5 (p_implicite 0.353);;;;;;;;;;;;;0.01818;;;;;;;;en_attente
+2026-07-14T11:11:16-04:00;America/New_York;11fa6982d2cf3659;scan;CLF;yahoo;9.77;0.0431;0.323;0.4211;0.102;-0.117;rejet_prob;prob 0.043 < seuil 0.323;;;;;;;;;;;;;-0.00037;;;;;;;;en_attente
+2026-07-14T11:11:17-04:00;America/New_York;11fa6982d2cf3659;scan;CCL;yahoo;26.6;0.1469;0.323;0.1972;0.745;0.056;rejet_prob;prob 0.147 < seuil 0.323;;;;;;;;;;;;;0.02105;;;;;;;;en_attente
+2026-07-14T11:11:18-04:00;America/New_York;11fa6982d2cf3659;scan;RIOT;yahoo;20.41;0.0602;0.323;0.318;0.189;-0.286;rejet_prob;prob 0.060 < seuil 0.323;;;;;;;;;;;;;-0.02401;;;;;;;;en_attente
+2026-07-14T11:11:19-04:00;America/New_York;11fa6982d2cf3659;scan;TLRY;yahoo;4.33;0.3496;0.323;0.6555;0.533;-0.202;rejet_ratio;options déjà chères : ratio 0.53 < 1.5 (p_implicite 0.655);;;;;;;;;;;;;0.03462;;;;;;;;en_attente
+2026-07-14T11:11:19-04:00;America/New_York;11fa6982d2cf3659;scan;BAC;yahoo;61.005;0.2131;0.323;0.1836;1.161;0.45;rejet_prob;prob 0.213 < seuil 0.323;;;;;;;;;;;;;0.01303;;;;;;;;en_attente
+2026-07-14T11:11:19-04:00;America/New_York;11fa6982d2cf3659;A;BAC;yahoo;61.005;0.2131;0.323;0.1836;1.161;0.45;rejet_prob;prob 0.213 < seuil 0.323;call;62.0;2026-08-07;24.0;1.01;1.1;1.055;0.2412;0.427;-0.0339;0.0614;110.0;0.01303;;;1.29;;;;;en_attente
+2026-07-14T11:11:20-04:00;America/New_York;11fa6982d2cf3659;scan;AGNC;yahoo;11.2;0.1601;0.323;0.2369;0.676;0.239;rejet_prob;prob 0.160 < seuil 0.323;;;;;;;;;;;;;0.01884;;;;;;;;en_attente
+2026-07-14T11:11:21-04:00;America/New_York;11fa6982d2cf3659;scan;KVUE;yahoo;18.93;0.1192;0.323;0.205;0.581;-0.243;rejet_prob;prob 0.119 < seuil 0.323;;;;;;;;;;;;;-0.00185;;;;;;;;en_attente
+2026-07-15T11:11:34-04:00;America/New_York;11fa6982d2cf3659;scan;AAPL;yahoo;324.085;0.0116;0.323;0.0745;0.156;0.576;rejet_prob;prob 0.012 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-15T11:11:35-04:00;America/New_York;11fa6982d2cf3659;scan;NVDA;yahoo;209.5293;0.2757;0.323;0.143;1.928;0.407;rejet_prob;prob 0.276 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-15T11:11:36-04:00;America/New_York;11fa6982d2cf3659;scan;TSLA;yahoo;397.4;0.188;0.323;0.066;2.848;0.159;rejet_prob;prob 0.188 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-15T11:11:36-04:00;America/New_York;11fa6982d2cf3659;scan;AMD;yahoo;520.31;0.1364;0.323;0.1911;0.714;0.279;rejet_prob;prob 0.136 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-15T11:11:37-04:00;America/New_York;11fa6982d2cf3659;scan;META;yahoo;684.335;0.0781;0.323;0.1503;0.52;0.76;rejet_prob;prob 0.078 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-15T11:11:38-04:00;America/New_York;11fa6982d2cf3659;scan;SPY;yahoo;753.849;0.3602;0.323;0.0841;4.283;-0.054;signal_sans_direction;mouvement probable mais aucune direction claire : pas de trade;;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-15T11:11:39-04:00;America/New_York;11fa6982d2cf3659;scan;QQQ;yahoo;716.16;0.2334;0.323;0.0652;3.58;-0.507;rejet_prob;prob 0.233 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-15T11:11:39-04:00;America/New_York;11fa6982d2cf3659;scan;COIN;yahoo;163.79;0.1469;0.323;0.3377;0.435;0.274;rejet_prob;prob 0.147 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-15T11:11:40-04:00;America/New_York;11fa6982d2cf3659;scan;PLTR;yahoo;134.785;0.1083;0.323;0.2235;0.485;0.308;rejet_prob;prob 0.108 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-15T11:11:40-04:00;America/New_York;11fa6982d2cf3659;scan;SOFI;yahoo;18.3101;0.2538;0.323;0.4172;0.608;0.554;rejet_prob;prob 0.254 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-15T11:11:40-04:00;America/New_York;11fa6982d2cf3659;A;SOFI;yahoo;18.3101;0.2538;0.323;0.4172;0.608;0.554;rejet_prob;prob 0.254 < seuil 0.323;call;19.5;2026-08-07;23.0;0.84;0.88;0.86;0.7119;0.402;-0.0283;0.0178;88.0;;;;;;;;;en_attente
+2026-07-15T11:11:41-04:00;America/New_York;11fa6982d2cf3659;scan;MARA;yahoo;11.965;0.119;0.323;0.3089;0.385;-0.144;rejet_prob;prob 0.119 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-15T11:11:42-04:00;America/New_York;11fa6982d2cf3659;scan;F;yahoo;14.305;0.3422;0.323;0.3638;0.941;0.326;rejet_ratio;options déjà chères : ratio 0.94 < 1.5 (p_implicite 0.364);;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-15T11:11:42-04:00;America/New_York;11fa6982d2cf3659;A;F;yahoo;14.305;0.3422;0.323;0.3638;0.941;0.326;rejet_ratio;options déjà chères : ratio 0.94 < 1.5 (p_implicite 0.364);call;15.0;2026-08-07;23.0;0.35;0.38;0.365;0.4473;0.366;-0.0137;0.0135;38.0;;;;;;;;;en_attente
+2026-07-15T11:11:42-04:00;America/New_York;11fa6982d2cf3659;scan;T;yahoo;21.4697;0.0599;0.323;0.1702;0.352;-0.018;rejet_prob;prob 0.060 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-15T11:11:43-04:00;America/New_York;11fa6982d2cf3659;scan;PFE;yahoo;24.69;0.1649;0.323;0.2358;0.699;0.201;rejet_prob;prob 0.165 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-15T11:11:43-04:00;America/New_York;11fa6982d2cf3659;scan;AAL;yahoo;15.9301;0.1499;0.323;0.245;0.612;0.059;rejet_prob;prob 0.150 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-15T11:11:44-04:00;America/New_York;11fa6982d2cf3659;scan;NIO;yahoo;5.13;0.3908;0.323;0.3251;1.202;0.262;rejet_ratio;options déjà chères : ratio 1.20 < 1.5 (p_implicite 0.325);;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-15T11:11:45-04:00;America/New_York;11fa6982d2cf3659;scan;INTC;yahoo;102.1599;0.1397;0.323;0.2142;0.652;-0.143;rejet_prob;prob 0.140 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-15T11:11:45-04:00;America/New_York;11fa6982d2cf3659;scan;PLUG;yahoo;2.2199;0.368;0.323;0.5084;0.724;-0.272;rejet_ratio;options déjà chères : ratio 0.72 < 1.5 (p_implicite 0.508);;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-15T11:11:46-04:00;America/New_York;11fa6982d2cf3659;scan;RIVN;yahoo;18.255;0.0271;0.323;0.0351;0.772;0.5;rejet_prob;prob 0.027 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-15T11:11:46-04:00;America/New_York;11fa6982d2cf3659;A;RIVN;yahoo;18.255;0.0271;0.323;0.0351;0.772;0.5;rejet_prob;prob 0.027 < seuil 0.323;call;19.5;2026-08-07;23.0;0.99;1.12;1.055;0.8311;0.421;-0.0332;0.0179;112.0;;;;;;;;;en_attente
+2026-07-15T11:11:46-04:00;America/New_York;11fa6982d2cf3659;scan;LCID;yahoo;5.4699;0.034;0.323;0.2646;0.128;0.088;rejet_prob;prob 0.034 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-15T11:11:47-04:00;America/New_York;11fa6982d2cf3659;scan;SNAP;yahoo;4.8103;0.2212;0.323;0.3515;0.629;0.27;rejet_prob;prob 0.221 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-15T11:11:47-04:00;America/New_York;11fa6982d2cf3659;scan;WBD;yahoo;27.225;0.1378;0.323;0.7073;0.195;0.4;rejet_prob;prob 0.138 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-15T11:11:47-04:00;America/New_York;11fa6982d2cf3659;A;WBD;yahoo;27.225;0.1378;0.323;0.7073;0.195;0.4;rejet_prob;prob 0.138 < seuil 0.323;call;28.0;2026-08-07;23.0;0.35;0.8;0.575;0.4063;0.422;-0.0249;0.0267;80.0;;;;;;;;;en_attente
+2026-07-15T11:11:48-04:00;America/New_York;11fa6982d2cf3659;scan;VALE;yahoo;14.595;0.3013;0.323;0.2597;1.16;-0.165;rejet_prob;prob 0.301 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-15T11:11:49-04:00;America/New_York;11fa6982d2cf3659;scan;PBR;yahoo;17.785;0.1196;0.323;0.4776;0.25;0.352;rejet_prob;prob 0.120 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-15T11:11:49-04:00;America/New_York;11fa6982d2cf3659;A;PBR;yahoo;17.785;0.1196;0.323;0.4776;0.25;0.352;rejet_prob;prob 0.120 < seuil 0.323;call;18.5;2026-08-07;23.0;0.06;0.55;0.305;0.4639;0.399;-0.0182;0.0172;55.0;;;;;;;;;en_attente
+2026-07-15T11:11:49-04:00;America/New_York;11fa6982d2cf3659;scan;GOLD;yahoo;39.49;0.346;0.323;0.3416;1.013;0.147;rejet_ratio;options déjà chères : ratio 1.01 < 1.5 (p_implicite 0.342);;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-15T11:11:50-04:00;America/New_York;11fa6982d2cf3659;scan;CLF;yahoo;9.7664;0.0431;0.323;0.4362;0.099;-0.193;rejet_prob;prob 0.043 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-15T11:11:50-04:00;America/New_York;11fa6982d2cf3659;scan;CCL;yahoo;27.165;0.2179;0.323;0.1854;1.175;-0.035;rejet_prob;prob 0.218 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-15T11:11:51-04:00;America/New_York;11fa6982d2cf3659;scan;RIOT;yahoo;19.95;0.0574;0.323;0.3412;0.168;-0.016;rejet_prob;prob 0.057 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-15T11:11:51-04:00;America/New_York;11fa6982d2cf3659;scan;TLRY;yahoo;4.4799;0.3942;0.323;0.6645;0.593;-0.112;rejet_ratio;options déjà chères : ratio 0.59 < 1.5 (p_implicite 0.664);;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-15T11:11:52-04:00;America/New_York;11fa6982d2cf3659;scan;BAC;yahoo;61.795;0.159;0.323;0.1119;1.421;0.54;rejet_prob;prob 0.159 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-15T11:11:52-04:00;America/New_York;11fa6982d2cf3659;A;BAC;yahoo;61.795;0.159;0.323;0.1119;1.421;0.54;rejet_prob;prob 0.159 < seuil 0.323;call;63.0;2026-08-07;23.0;0.87;0.92;0.895;0.2261;0.397;-0.0323;0.0598;92.0;;;;;;;;;en_attente
+2026-07-15T11:11:52-04:00;America/New_York;11fa6982d2cf3659;scan;AGNC;yahoo;11.4144;0.0754;0.323;0.4853;0.155;0.904;rejet_prob;prob 0.075 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente
+2026-07-15T11:11:52-04:00;America/New_York;11fa6982d2cf3659;A;AGNC;yahoo;11.4144;0.0754;0.323;0.4853;0.155;0.904;rejet_prob;prob 0.075 < seuil 0.323;call;11.5;2026-08-07;23.0;0.14;0.16;0.15;0.1699;0.465;-0.0048;0.0114;16.0;;;;;;;;;en_attente
+2026-07-15T11:11:53-04:00;America/New_York;11fa6982d2cf3659;scan;KVUE;yahoo;18.895;0.2137;0.323;0.4836;0.442;0.026;rejet_prob;prob 0.214 < seuil 0.323;;;;;;;;;;;;;;;;;;;;;en_attente

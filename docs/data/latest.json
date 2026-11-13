@@ -1,1843 +1,1981 @@
 {
-  "generated_at": "2026-11-10T20:36:49",
-  "count": 89,
+  "generated_at": "2026-11-13T20:39:23",
+  "count": 102,
   "opportunities": [
-    {
-      "ticker": "NVDA",
-      "kind": "activite_inhabituelle",
-      "strategy": "Surveiller / suivre le flux : call 152.5 exp 2026-11-16",
-      "score": 100.0,
-      "summary": "NVDA : volume 4,748 vs OI 21 (x226.1) sur call 152.5 (-9.3% du spot), ~8.10M$ de prime — flux haussier",
-      "details": {
-        "expiry": "2026-11-16",
-        "dte": 6,
-        "side": "call",
-        "strike": 152.5,
-        "volume": 4748,
-        "open_interest": 21,
-        "ratio_vol_oi": 226.1,
-        "premium_flow_usd": 8095340
-      }
-    },
-    {
-      "ticker": "TSLA",
-      "kind": "strategie_optimale",
-      "strategy": "VENDRE call 410 + ACHETER call 415 exp 2026-12-24 (crédit ~2.00$)",
-      "score": 100.0,
-      "summary": "TSLA : bear call spread 410/415 exp 2026-12-24 (44j) — crédit 2.00$, risque max 3.00$, POP 71%, EV prudent +0.30$/action, gain max 67% du risque en 44j",
-      "details": {
-        "strategie": "bear call spread",
-        "jambes": [
-          "VENDRE call 410",
-          "ACHETER call 415"
-        ],
-        "expiry": "2026-12-24",
-        "dte": 44,
-        "credit_par_action": 2.0,
-        "risque_max_par_action": 3.0,
-        "prob_profit": 0.711,
-        "esperance_gain_EV": 0.523,
-        "edge_par_risque": 0.174,
-        "ratio_gain_risque": 0.667,
-        "rendement_annualise": 5.53,
-        "kelly_pleine": 0.277,
-        "demi_kelly_conseillee": 0.138,
-        "spot": 377.62,
-        "vol_estimee": 0.545,
-        "iv_atm": 0.445,
-        "ev_prudent_apres_frais": 0.303,
-        "greeks": {
-          "delta": -0.0241,
-          "gamma": -0.0001,
-          "theta_jour": 0.0077,
-          "vega": -0.0108
-        }
-      }
-    },
     {
       "ticker": "AMD",
       "kind": "strategie_optimale",
-      "strategy": "ACHETER call 515 + ACHETER put 515 exp 2026-12-24 (débit ~91.20$)",
+      "strategy": "ACHETER call 530 + ACHETER put 530 exp 2026-12-24 (débit ~92.05$)",
       "score": 100.0,
-      "summary": "AMD : straddle acheté 515/515 exp 2026-12-24 (44j) — débit 91.20$, risque max 91.20$, POP 60%, EV prudent +36.50$/action, gain max -100% du risque en 44j",
+      "summary": "AMD : straddle acheté 530/530 exp 2026-12-24 (41j) — débit 92.05$, risque max 92.05$, POP 61%, EV prudent +41.87$/action, gain max -100% du risque en 41j",
       "details": {
         "strategie": "straddle acheté",
         "jambes": [
-          "ACHETER call 515",
-          "ACHETER put 515"
+          "ACHETER call 530",
+          "ACHETER put 530"
         ],
         "expiry": "2026-12-24",
-        "dte": 44,
-        "credit_par_action": -91.2,
-        "risque_max_par_action": 91.2,
-        "prob_profit": 0.596,
-        "esperance_gain_EV": 45.645,
-        "edge_par_risque": 0.5,
+        "dte": 41,
+        "credit_par_action": -92.05,
+        "risque_max_par_action": 92.05,
+        "prob_profit": 0.61,
+        "esperance_gain_EV": 51.1,
+        "edge_par_risque": 0.555,
         "ratio_gain_risque": -1.0,
-        "rendement_annualise": -8.295,
+        "rendement_annualise": -8.902,
         "kelly_pleine": 0.0,
         "demi_kelly_conseillee": 0.0,
-        "spot": 515.75,
-        "vol_estimee": 0.965,
-        "iv_atm": 0.656,
-        "ev_prudent_apres_frais": 36.505,
+        "spot": 529.94,
+        "vol_estimee": 1.017,
+        "iv_atm": 0.688,
+        "ev_prudent_apres_frais": 41.875,
         "greeks": {
-          "delta": 0.1492,
-          "gamma": 0.0045,
-          "theta_jour": -1.5325,
-          "vega": 1.4037
+          "delta": 0.1468,
+          "gamma": 0.0043,
+          "theta_jour": -1.7205,
+          "vega": 1.3931
         }
       }
     },
     {
       "ticker": "INTC",
       "kind": "strategie_optimale",
-      "strategy": "ACHETER call 58 + ACHETER put 58 exp 2026-12-24 (débit ~10.50$)",
+      "strategy": "VENDRE call 67 + ACHETER call 68 exp 2026-12-24 (crédit ~0.42$)",
       "score": 100.0,
-      "summary": "INTC : straddle acheté 58/58 exp 2026-12-24 (44j) — débit 10.50$, risque max 10.50$, POP 64%, EV prudent +5.96$/action, gain max -100% du risque en 44j",
+      "summary": "INTC : bear call spread 67/68 exp 2026-12-24 (41j) — crédit 0.42$, risque max 0.58$, POP 70%, EV prudent +0.05$/action, gain max 71% du risque en 41j",
       "details": {
-        "strategie": "straddle acheté",
+        "strategie": "bear call spread",
         "jambes": [
-          "ACHETER call 58",
-          "ACHETER put 58"
+          "VENDRE call 67",
+          "ACHETER call 68"
         ],
         "expiry": "2026-12-24",
-        "dte": 44,
-        "credit_par_action": -10.5,
-        "risque_max_par_action": 10.5,
-        "prob_profit": 0.636,
-        "esperance_gain_EV": 7.031,
-        "edge_par_risque": 0.67,
-        "ratio_gain_risque": -1.0,
-        "rendement_annualise": -8.295,
-        "kelly_pleine": 0.0,
-        "demi_kelly_conseillee": 0.0,
-        "spot": 57.92,
-        "vol_estimee": 1.101,
-        "iv_atm": 0.66,
-        "ev_prudent_apres_frais": 5.961,
+        "dte": 41,
+        "credit_par_action": 0.42,
+        "risque_max_par_action": 0.58,
+        "prob_profit": 0.702,
+        "esperance_gain_EV": 0.115,
+        "edge_par_risque": 0.197,
+        "ratio_gain_risque": 0.709,
+        "rendement_annualise": 6.315,
+        "kelly_pleine": 0.282,
+        "demi_kelly_conseillee": 0.141,
+        "spot": 59.27,
+        "vol_estimee": 1.12,
+        "iv_atm": 0.652,
+        "ev_prudent_apres_frais": 0.054,
         "greeks": {
-          "delta": 0.1601,
-          "gamma": 0.0353,
-          "theta_jour": -0.1958,
-          "vega": 0.1572
+          "delta": -0.0156,
+          "gamma": -0.0001,
+          "theta_jour": 0.0007,
+          "vega": -0.0004
         }
-      }
-    },
-    {
-      "ticker": "VALE",
-      "kind": "skew_inverse",
-      "strategy": "Signal rare : spéculation haussière agressive — surveiller un squeeze / call spreads",
-      "score": 100.0,
-      "summary": "VALE : skew INVERSÉ, calls +5% à 56% plus chers que puts -5% à 35% (-20.2 pts) — demande haussière anormale",
-      "details": {
-        "expiry": "2026-12-04",
-        "dte": 24,
-        "put_iv": 0.3535,
-        "call_iv": 0.5557,
-        "skew_pts": -20.2
-      }
-    },
-    {
-      "ticker": "INTC",
-      "kind": "strategie_optimale",
-      "strategy": "ACHETER call 58 + ACHETER put 58 exp 2026-12-04 (débit ~7.97$)",
-      "score": 95.1,
-      "summary": "INTC : straddle acheté 58/58 exp 2026-12-04 (24j) — débit 7.97$, risque max 7.97$, POP 63%, EV prudent +4.21$/action, gain max -100% du risque en 24j",
-      "details": {
-        "strategie": "straddle acheté",
-        "jambes": [
-          "ACHETER call 58",
-          "ACHETER put 58"
-        ],
-        "expiry": "2026-12-04",
-        "dte": 24,
-        "credit_par_action": -7.97,
-        "risque_max_par_action": 7.97,
-        "prob_profit": 0.626,
-        "esperance_gain_EV": 5.024,
-        "edge_par_risque": 0.63,
-        "ratio_gain_risque": -1.0,
-        "rendement_annualise": -15.208,
-        "kelly_pleine": 0.0,
-        "demi_kelly_conseillee": 0.0,
-        "spot": 57.92,
-        "vol_estimee": 1.101,
-        "iv_atm": 0.66,
-        "ev_prudent_apres_frais": 4.207,
-        "greeks": {
-          "delta": 0.117,
-          "gamma": 0.0482,
-          "theta_jour": -0.2682,
-          "vega": 0.1172
-        }
-      }
-    },
-    {
-      "ticker": "NVDA",
-      "kind": "activite_inhabituelle",
-      "strategy": "Surveiller / suivre le flux : call 172.5 exp 2026-11-16",
-      "score": 92.7,
-      "summary": "NVDA : volume 17,736 vs OI 264 (x67.2) sur call 172.5 (+2.6% du spot), ~6.35M$ de prime — flux haussier",
-      "details": {
-        "expiry": "2026-11-16",
-        "dte": 6,
-        "side": "call",
-        "strike": 172.5,
-        "volume": 17736,
-        "open_interest": 264,
-        "ratio_vol_oi": 67.18,
-        "premium_flow_usd": 6349488
       }
     },
     {
       "ticker": "MARA",
       "kind": "put_cash_secured",
-      "strategy": "Vendre put MARA 6.5 exp 2026-12-04 @ ~0.41$ (capital requis 650$)",
-      "score": 87.1,
-      "summary": "MARA : put 6.5 (24j, delta 0.29) rapporte ~94% annualisé, prob. de profit ~61%",
+      "strategy": "Vendre put MARA 6.5 exp 2026-12-04 @ ~0.42$ (capital requis 650$)",
+      "score": 89.2,
+      "summary": "MARA : put 6.5 (21j, delta 0.35) rapporte ~110% annualisé, prob. de profit ~57%",
       "details": {
         "expiry": "2026-12-04",
-        "dte": 24,
+        "dte": 21,
         "strike": 6.5,
-        "mid": 0.41,
-        "bid_vente": 0.41,
+        "mid": 0.42,
+        "bid_vente": 0.42,
         "commission_incluse": 1.0,
-        "delta": 0.29,
-        "annual_yield": 0.936,
-        "prob_profit": 0.61,
+        "delta": 0.35,
+        "annual_yield": 1.096,
+        "prob_profit": 0.57,
         "capital_requis": 650,
         "greeks": {
-          "delta": 0.2912,
-          "gamma": -0.1837,
-          "theta_jour": 0.013
+          "delta": 0.3473,
+          "gamma": -0.2421,
+          "theta_jour": 0.0131
         }
       }
     },
     {
       "ticker": "RIOT",
       "kind": "put_cash_secured",
-      "strategy": "Vendre put RIOT 17 exp 2026-12-04 @ ~1.45$ (capital requis 1,700$)",
-      "score": 86.8,
-      "summary": "RIOT : put 17 (24j, delta 0.37) rapporte ~124% annualisé, prob. de profit ~53%",
+      "strategy": "Vendre put RIOT 16.5 exp 2026-12-04 @ ~1.10$ (capital requis 1,650$)",
+      "score": 88.6,
+      "summary": "RIOT : put 16.5 (21j, delta 0.35) rapporte ~113% annualisé, prob. de profit ~56%",
       "details": {
         "expiry": "2026-12-04",
-        "dte": 24,
-        "strike": 17.0,
-        "mid": 1.45,
-        "bid_vente": 1.39,
+        "dte": 21,
+        "strike": 16.5,
+        "mid": 1.1,
+        "bid_vente": 1.08,
         "commission_incluse": 1.0,
-        "delta": 0.37,
-        "annual_yield": 1.235,
-        "prob_profit": 0.53,
-        "capital_requis": 1700,
+        "delta": 0.35,
+        "annual_yield": 1.127,
+        "prob_profit": 0.56,
+        "capital_requis": 1650,
         "greeks": {
-          "delta": 0.3681,
-          "gamma": -0.0801,
-          "theta_jour": 0.036
+          "delta": 0.3514,
+          "gamma": -0.095,
+          "theta_jour": 0.0336
         }
       }
     },
     {
-      "ticker": "NVDA",
-      "kind": "activite_inhabituelle",
-      "strategy": "Surveiller / suivre le flux : call 150 exp 2026-11-16",
-      "score": 86.5,
-      "summary": "NVDA : volume 4,590 vs OI 123 (x37.3) sur call 150 (-10.8% du spot), ~8.87M$ de prime — flux haussier",
+      "ticker": "INTC",
+      "kind": "strategie_optimale",
+      "strategy": "ACHETER call 59 + ACHETER put 59 exp 2026-12-04 (débit ~7.55$)",
+      "score": 86.9,
+      "summary": "INTC : straddle acheté 59/59 exp 2026-12-04 (21j) — débit 7.55$, risque max 7.55$, POP 63%, EV prudent +4.30$/action, gain max -100% du risque en 21j",
       "details": {
-        "expiry": "2026-11-16",
-        "dte": 6,
-        "side": "call",
-        "strike": 150.0,
-        "volume": 4590,
-        "open_interest": 123,
-        "ratio_vol_oi": 37.32,
-        "premium_flow_usd": 8867880
-      }
-    },
-    {
-      "ticker": "LCID",
-      "kind": "put_cash_secured",
-      "strategy": "Vendre put LCID 3.5 exp 2026-12-04 @ ~0.26$ (capital requis 350$)",
-      "score": 84.3,
-      "summary": "LCID : put 3.5 (24j, delta 0.37) rapporte ~96% annualisé, prob. de profit ~54%",
-      "details": {
+        "strategie": "straddle acheté",
+        "jambes": [
+          "ACHETER call 59",
+          "ACHETER put 59"
+        ],
         "expiry": "2026-12-04",
-        "dte": 24,
-        "strike": 3.5,
-        "mid": 0.26,
-        "bid_vente": 0.23,
-        "commission_incluse": 1.0,
-        "delta": 0.37,
-        "annual_yield": 0.956,
-        "prob_profit": 0.54,
-        "capital_requis": 350,
+        "dte": 21,
+        "credit_par_action": -7.55,
+        "risque_max_par_action": 7.55,
+        "prob_profit": 0.633,
+        "esperance_gain_EV": 5.08,
+        "edge_par_risque": 0.673,
+        "ratio_gain_risque": -1.0,
+        "rendement_annualise": -17.381,
+        "kelly_pleine": 0.0,
+        "demi_kelly_conseillee": 0.0,
+        "spot": 59.27,
+        "vol_estimee": 1.12,
+        "iv_atm": 0.652,
+        "ev_prudent_apres_frais": 4.305,
         "greeks": {
-          "delta": 0.3675,
-          "gamma": -0.4392,
-          "theta_jour": 0.0065
+          "delta": 0.1279,
+          "gamma": 0.0494,
+          "theta_jour": -0.2981,
+          "vega": 0.112
         }
       }
     },
     {
       "ticker": "PBR",
-      "kind": "earnings_iv",
-      "strategy": "Jouer l'IV crush : iron condor / strangle vendu APRÈS l'annonce, ou calendar spread avant — éviter l'achat sec de calls/puts",
-      "score": 80,
-      "summary": "PBR : résultats dans 0 j, IV gonflée à 54% (x0.88 vs réalisée) — l'IV va s'écraser après l'annonce",
-      "details": {
-        "earnings_days": 0,
-        "iv_atm": 0.5449,
-        "rv_20d": 0.6187,
-        "iv_inflation": 0.88
-      }
-    },
-    {
-      "ticker": "GOLD",
       "kind": "achat_put",
-      "strategy": "ACHETER put 35 exp 2026-12-18 @ ~1.15$ (114$/contrat, perte max = la prime)",
-      "score": 77.6,
-      "summary": "GOLD : 4/4 signaux baisse convergents (flux -61%, momentum -7.9%, RSI 41, skew -0.32) → put 35 (38j) @ 1.15$ — si mouvement 1σ (16.9%) : +267% sur la prime",
-      "details": {
-        "sens": "BAISSE",
-        "side": "put",
-        "strike": 35.0,
-        "expiry": "2026-12-18",
-        "dte": 38,
-        "prime_par_action": 1.15,
-        "cout_par_contrat": 114,
-        "delta": 0.33,
-        "breakeven": 33.85,
-        "mouvement_necessaire": -0.086,
-        "mouvement_attendu_1sigma": -0.169,
-        "gain_si_mouvement_1sigma": 2.67,
-        "prob_profit_a_echeance": 0.33,
-        "score_direction": -0.62,
-        "signaux": {
-          "direction": -0.6157980285358522,
-          "flux": -0.61,
-          "momentum_20j": -0.079,
-          "rsi": 41.0,
-          "breakout": -1.0,
-          "skew": -0.32
-        },
-        "iv_contrat": 0.551,
-        "vol_realisee": 0.544,
-        "spot": 37.02
-      }
-    },
-    {
-      "ticker": "PBR",
-      "kind": "achat_put",
-      "strategy": "ACHETER put 18 exp 2026-12-04 @ ~0.71$ (71$/contrat, perte max = la prime)",
-      "score": 76.1,
-      "summary": "PBR : 4/4 signaux baisse convergents (flux -85%, momentum -28.6%, RSI 24, skew -1.00) → put 18 (24j) @ 0.71$ — si mouvement 1σ (15.1%) : +257% sur la prime",
+      "strategy": "ACHETER put 18 exp 2026-12-04 @ ~0.45$ (45$/contrat, perte max = la prime)",
+      "score": 86.7,
+      "summary": "PBR : 3/4 signaux baisse convergents (flux -59%, momentum -29.4%, RSI 29, skew +0.57) → put 18 (21j) @ 0.45$ — si mouvement 1σ (12.6%) : +329% sur la prime",
       "details": {
         "sens": "BAISSE",
         "side": "put",
         "strike": 18.0,
         "expiry": "2026-12-04",
-        "dte": 24,
-        "prime_par_action": 0.71,
-        "cout_par_contrat": 71,
-        "delta": 0.43,
-        "breakeven": 17.29,
-        "mouvement_necessaire": -0.051,
-        "mouvement_attendu_1sigma": -0.151,
-        "gain_si_mouvement_1sigma": 2.57,
-        "prob_profit_a_echeance": 0.39,
-        "score_direction": -0.77,
+        "dte": 21,
+        "prime_par_action": 0.45,
+        "cout_par_contrat": 45,
+        "delta": 0.38,
+        "breakeven": 17.55,
+        "mouvement_necessaire": -0.044,
+        "mouvement_attendu_1sigma": -0.126,
+        "gain_si_mouvement_1sigma": 3.29,
+        "prob_profit_a_echeance": 0.38,
+        "score_direction": -0.51,
         "signaux": {
-          "direction": -0.7725528306505192,
-          "flux": -0.85,
-          "momentum_20j": -0.286,
-          "rsi": 24.0,
-          "breakout": -1.0,
-          "skew": -1.0
+          "direction": -0.5146952425686397,
+          "flux": -0.59,
+          "momentum_20j": -0.294,
+          "rsi": 29.0,
+          "breakout": -0.87,
+          "skew": 0.57
         },
-        "iv_contrat": 0.505,
-        "vol_realisee": 0.619,
-        "spot": 18.22,
-        "attention_earnings": "résultats dans 0j, avant l'expiration : tu paies l'IV gonflée et elle s'écrasera après l'annonce (IV crush)"
+        "iv_contrat": 0.373,
+        "vol_realisee": 0.608,
+        "spot": 18.36
       }
     },
     {
-      "ticker": "AMD",
-      "kind": "put_cash_secured",
-      "strategy": "Vendre put AMD 495 exp 2026-12-04 @ ~25.30$ (capital requis 49,500$)",
-      "score": 71.4,
-      "summary": "AMD : put 495 (24j, delta 0.36) rapporte ~74% annualisé, prob. de profit ~57%",
+      "ticker": "PLUG",
+      "kind": "skew_inverse",
+      "strategy": "Signal rare : spéculation haussière agressive — surveiller un squeeze / call spreads",
+      "score": 82.5,
+      "summary": "PLUG : skew INVERSÉ, calls +5% à 94% plus chers que puts -5% à 84% (-9.4 pts) — demande haussière anormale",
       "details": {
         "expiry": "2026-12-04",
-        "dte": 24,
-        "strike": 495.0,
-        "mid": 25.3,
-        "bid_vente": 24.25,
-        "commission_incluse": 1.0,
-        "delta": 0.36,
-        "annual_yield": 0.745,
-        "prob_profit": 0.57,
-        "capital_requis": 49500,
-        "greeks": {
-          "delta": 0.365,
-          "gamma": -0.0043,
-          "theta_jour": 0.6557
-        }
-      }
-    },
-    {
-      "ticker": "COIN",
-      "kind": "put_cash_secured",
-      "strategy": "Vendre put COIN 125 exp 2026-12-04 @ ~6.25$ (capital requis 12,500$)",
-      "score": 71.0,
-      "summary": "COIN : put 125 (24j, delta 0.34) rapporte ~72% annualisé, prob. de profit ~59%",
-      "details": {
-        "expiry": "2026-12-04",
-        "dte": 24,
-        "strike": 125.0,
-        "mid": 6.25,
-        "bid_vente": 5.95,
-        "commission_incluse": 1.0,
-        "delta": 0.34,
-        "annual_yield": 0.723,
-        "prob_profit": 0.59,
-        "capital_requis": 12500,
-        "greeks": {
-          "delta": 0.3435,
-          "gamma": -0.0158,
-          "theta_jour": 0.1725
-        }
-      }
-    },
-    {
-      "ticker": "QQQ",
-      "kind": "activite_inhabituelle",
-      "strategy": "Surveiller / suivre le flux : call 752 exp 2026-12-31",
-      "score": 70.8,
-      "summary": "QQQ : volume 2,007 vs OI 65 (x30.9) sur call 752 (+11.6% du spot), ~0.32M$ de prime — flux haussier",
-      "details": {
-        "expiry": "2026-12-31",
-        "dte": 51,
-        "side": "call",
-        "strike": 752.0,
-        "volume": 2007,
-        "open_interest": 65,
-        "ratio_vol_oi": 30.88,
-        "premium_flow_usd": 323127
-      }
-    },
-    {
-      "ticker": "INTC",
-      "kind": "put_cash_secured",
-      "strategy": "Vendre put INTC 55 exp 2026-12-04 @ ~2.65$ (capital requis 5,500$)",
-      "score": 70.5,
-      "summary": "INTC : put 55 (24j, delta 0.34) rapporte ~72% annualisé, prob. de profit ~59%",
-      "details": {
-        "expiry": "2026-12-04",
-        "dte": 24,
-        "strike": 55.0,
-        "mid": 2.65,
-        "bid_vente": 2.6,
-        "commission_incluse": 1.0,
-        "delta": 0.34,
-        "annual_yield": 0.716,
-        "prob_profit": 0.59,
-        "capital_requis": 5500,
-        "greeks": {
-          "delta": 0.3425,
-          "gamma": -0.037,
-          "theta_jour": 0.0732
-        }
+        "dte": 21,
+        "put_iv": 0.8438,
+        "call_iv": 0.9375,
+        "skew_pts": -9.4
       }
     },
     {
       "ticker": "RIOT",
       "kind": "achat_call",
-      "strategy": "ACHETER call 19.5 exp 2026-12-04 @ ~1.20$ (119$/contrat, perte max = la prime)",
-      "score": 69.5,
-      "summary": "RIOT : 4/4 signaux hausse convergents (flux +24%, momentum +7.3%, RSI 59, skew +0.08) → call 19.5 (24j) @ 1.20$ — si mouvement 1σ (29.2%) : +202% sur la prime",
+      "strategy": "ACHETER call 19 exp 2026-12-04 @ ~0.99$ (99$/contrat, perte max = la prime)",
+      "score": 81.6,
+      "summary": "RIOT : 4/4 signaux hausse convergents (flux +67%, momentum +27.4%, RSI 56, skew +0.11) → call 19 (21j) @ 0.99$ — si mouvement 1σ (24.5%) : +178% sur la prime",
       "details": {
         "sens": "HAUSSE",
         "side": "call",
-        "strike": 19.5,
+        "strike": 19.0,
         "expiry": "2026-12-04",
-        "dte": 24,
-        "prime_par_action": 1.2,
-        "cout_par_contrat": 119,
-        "delta": 0.42,
-        "breakeven": 20.7,
-        "mouvement_necessaire": 0.157,
-        "mouvement_attendu_1sigma": 0.292,
-        "gain_si_mouvement_1sigma": 2.02,
-        "prob_profit_a_echeance": 0.26,
-        "score_direction": 0.43,
+        "dte": 21,
+        "prime_par_action": 0.99,
+        "cout_par_contrat": 99,
+        "delta": 0.4,
+        "breakeven": 20.0,
+        "mouvement_necessaire": 0.144,
+        "mouvement_attendu_1sigma": 0.245,
+        "gain_si_mouvement_1sigma": 1.78,
+        "prob_profit_a_echeance": 0.25,
+        "score_direction": 0.65,
         "signaux": {
-          "direction": 0.4296644347694462,
-          "flux": 0.24,
-          "momentum_20j": 0.073,
-          "rsi": 59.0,
-          "breakout": 1.0,
-          "skew": 0.08
+          "direction": 0.6504431273771888,
+          "flux": 0.67,
+          "momentum_20j": 0.274,
+          "rsi": 56.0,
+          "breakout": 0.75,
+          "skew": 0.11
         },
-        "iv_contrat": 0.973,
-        "vol_realisee": 1.231,
-        "spot": 17.89
+        "iv_contrat": 0.923,
+        "vol_realisee": 1.079,
+        "spot": 17.48
+      }
+    },
+    {
+      "ticker": "AMD",
+      "kind": "put_cash_secured",
+      "strategy": "Vendre put AMD 510 exp 2026-12-04 @ ~24.50$ (capital requis 51,000$)",
+      "score": 75.3,
+      "summary": "AMD : put 510 (21j, delta 0.37) rapporte ~80% annualisé, prob. de profit ~57%",
+      "details": {
+        "expiry": "2026-12-04",
+        "dte": 21,
+        "strike": 510.0,
+        "mid": 24.5,
+        "bid_vente": 23.55,
+        "commission_incluse": 1.0,
+        "delta": 0.37,
+        "annual_yield": 0.802,
+        "prob_profit": 0.57,
+        "capital_requis": 51000,
+        "greeks": {
+          "delta": 0.3677,
+          "gamma": -0.0045,
+          "theta_jour": 0.7249
+        }
+      }
+    },
+    {
+      "ticker": "NVDA",
+      "kind": "activite_inhabituelle",
+      "strategy": "Surveiller / suivre le flux : put 135 exp 2026-12-04",
+      "score": 73.9,
+      "summary": "NVDA : volume 14,258 vs OI 663 (x21.5) sur put 135 (-16.6% du spot), ~2.42M$ de prime — flux baissier (ou couverture)",
+      "details": {
+        "expiry": "2026-12-04",
+        "dte": 21,
+        "side": "put",
+        "strike": 135.0,
+        "volume": 14258,
+        "open_interest": 663,
+        "ratio_vol_oi": 21.51,
+        "premium_flow_usd": 2423860
+      }
+    },
+    {
+      "ticker": "INTC",
+      "kind": "put_cash_secured",
+      "strategy": "Vendre put INTC 57 exp 2026-12-04 @ ~2.58$ (capital requis 5,700$)",
+      "score": 73.8,
+      "summary": "INTC : put 57 (21j, delta 0.36) rapporte ~77% annualisé, prob. de profit ~58%",
+      "details": {
+        "expiry": "2026-12-04",
+        "dte": 21,
+        "strike": 57.0,
+        "mid": 2.58,
+        "bid_vente": 2.54,
+        "commission_incluse": 1.0,
+        "delta": 0.36,
+        "annual_yield": 0.771,
+        "prob_profit": 0.58,
+        "capital_requis": 5700,
+        "greeks": {
+          "delta": 0.3633,
+          "gamma": -0.0416,
+          "theta_jour": 0.0777
+        }
       }
     },
     {
       "ticker": "NVDA",
       "kind": "put_cash_secured",
-      "strategy": "Vendre put NVDA 160 exp 2026-12-04 @ ~7.10$ (capital requis 16,000$)",
-      "score": 67.8,
-      "summary": "NVDA : put 160 (24j, delta 0.34) rapporte ~67% annualisé, prob. de profit ~60%",
+      "strategy": "Vendre put NVDA 155 exp 2026-12-04 @ ~6.60$ (capital requis 15,500$)",
+      "score": 71.4,
+      "summary": "NVDA : put 155 (21j, delta 0.35) rapporte ~73% annualisé, prob. de profit ~59%",
       "details": {
         "expiry": "2026-12-04",
-        "dte": 24,
-        "strike": 160.0,
-        "mid": 7.1,
-        "bid_vente": 7.05,
-        "commission_incluse": 1.0,
-        "delta": 0.34,
-        "annual_yield": 0.669,
-        "prob_profit": 0.6,
-        "capital_requis": 16000,
-        "greeks": {
-          "delta": 0.3407,
-          "gamma": -0.0136,
-          "theta_jour": 0.1983
-        }
-      }
-    },
-    {
-      "ticker": "AMD",
-      "kind": "activite_inhabituelle",
-      "strategy": "Surveiller / suivre le flux : call 550 exp 2026-11-16",
-      "score": 67.8,
-      "summary": "AMD : volume 2,541 vs OI 174 (x14.6) sur call 550 (+6.6% du spot), ~1.88M$ de prime — flux haussier",
-      "details": {
-        "expiry": "2026-11-16",
-        "dte": 6,
-        "side": "call",
-        "strike": 550.0,
-        "volume": 2541,
-        "open_interest": 174,
-        "ratio_vol_oi": 14.6,
-        "premium_flow_usd": 1880340
-      }
-    },
-    {
-      "ticker": "TLRY",
-      "kind": "put_cash_secured",
-      "strategy": "Vendre put TLRY 2.5 exp 2026-12-04 @ ~0.13$ (capital requis 250$)",
-      "score": 66.6,
-      "summary": "TLRY : put 2.5 (24j, delta 0.35) rapporte ~67% annualisé, prob. de profit ~58%",
-      "details": {
-        "expiry": "2026-12-04",
-        "dte": 24,
-        "strike": 2.5,
-        "mid": 0.13,
-        "bid_vente": 0.12,
+        "dte": 21,
+        "strike": 155.0,
+        "mid": 6.6,
+        "bid_vente": 6.5,
         "commission_incluse": 1.0,
         "delta": 0.35,
-        "annual_yield": 0.669,
-        "prob_profit": 0.58,
-        "capital_requis": 250,
-        "greeks": {
-          "delta": 0.3461,
-          "gamma": -0.7679,
-          "theta_jour": 0.0036
-        }
-      }
-    },
-    {
-      "ticker": "INTC",
-      "kind": "activite_inhabituelle",
-      "strategy": "Surveiller / suivre le flux : put 115 exp 2026-11-20",
-      "score": 65.6,
-      "summary": "INTC : volume 7,383 vs OI 1,641 (x4.5) sur put 115 (+98.5% du spot), ~40.69M$ de prime — flux baissier (ou couverture)",
-      "details": {
-        "expiry": "2026-11-20",
-        "dte": 10,
-        "side": "put",
-        "strike": 115.0,
-        "volume": 7383,
-        "open_interest": 1641,
-        "ratio_vol_oi": 4.5,
-        "premium_flow_usd": 40687713
-      }
-    },
-    {
-      "ticker": "TLRY",
-      "kind": "skew_inverse",
-      "strategy": "Signal rare : spéculation haussière agressive — surveiller un squeeze / call spreads",
-      "score": 63.7,
-      "summary": "TLRY : skew INVERSÉ, calls +5% à 76% plus chers que puts -5% à 71% (-4.7 pts) — demande haussière anormale",
-      "details": {
-        "expiry": "2026-12-04",
-        "dte": 24,
-        "put_iv": 0.7109,
-        "call_iv": 0.7578,
-        "skew_pts": -4.7
-      }
-    },
-    {
-      "ticker": "INTC",
-      "kind": "activite_inhabituelle",
-      "strategy": "Surveiller / suivre le flux : put 120 exp 2026-11-20",
-      "score": 63.6,
-      "summary": "INTC : volume 5,937 vs OI 1,478 (x4.0) sur put 120 (+107.2% du spot), ~35.92M$ de prime — flux baissier (ou couverture)",
-      "details": {
-        "expiry": "2026-11-20",
-        "dte": 10,
-        "side": "put",
-        "strike": 120.0,
-        "volume": 5937,
-        "open_interest": 1478,
-        "ratio_vol_oi": 4.02,
-        "premium_flow_usd": 35918850
-      }
-    },
-    {
-      "ticker": "CLF",
-      "kind": "skew_inverse",
-      "strategy": "Signal rare : spéculation haussière agressive — surveiller un squeeze / call spreads",
-      "score": 62.6,
-      "summary": "CLF : skew INVERSÉ, calls +5% à 67% plus chers que puts -5% à 63% (-4.4 pts) — demande haussière anormale",
-      "details": {
-        "expiry": "2026-12-04",
-        "dte": 24,
-        "put_iv": 0.627,
-        "call_iv": 0.6709,
-        "skew_pts": -4.4
-      }
-    },
-    {
-      "ticker": "RIVN",
-      "kind": "put_cash_secured",
-      "strategy": "Vendre put RIVN 13 exp 2026-12-04 @ ~0.54$ (capital requis 1,300$)",
-      "score": 62.2,
-      "summary": "RIVN : put 13 (24j, delta 0.36) rapporte ~60% annualisé, prob. de profit ~59%",
-      "details": {
-        "expiry": "2026-12-04",
-        "dte": 24,
-        "strike": 13.0,
-        "mid": 0.54,
-        "bid_vente": 0.52,
-        "commission_incluse": 1.0,
-        "delta": 0.36,
-        "annual_yield": 0.597,
+        "annual_yield": 0.728,
         "prob_profit": 0.59,
-        "capital_requis": 1300,
+        "capital_requis": 15500,
         "greeks": {
-          "delta": 0.3559,
-          "gamma": -0.193,
-          "theta_jour": 0.0143
-        }
-      }
-    },
-    {
-      "ticker": "CLF",
-      "kind": "put_cash_secured",
-      "strategy": "Vendre put CLF 12 exp 2026-12-04 @ ~0.47$ (capital requis 1,200$)",
-      "score": 61.9,
-      "summary": "CLF : put 12 (24j, delta 0.31) rapporte ~56% annualisé, prob. de profit ~63%",
-      "details": {
-        "expiry": "2026-12-04",
-        "dte": 24,
-        "strike": 12.0,
-        "mid": 0.47,
-        "bid_vente": 0.45,
-        "commission_incluse": 1.0,
-        "delta": 0.31,
-        "annual_yield": 0.558,
-        "prob_profit": 0.63,
-        "capital_requis": 1200,
-        "greeks": {
-          "delta": 0.3093,
-          "gamma": -0.1713,
-          "theta_jour": 0.0146
-        }
-      }
-    },
-    {
-      "ticker": "INTC",
-      "kind": "options_bon_marche",
-      "strategy": "Achat d'options pas chères : calls/puts longs ou straddle",
-      "score": 61.2,
-      "summary": "INTC : IV 66% sous la vol réalisée 140% (ratio x0.47) — le marché sous-estime le mouvement",
-      "details": {
-        "iv_atm": 0.6597,
-        "rv_20d": 1.3959,
-        "ratio": 0.47
-      }
-    },
-    {
-      "ticker": "SPY",
-      "kind": "activite_inhabituelle",
-      "strategy": "Surveiller / suivre le flux : put 715 exp 2026-11-16",
-      "score": 61.1,
-      "summary": "SPY : volume 5,508 vs OI 338 (x16.3) sur put 715 (-4.6% du spot), ~0.20M$ de prime — flux baissier (ou couverture)",
-      "details": {
-        "expiry": "2026-11-16",
-        "dte": 6,
-        "side": "put",
-        "strike": 715.0,
-        "volume": 5508,
-        "open_interest": 338,
-        "ratio_vol_oi": 16.3,
-        "premium_flow_usd": 203796
-      }
-    },
-    {
-      "ticker": "BAC",
-      "kind": "activite_inhabituelle",
-      "strategy": "Surveiller / suivre le flux : put 62.5 exp 2026-11-20",
-      "score": 60.2,
-      "summary": "BAC : volume 6,204 vs OI 1,203 (x5.2) sur put 62.5 (+23.4% du spot), ~7.72M$ de prime — flux baissier (ou couverture)",
-      "details": {
-        "expiry": "2026-11-20",
-        "dte": 10,
-        "side": "put",
-        "strike": 62.5,
-        "volume": 6204,
-        "open_interest": 1203,
-        "ratio_vol_oi": 5.16,
-        "premium_flow_usd": 7723979
-      }
-    },
-    {
-      "ticker": "CCL",
-      "kind": "achat_call",
-      "strategy": "ACHETER call 32 exp 2026-12-04 @ ~0.82$ (82$/contrat, perte max = la prime)",
-      "score": 59.8,
-      "summary": "CCL : 3/4 signaux hausse convergents (flux -25%, momentum +15.4%, RSI 66, skew +0.52) → call 32 (24j) @ 0.82$ — si mouvement 1σ (12.3%) : +199% sur la prime",
-      "details": {
-        "sens": "HAUSSE",
-        "side": "call",
-        "strike": 32.0,
-        "expiry": "2026-12-04",
-        "dte": 24,
-        "prime_par_action": 0.82,
-        "cout_par_contrat": 82,
-        "delta": 0.39,
-        "breakeven": 32.83,
-        "mouvement_necessaire": 0.07,
-        "mouvement_attendu_1sigma": 0.123,
-        "gain_si_mouvement_1sigma": 1.99,
-        "prob_profit_a_echeance": 0.27,
-        "score_direction": 0.39,
-        "signaux": {
-          "direction": 0.3911366687300507,
-          "flux": -0.25,
-          "momentum_20j": 0.154,
-          "rsi": 66.0,
-          "breakout": 0.83,
-          "skew": 0.52
-        },
-        "iv_contrat": 0.438,
-        "vol_realisee": 0.491,
-        "spot": 30.69
-      }
-    },
-    {
-      "ticker": "QQQ",
-      "kind": "activite_inhabituelle",
-      "strategy": "Surveiller / suivre le flux : put 615 exp 2026-11-30",
-      "score": 59.6,
-      "summary": "QQQ : volume 25,538 vs OI 5,303 (x4.8) sur put 615 (-8.7% du spot), ~8.20M$ de prime — flux baissier (ou couverture)",
-      "details": {
-        "expiry": "2026-11-30",
-        "dte": 20,
-        "side": "put",
-        "strike": 615.0,
-        "volume": 25538,
-        "open_interest": 5303,
-        "ratio_vol_oi": 4.82,
-        "premium_flow_usd": 8197698
-      }
-    },
-    {
-      "ticker": "INTC",
-      "kind": "activite_inhabituelle",
-      "strategy": "Surveiller / suivre le flux : put 110 exp 2026-11-20",
-      "score": 59.1,
-      "summary": "INTC : volume 2,710 vs OI 701 (x3.9) sur put 110 (+89.9% du spot), ~14.09M$ de prime — flux baissier (ou couverture)",
-      "details": {
-        "expiry": "2026-11-20",
-        "dte": 10,
-        "side": "put",
-        "strike": 110.0,
-        "volume": 2710,
-        "open_interest": 701,
-        "ratio_vol_oi": 3.87,
-        "premium_flow_usd": 14094710
-      }
-    },
-    {
-      "ticker": "PLTR",
-      "kind": "put_cash_secured",
-      "strategy": "Vendre put PLTR 160 exp 2026-12-04 @ ~5.65$ (capital requis 16,000$)",
-      "score": 58.7,
-      "summary": "PLTR : put 160 (24j, delta 0.33) rapporte ~52% annualisé, prob. de profit ~62%",
-      "details": {
-        "expiry": "2026-12-04",
-        "dte": 24,
-        "strike": 160.0,
-        "mid": 5.65,
-        "bid_vente": 5.5,
-        "commission_incluse": 1.0,
-        "delta": 0.33,
-        "annual_yield": 0.522,
-        "prob_profit": 0.62,
-        "capital_requis": 16000,
-        "greeks": {
-          "delta": 0.3347,
-          "gamma": -0.0164,
-          "theta_jour": 0.161
+          "delta": 0.352,
+          "gamma": -0.0154,
+          "theta_jour": 0.2051
         }
       }
     },
     {
       "ticker": "AMD",
       "kind": "activite_inhabituelle",
-      "strategy": "Surveiller / suivre le flux : call 510 exp 2026-11-16",
-      "score": 57.4,
-      "summary": "AMD : volume 535 vs OI 71 (x7.5) sur call 510 (-1.1% du spot), ~1.22M$ de prime — flux haussier",
+      "strategy": "Surveiller / suivre le flux : call 530 exp 2026-11-18",
+      "score": 69.0,
+      "summary": "AMD : volume 942 vs OI 59 (x16.0) sur call 530 (+0.0% du spot), ~1.93M$ de prime — flux haussier",
       "details": {
-        "expiry": "2026-11-16",
-        "dte": 6,
+        "expiry": "2026-11-18",
+        "dte": 5,
         "side": "call",
-        "strike": 510.0,
-        "volume": 535,
-        "open_interest": 71,
-        "ratio_vol_oi": 7.54,
-        "premium_flow_usd": 1219800
-      }
-    },
-    {
-      "ticker": "SOFI",
-      "kind": "put_cash_secured",
-      "strategy": "Vendre put SOFI 15.5 exp 2026-12-04 @ ~0.55$ (capital requis 1,550$)",
-      "score": 57.3,
-      "summary": "SOFI : put 15.5 (24j, delta 0.34) rapporte ~51% annualisé, prob. de profit ~61%",
-      "details": {
-        "expiry": "2026-12-04",
-        "dte": 24,
-        "strike": 15.5,
-        "mid": 0.55,
-        "bid_vente": 0.53,
-        "commission_incluse": 1.0,
-        "delta": 0.34,
-        "annual_yield": 0.51,
-        "prob_profit": 0.61,
-        "capital_requis": 1550,
-        "greeks": {
-          "delta": 0.3379,
-          "gamma": -0.1724,
-          "theta_jour": 0.0154
-        }
+        "strike": 530.0,
+        "volume": 942,
+        "open_interest": 59,
+        "ratio_vol_oi": 15.97,
+        "premium_flow_usd": 1926389
       }
     },
     {
       "ticker": "NVDA",
       "kind": "earnings_iv",
       "strategy": "Jouer l'IV crush : iron condor / strangle vendu APRÈS l'annonce, ou calendar spread avant — éviter l'achat sec de calls/puts",
-      "score": 57.2,
-      "summary": "NVDA : résultats dans 7 j, IV gonflée à 62% (x1.21 vs réalisée) — l'IV va s'écraser après l'annonce",
+      "score": 68.9,
+      "summary": "NVDA : résultats dans 4 j, IV gonflée à 65% (x1.20 vs réalisée) — l'IV va s'écraser après l'annonce",
       "details": {
-        "earnings_days": 7,
-        "iv_atm": 0.6202,
-        "rv_20d": 0.514,
-        "iv_inflation": 1.21
+        "earnings_days": 4,
+        "iv_atm": 0.6487,
+        "rv_20d": 0.5417,
+        "iv_inflation": 1.2
+      }
+    },
+    {
+      "ticker": "SPY",
+      "kind": "activite_inhabituelle",
+      "strategy": "Surveiller / suivre le flux : put 731 exp 2026-11-18",
+      "score": 68.7,
+      "summary": "SPY : volume 11,651 vs OI 570 (x20.4) sur put 731 (-2.9% du spot), ~0.79M$ de prime — flux baissier (ou couverture)",
+      "details": {
+        "expiry": "2026-11-18",
+        "dte": 5,
+        "side": "put",
+        "strike": 731.0,
+        "volume": 11651,
+        "open_interest": 570,
+        "ratio_vol_oi": 20.44,
+        "premium_flow_usd": 792268
+      }
+    },
+    {
+      "ticker": "AAPL",
+      "kind": "activite_inhabituelle",
+      "strategy": "Surveiller / suivre le flux : call 365 exp 2026-11-18",
+      "score": 67.5,
+      "summary": "AAPL : volume 9,623 vs OI 472 (x20.4) sur call 365 (+2.5% du spot), ~0.58M$ de prime — flux haussier",
+      "details": {
+        "expiry": "2026-11-18",
+        "dte": 5,
+        "side": "call",
+        "strike": 365.0,
+        "volume": 9623,
+        "open_interest": 472,
+        "ratio_vol_oi": 20.39,
+        "premium_flow_usd": 577380
+      }
+    },
+    {
+      "ticker": "AAL",
+      "kind": "achat_call",
+      "strategy": "ACHETER call 14 exp 2026-12-04 @ ~0.34$ (34$/contrat, perte max = la prime)",
+      "score": 67.4,
+      "summary": "AAL : 4/4 signaux hausse convergents (flux +42%, momentum +12.2%, RSI 53, skew +0.11) → call 14 (21j) @ 0.34$ — si mouvement 1σ (12.2%) : +175% sur la prime",
+      "details": {
+        "sens": "HAUSSE",
+        "side": "call",
+        "strike": 14.0,
+        "expiry": "2026-12-04",
+        "dte": 21,
+        "prime_par_action": 0.34,
+        "cout_par_contrat": 34,
+        "delta": 0.36,
+        "breakeven": 14.35,
+        "mouvement_necessaire": 0.077,
+        "mouvement_attendu_1sigma": 0.122,
+        "gain_si_mouvement_1sigma": 1.75,
+        "prob_profit_a_echeance": 0.25,
+        "score_direction": 0.42,
+        "signaux": {
+          "direction": 0.42218787762810894,
+          "flux": 0.42,
+          "momentum_20j": 0.122,
+          "rsi": 53.0,
+          "breakout": 0.33,
+          "skew": 0.11
+        },
+        "iv_contrat": 0.48,
+        "vol_realisee": 0.543,
+        "spot": 13.32
+      }
+    },
+    {
+      "ticker": "NVDA",
+      "kind": "activite_inhabituelle",
+      "strategy": "Surveiller / suivre le flux : call 175 exp 2026-12-04",
+      "score": 66.8,
+      "summary": "NVDA : volume 22,915 vs OI 3,151 (x7.3) sur call 175 (+8.2% du spot), ~12.60M$ de prime — flux haussier",
+      "details": {
+        "expiry": "2026-12-04",
+        "dte": 21,
+        "side": "call",
+        "strike": 175.0,
+        "volume": 22915,
+        "open_interest": 3151,
+        "ratio_vol_oi": 7.27,
+        "premium_flow_usd": 12603250
+      }
+    },
+    {
+      "ticker": "GOLD",
+      "kind": "skew_inverse",
+      "strategy": "Signal rare : spéculation haussière agressive — surveiller un squeeze / call spreads",
+      "score": 66.3,
+      "summary": "GOLD : skew INVERSÉ, calls +5% à 54% plus chers que puts -5% à 49% (-5.3 pts) — demande haussière anormale",
+      "details": {
+        "expiry": "2026-12-18",
+        "dte": 35,
+        "put_iv": 0.4868,
+        "call_iv": 0.54,
+        "skew_pts": -5.3
+      }
+    },
+    {
+      "ticker": "AMD",
+      "kind": "skew_inverse",
+      "strategy": "Signal rare : spéculation haussière agressive — surveiller un squeeze / call spreads",
+      "score": 66.3,
+      "summary": "AMD : skew INVERSÉ, calls +5% à 71% plus chers que puts -5% à 65% (-5.3 pts) — demande haussière anormale",
+      "details": {
+        "expiry": "2026-12-04",
+        "dte": 21,
+        "put_iv": 0.6542,
+        "call_iv": 0.7074,
+        "skew_pts": -5.3
+      }
+    },
+    {
+      "ticker": "COIN",
+      "kind": "put_cash_secured",
+      "strategy": "Vendre put COIN 120 exp 2026-12-04 @ ~4.38$ (capital requis 12,000$)",
+      "score": 65.9,
+      "summary": "COIN : put 120 (21j, delta 0.3) rapporte ~61% annualisé, prob. de profit ~64%",
+      "details": {
+        "expiry": "2026-12-04",
+        "dte": 21,
+        "strike": 120.0,
+        "mid": 4.38,
+        "bid_vente": 4.2,
+        "commission_incluse": 1.0,
+        "delta": 0.3,
+        "annual_yield": 0.607,
+        "prob_profit": 0.64,
+        "capital_requis": 12000,
+        "greeks": {
+          "delta": 0.2998,
+          "gamma": -0.0175,
+          "theta_jour": 0.1594
+        }
       }
     },
     {
       "ticker": "AMD",
       "kind": "activite_inhabituelle",
-      "strategy": "Surveiller / suivre le flux : put 500 exp 2026-11-16",
-      "score": 56.8,
-      "summary": "AMD : volume 958 vs OI 131 (x7.3) sur put 500 (-3.1% du spot), ~1.14M$ de prime — flux baissier (ou couverture)",
+      "strategy": "Surveiller / suivre le flux : call 550 exp 2026-11-18",
+      "score": 65.7,
+      "summary": "AMD : volume 1,915 vs OI 161 (x11.9) sur call 550 (+3.8% du spot), ~2.18M$ de prime — flux haussier",
       "details": {
-        "expiry": "2026-11-16",
-        "dte": 6,
+        "expiry": "2026-11-18",
+        "dte": 5,
+        "side": "call",
+        "strike": 550.0,
+        "volume": 1915,
+        "open_interest": 161,
+        "ratio_vol_oi": 11.89,
+        "premium_flow_usd": 2177355
+      }
+    },
+    {
+      "ticker": "RIVN",
+      "kind": "skew_inverse",
+      "strategy": "Signal rare : spéculation haussière agressive — surveiller un squeeze / call spreads",
+      "score": 65.3,
+      "summary": "RIVN : skew INVERSÉ, calls +5% à 56% plus chers que puts -5% à 51% (-5.1 pts) — demande haussière anormale",
+      "details": {
+        "expiry": "2026-12-04",
+        "dte": 21,
+        "put_iv": 0.5098,
+        "call_iv": 0.5606,
+        "skew_pts": -5.1
+      }
+    },
+    {
+      "ticker": "AAL",
+      "kind": "skew_inverse",
+      "strategy": "Signal rare : spéculation haussière agressive — surveiller un squeeze / call spreads",
+      "score": 64.5,
+      "summary": "AAL : skew INVERSÉ, calls +5% à 48% plus chers que puts -5% à 43% (-4.9 pts) — demande haussière anormale",
+      "details": {
+        "expiry": "2026-12-04",
+        "dte": 21,
+        "put_iv": 0.4316,
+        "call_iv": 0.4805,
+        "skew_pts": -4.9
+      }
+    },
+    {
+      "ticker": "NVDA",
+      "kind": "skew_inverse",
+      "strategy": "Signal rare : spéculation haussière agressive — surveiller un squeeze / call spreads",
+      "score": 63.8,
+      "summary": "NVDA : skew INVERSÉ, calls +5% à 67% plus chers que puts -5% à 62% (-4.7 pts) — demande haussière anormale",
+      "details": {
+        "expiry": "2026-12-04",
+        "dte": 21,
+        "put_iv": 0.6207,
+        "call_iv": 0.6679,
+        "skew_pts": -4.7
+      }
+    },
+    {
+      "ticker": "AAPL",
+      "kind": "activite_inhabituelle",
+      "strategy": "Surveiller / suivre le flux : put 360 exp 2026-11-18",
+      "score": 63.1,
+      "summary": "AAPL : volume 2,125 vs OI 173 (x12.3) sur put 360 (+1.1% du spot), ~1.04M$ de prime — flux baissier (ou couverture)",
+      "details": {
+        "expiry": "2026-11-18",
+        "dte": 5,
         "side": "put",
-        "strike": 500.0,
-        "volume": 958,
-        "open_interest": 131,
-        "ratio_vol_oi": 7.31,
-        "premium_flow_usd": 1135230
+        "strike": 360.0,
+        "volume": 2125,
+        "open_interest": 173,
+        "ratio_vol_oi": 12.28,
+        "premium_flow_usd": 1041250
+      }
+    },
+    {
+      "ticker": "CLF",
+      "kind": "put_cash_secured",
+      "strategy": "Vendre put CLF 12 exp 2026-12-04 @ ~0.43$ (capital requis 1,200$)",
+      "score": 62.7,
+      "summary": "CLF : put 12 (21j, delta 0.33) rapporte ~58% annualisé, prob. de profit ~62%",
+      "details": {
+        "expiry": "2026-12-04",
+        "dte": 21,
+        "strike": 12.0,
+        "mid": 0.43,
+        "bid_vente": 0.41,
+        "commission_incluse": 1.0,
+        "delta": 0.33,
+        "annual_yield": 0.579,
+        "prob_profit": 0.62,
+        "capital_requis": 1200,
+        "greeks": {
+          "delta": 0.3296,
+          "gamma": -0.2101,
+          "theta_jour": 0.0143
+        }
+      }
+    },
+    {
+      "ticker": "INTC",
+      "kind": "options_bon_marche",
+      "strategy": "Achat d'options pas chères : calls/puts longs ou straddle",
+      "score": 62.6,
+      "summary": "INTC : IV 65% sous la vol réalisée 143% (ratio x0.46) — le marché sous-estime le mouvement",
+      "details": {
+        "iv_atm": 0.6521,
+        "rv_20d": 1.4326,
+        "ratio": 0.46
+      }
+    },
+    {
+      "ticker": "TSLA",
+      "kind": "activite_inhabituelle",
+      "strategy": "Surveiller / suivre le flux : put 320 exp 2026-11-18",
+      "score": 62.5,
+      "summary": "TSLA : volume 3,065 vs OI 134 (x22.9) sur put 320 (-18.0% du spot), ~0.05M$ de prime — flux baissier (ou couverture)",
+      "details": {
+        "expiry": "2026-11-18",
+        "dte": 5,
+        "side": "put",
+        "strike": 320.0,
+        "volume": 3065,
+        "open_interest": 134,
+        "ratio_vol_oi": 22.87,
+        "premium_flow_usd": 52105
+      }
+    },
+    {
+      "ticker": "SNAP",
+      "kind": "skew_inverse",
+      "strategy": "Signal rare : spéculation haussière agressive — surveiller un squeeze / call spreads",
+      "score": 62.2,
+      "summary": "SNAP : skew INVERSÉ, calls +5% à 55% plus chers que puts -5% à 51% (-4.3 pts) — demande haussière anormale",
+      "details": {
+        "expiry": "2026-12-04",
+        "dte": 21,
+        "put_iv": 0.5078,
+        "call_iv": 0.5508,
+        "skew_pts": -4.3
+      }
+    },
+    {
+      "ticker": "PBR",
+      "kind": "activite_inhabituelle",
+      "strategy": "Surveiller / suivre le flux : put 23 exp 2026-11-20",
+      "score": 61.5,
+      "summary": "PBR : volume 1,830 vs OI 167 (x11.0) sur put 23 (+25.3% du spot), ~1.00M$ de prime — flux baissier (ou couverture)",
+      "details": {
+        "expiry": "2026-11-20",
+        "dte": 7,
+        "side": "put",
+        "strike": 23.0,
+        "volume": 1830,
+        "open_interest": 167,
+        "ratio_vol_oi": 10.96,
+        "premium_flow_usd": 995520
+      }
+    },
+    {
+      "ticker": "SPY",
+      "kind": "activite_inhabituelle",
+      "strategy": "Surveiller / suivre le flux : call 762 exp 2026-11-18",
+      "score": 60.9,
+      "summary": "SPY : volume 4,963 vs OI 448 (x11.1) sur call 762 (+1.3% du spot), ~0.83M$ de prime — flux haussier",
+      "details": {
+        "expiry": "2026-11-18",
+        "dte": 5,
+        "side": "call",
+        "strike": 762.0,
+        "volume": 4963,
+        "open_interest": 448,
+        "ratio_vol_oi": 11.08,
+        "premium_flow_usd": 833784
+      }
+    },
+    {
+      "ticker": "AMD",
+      "kind": "activite_inhabituelle",
+      "strategy": "Surveiller / suivre le flux : call 525 exp 2026-11-18",
+      "score": 60.7,
+      "summary": "AMD : volume 972 vs OI 123 (x7.9) sur call 525 (-0.9% du spot), ~2.33M$ de prime — flux haussier",
+      "details": {
+        "expiry": "2026-11-18",
+        "dte": 5,
+        "side": "call",
+        "strike": 525.0,
+        "volume": 972,
+        "open_interest": 123,
+        "ratio_vol_oi": 7.9,
+        "premium_flow_usd": 2332800
+      }
+    },
+    {
+      "ticker": "TLRY",
+      "kind": "skew_inverse",
+      "strategy": "Signal rare : spéculation haussière agressive — surveiller un squeeze / call spreads",
+      "score": 60.6,
+      "summary": "TLRY : skew INVERSÉ, calls +5% à 75% plus chers que puts -5% à 71% (-3.9 pts) — demande haussière anormale",
+      "details": {
+        "expiry": "2026-12-04",
+        "dte": 21,
+        "put_iv": 0.7109,
+        "call_iv": 0.75,
+        "skew_pts": -3.9
+      }
+    },
+    {
+      "ticker": "MARA",
+      "kind": "skew_inverse",
+      "strategy": "Signal rare : spéculation haussière agressive — surveiller un squeeze / call spreads",
+      "score": 60.6,
+      "summary": "MARA : skew INVERSÉ, calls +5% à 96% plus chers que puts -5% à 92% (-3.9 pts) — demande haussière anormale",
+      "details": {
+        "expiry": "2026-12-04",
+        "dte": 21,
+        "put_iv": 0.9219,
+        "call_iv": 0.9609,
+        "skew_pts": -3.9
+      }
+    },
+    {
+      "ticker": "GOLD",
+      "kind": "achat_put",
+      "strategy": "ACHETER put 35 exp 2026-12-18 @ ~1.43$ (142$/contrat, perte max = la prime)",
+      "score": 60.0,
+      "summary": "GOLD : 3/4 signaux baisse convergents (flux -68%, momentum -7.9%, RSI 38, skew +0.91) → put 35 (35j) @ 1.43$ — si mouvement 1σ (15.7%) : +211% sur la prime",
+      "details": {
+        "sens": "BAISSE",
+        "side": "put",
+        "strike": 35.0,
+        "expiry": "2026-12-18",
+        "dte": 35,
+        "prime_par_action": 1.43,
+        "cout_par_contrat": 142,
+        "delta": 0.37,
+        "breakeven": 33.58,
+        "mouvement_necessaire": -0.074,
+        "mouvement_attendu_1sigma": -0.157,
+        "gain_si_mouvement_1sigma": 2.11,
+        "prob_profit_a_echeance": 0.34,
+        "score_direction": -0.4,
+        "signaux": {
+          "direction": -0.3961004754275682,
+          "flux": -0.68,
+          "momentum_20j": -0.079,
+          "rsi": 38.0,
+          "breakout": -1.0,
+          "skew": 0.91
+        },
+        "iv_contrat": 0.475,
+        "vol_realisee": 0.517,
+        "spot": 36.25
       }
     },
     {
       "ticker": "QQQ",
       "kind": "activite_inhabituelle",
-      "strategy": "Surveiller / suivre le flux : call 675 exp 2026-11-16",
-      "score": 56.0,
-      "summary": "QQQ : volume 993 vs OI 127 (x7.8) sur call 675 (+0.2% du spot), ~0.76M$ de prime — flux haussier",
+      "strategy": "Surveiller / suivre le flux : put 650 exp 2026-11-18",
+      "score": 59.1,
+      "summary": "QQQ : volume 5,596 vs OI 558 (x10.0) sur put 650 (-4.2% du spot), ~0.73M$ de prime — flux baissier (ou couverture)",
       "details": {
-        "expiry": "2026-11-16",
-        "dte": 6,
+        "expiry": "2026-11-18",
+        "dte": 5,
+        "side": "put",
+        "strike": 650.0,
+        "volume": 5596,
+        "open_interest": 558,
+        "ratio_vol_oi": 10.03,
+        "premium_flow_usd": 727480
+      }
+    },
+    {
+      "ticker": "PLTR",
+      "kind": "activite_inhabituelle",
+      "strategy": "Surveiller / suivre le flux : call 172.5 exp 2026-11-20",
+      "score": 58.7,
+      "summary": "PLTR : volume 8,259 vs OI 1,310 (x6.3) sur call 172.5 (+2.4% du spot), ~2.95M$ de prime — flux haussier",
+      "details": {
+        "expiry": "2026-11-20",
+        "dte": 7,
         "side": "call",
-        "strike": 675.0,
-        "volume": 993,
-        "open_interest": 127,
-        "ratio_vol_oi": 7.82,
-        "premium_flow_usd": 759645
+        "strike": 172.5,
+        "volume": 8259,
+        "open_interest": 1310,
+        "ratio_vol_oi": 6.3,
+        "premium_flow_usd": 2948462
+      }
+    },
+    {
+      "ticker": "META",
+      "kind": "activite_inhabituelle",
+      "strategy": "Surveiller / suivre le flux : call 650 exp 2026-11-18",
+      "score": 58.2,
+      "summary": "META : volume 1,554 vs OI 194 (x8.0) sur call 650 (+1.5% du spot), ~1.21M$ de prime — flux haussier",
+      "details": {
+        "expiry": "2026-11-18",
+        "dte": 5,
+        "side": "call",
+        "strike": 650.0,
+        "volume": 1554,
+        "open_interest": 194,
+        "ratio_vol_oi": 8.01,
+        "premium_flow_usd": 1212120
+      }
+    },
+    {
+      "ticker": "SOFI",
+      "kind": "put_cash_secured",
+      "strategy": "Vendre put SOFI 15 exp 2026-12-04 @ ~0.49$ (capital requis 1,500$)",
+      "score": 58.0,
+      "summary": "SOFI : put 15 (21j, delta 0.37) rapporte ~55% annualisé, prob. de profit ~58%",
+      "details": {
+        "expiry": "2026-12-04",
+        "dte": 21,
+        "strike": 15.0,
+        "mid": 0.49,
+        "bid_vente": 0.48,
+        "commission_incluse": 1.0,
+        "delta": 0.37,
+        "annual_yield": 0.545,
+        "prob_profit": 0.58,
+        "capital_requis": 1500,
+        "greeks": {
+          "delta": 0.3726,
+          "gamma": -0.2216,
+          "theta_jour": 0.0146
+        }
       }
     },
     {
       "ticker": "TSLA",
       "kind": "put_cash_secured",
-      "strategy": "Vendre put TSLA 365 exp 2026-12-04 @ ~11.72$ (capital requis 36,500$)",
-      "score": 54.5,
-      "summary": "TSLA : put 365 (24j, delta 0.35) rapporte ~48% annualisé, prob. de profit ~60%",
+      "strategy": "Vendre put TSLA 380 exp 2026-12-04 @ ~11.90$ (capital requis 38,000$)",
+      "score": 57.9,
+      "summary": "TSLA : put 380 (21j, delta 0.37) rapporte ~54% annualisé, prob. de profit ~59%",
       "details": {
         "expiry": "2026-12-04",
-        "dte": 24,
-        "strike": 365.0,
-        "mid": 11.72,
-        "bid_vente": 11.5,
+        "dte": 21,
+        "strike": 380.0,
+        "mid": 11.9,
+        "bid_vente": 11.7,
         "commission_incluse": 1.0,
-        "delta": 0.35,
-        "annual_yield": 0.479,
-        "prob_profit": 0.6,
-        "capital_requis": 36500,
+        "delta": 0.37,
+        "annual_yield": 0.535,
+        "prob_profit": 0.59,
+        "capital_requis": 38000,
         "greeks": {
-          "delta": 0.3534,
-          "gamma": -0.0085,
-          "theta_jour": 0.322
+          "delta": 0.3717,
+          "gamma": -0.0091,
+          "theta_jour": 0.3542
         }
+      }
+    },
+    {
+      "ticker": "NVDA",
+      "kind": "activite_inhabituelle",
+      "strategy": "Surveiller / suivre le flux : put 145 exp 2026-11-18",
+      "score": 57.8,
+      "summary": "NVDA : volume 14,991 vs OI 2,363 (x6.3) sur put 145 (-10.4% du spot), ~2.28M$ de prime — flux baissier (ou couverture)",
+      "details": {
+        "expiry": "2026-11-18",
+        "dte": 5,
+        "side": "put",
+        "strike": 145.0,
+        "volume": 14991,
+        "open_interest": 2363,
+        "ratio_vol_oi": 6.34,
+        "premium_flow_usd": 2278632
+      }
+    },
+    {
+      "ticker": "SOFI",
+      "kind": "skew_inverse",
+      "strategy": "Signal rare : spéculation haussière agressive — surveiller un squeeze / call spreads",
+      "score": 57.5,
+      "summary": "SOFI : skew INVERSÉ, calls +5% à 51% plus chers que puts -5% à 47% (-3.1 pts) — demande haussière anormale",
+      "details": {
+        "expiry": "2026-12-04",
+        "dte": 21,
+        "put_iv": 0.4746,
+        "call_iv": 0.5059,
+        "skew_pts": -3.1
+      }
+    },
+    {
+      "ticker": "PLTR",
+      "kind": "put_cash_secured",
+      "strategy": "Vendre put PLTR 160 exp 2026-12-04 @ ~4.42$ (capital requis 16,000$)",
+      "score": 56.6,
+      "summary": "PLTR : put 160 (21j, delta 0.31) rapporte ~47% annualisé, prob. de profit ~65%",
+      "details": {
+        "expiry": "2026-12-04",
+        "dte": 21,
+        "strike": 160.0,
+        "mid": 4.42,
+        "bid_vente": 4.3,
+        "commission_incluse": 1.0,
+        "delta": 0.31,
+        "annual_yield": 0.466,
+        "prob_profit": 0.65,
+        "capital_requis": 16000,
+        "greeks": {
+          "delta": 0.306,
+          "gamma": -0.0173,
+          "theta_jour": 0.1621
+        }
+      }
+    },
+    {
+      "ticker": "META",
+      "kind": "activite_inhabituelle",
+      "strategy": "Surveiller / suivre le flux : call 640 exp 2026-11-18",
+      "score": 55.4,
+      "summary": "META : volume 839 vs OI 123 (x6.8) sur call 640 (-0.0% du spot), ~1.03M$ de prime — flux haussier",
+      "details": {
+        "expiry": "2026-11-18",
+        "dte": 5,
+        "side": "call",
+        "strike": 640.0,
+        "volume": 839,
+        "open_interest": 123,
+        "ratio_vol_oi": 6.82,
+        "premium_flow_usd": 1026936
+      }
+    },
+    {
+      "ticker": "TSLA",
+      "kind": "activite_inhabituelle",
+      "strategy": "Surveiller / suivre le flux : call 392.5 exp 2026-11-18",
+      "score": 55.4,
+      "summary": "TSLA : volume 1,572 vs OI 239 (x6.6) sur call 392.5 (+0.6% du spot), ~1.13M$ de prime — flux haussier",
+      "details": {
+        "expiry": "2026-11-18",
+        "dte": 5,
+        "side": "call",
+        "strike": 392.5,
+        "volume": 1572,
+        "open_interest": 239,
+        "ratio_vol_oi": 6.58,
+        "premium_flow_usd": 1130268
+      }
+    },
+    {
+      "ticker": "AAL",
+      "kind": "put_cash_secured",
+      "strategy": "Vendre put AAL 13 exp 2026-12-04 @ ~0.39$ (capital requis 1,300$)",
+      "score": 55.0,
+      "summary": "AAL : put 13 (21j, delta 0.37) rapporte ~50% annualisé, prob. de profit ~59%",
+      "details": {
+        "expiry": "2026-12-04",
+        "dte": 21,
+        "strike": 13.0,
+        "mid": 0.39,
+        "bid_vente": 0.38,
+        "commission_incluse": 1.0,
+        "delta": 0.37,
+        "annual_yield": 0.495,
+        "prob_profit": 0.59,
+        "capital_requis": 1300,
+        "greeks": {
+          "delta": 0.375,
+          "gamma": -0.2793,
+          "theta_jour": 0.0116
+        }
+      }
+    },
+    {
+      "ticker": "QQQ",
+      "kind": "activite_inhabituelle",
+      "strategy": "Surveiller / suivre le flux : put 681 exp 2026-12-31",
+      "score": 54.6,
+      "summary": "QQQ : volume 526 vs OI 87 (x6.0) sur put 681 (+0.4% du spot), ~1.24M$ de prime — flux baissier (ou couverture)",
+      "details": {
+        "expiry": "2026-12-31",
+        "dte": 48,
+        "side": "put",
+        "strike": 681.0,
+        "volume": 526,
+        "open_interest": 87,
+        "ratio_vol_oi": 6.05,
+        "premium_flow_usd": 1236100
       }
     },
     {
       "ticker": "AMD",
       "kind": "options_bon_marche",
       "strategy": "Achat d'options pas chères : calls/puts longs ou straddle",
-      "score": 54.2,
-      "summary": "AMD : IV 66% sous la vol réalisée 117% (ratio x0.56) — le marché sous-estime le mouvement",
+      "score": 54.5,
+      "summary": "AMD : IV 69% sous la vol réalisée 124% (ratio x0.56) — le marché sous-estime le mouvement",
       "details": {
-        "iv_atm": 0.6563,
-        "rv_20d": 1.1714,
+        "iv_atm": 0.6884,
+        "rv_20d": 1.2368,
         "ratio": 0.56
       }
     },
     {
-      "ticker": "AAL",
-      "kind": "put_cash_secured",
-      "strategy": "Vendre put AAL 13.5 exp 2026-12-04 @ ~0.42$ (capital requis 1,350$)",
-      "score": 52.9,
-      "summary": "AAL : put 13.5 (24j, delta 0.34) rapporte ~44% annualisé, prob. de profit ~62%",
+      "ticker": "QQQ",
+      "kind": "activite_inhabituelle",
+      "strategy": "Surveiller / suivre le flux : call 678 exp 2026-11-18",
+      "score": 54.5,
+      "summary": "QQQ : volume 2,610 vs OI 543 (x4.8) sur call 678 (-0.1% du spot), ~2.45M$ de prime — flux haussier",
       "details": {
-        "expiry": "2026-12-04",
-        "dte": 24,
-        "strike": 13.5,
-        "mid": 0.42,
-        "bid_vente": 0.4,
-        "commission_incluse": 1.0,
-        "delta": 0.34,
-        "annual_yield": 0.439,
-        "prob_profit": 0.62,
-        "capital_requis": 1350,
-        "greeks": {
-          "delta": 0.3369,
-          "gamma": -0.2124,
-          "theta_jour": 0.0124
-        }
+        "expiry": "2026-11-18",
+        "dte": 5,
+        "side": "call",
+        "strike": 678.0,
+        "volume": 2610,
+        "open_interest": 543,
+        "ratio_vol_oi": 4.81,
+        "premium_flow_usd": 2453400
       }
     },
     {
       "ticker": "SPY",
       "kind": "activite_inhabituelle",
-      "strategy": "Surveiller / suivre le flux : put 716 exp 2026-11-30",
-      "score": 52.6,
-      "summary": "SPY : volume 14,676 vs OI 4,229 (x3.5) sur put 716 (-4.5% du spot), ~4.36M$ de prime — flux baissier (ou couverture)",
+      "strategy": "Surveiller / suivre le flux : call 751 exp 2026-11-18",
+      "score": 54.3,
+      "summary": "SPY : volume 1,958 vs OI 341 (x5.7) sur call 751 (-0.2% du spot), ~1.35M$ de prime — flux haussier",
       "details": {
-        "expiry": "2026-11-30",
-        "dte": 20,
-        "side": "put",
-        "strike": 716.0,
-        "volume": 14676,
-        "open_interest": 4229,
-        "ratio_vol_oi": 3.47,
-        "premium_flow_usd": 4358772
+        "expiry": "2026-11-18",
+        "dte": 5,
+        "side": "call",
+        "strike": 751.0,
+        "volume": 1958,
+        "open_interest": 341,
+        "ratio_vol_oi": 5.74,
+        "premium_flow_usd": 1345146
       }
     },
     {
-      "ticker": "META",
-      "kind": "put_cash_secured",
-      "strategy": "Vendre put META 630 exp 2026-12-04 @ ~19.50$ (capital requis 63,000$)",
-      "score": 52.2,
-      "summary": "META : put 630 (24j, delta 0.38) rapporte ~46% annualisé, prob. de profit ~58%",
-      "details": {
-        "expiry": "2026-12-04",
-        "dte": 24,
-        "strike": 630.0,
-        "mid": 19.5,
-        "bid_vente": 19.2,
-        "commission_incluse": 1.0,
-        "delta": 0.38,
-        "annual_yield": 0.463,
-        "prob_profit": 0.58,
-        "capital_requis": 63000,
-        "greeks": {
-          "delta": 0.3758,
-          "gamma": -0.0057,
-          "theta_jour": 0.4965
-        }
-      }
-    },
-    {
-      "ticker": "SPY",
+      "ticker": "INTC",
       "kind": "activite_inhabituelle",
-      "strategy": "Surveiller / suivre le flux : put 690 exp 2026-11-30",
-      "score": 52.2,
-      "summary": "SPY : volume 10,052 vs OI 2,010 (x5.0) sur put 690 (-7.9% du spot), ~1.25M$ de prime — flux baissier (ou couverture)",
+      "strategy": "Surveiller / suivre le flux : put 92 exp 2026-11-20",
+      "score": 54.2,
+      "summary": "INTC : volume 1,070 vs OI 250 (x4.3) sur put 92 (+55.2% du spot), ~3.27M$ de prime — flux baissier (ou couverture)",
       "details": {
-        "expiry": "2026-11-30",
-        "dte": 20,
+        "expiry": "2026-11-20",
+        "dte": 7,
         "side": "put",
-        "strike": 690.0,
-        "volume": 10052,
-        "open_interest": 2010,
-        "ratio_vol_oi": 5.0,
-        "premium_flow_usd": 1246448
-      }
-    },
-    {
-      "ticker": "CCL",
-      "kind": "put_cash_secured",
-      "strategy": "Vendre put CCL 29.5 exp 2026-12-04 @ ~0.85$ (capital requis 2,950$)",
-      "score": 50.7,
-      "summary": "CCL : put 29.5 (24j, delta 0.34) rapporte ~41% annualisé, prob. de profit ~62%",
-      "details": {
-        "expiry": "2026-12-04",
-        "dte": 24,
-        "strike": 29.5,
-        "mid": 0.85,
-        "bid_vente": 0.8,
-        "commission_incluse": 1.0,
-        "delta": 0.34,
-        "annual_yield": 0.407,
-        "prob_profit": 0.62,
-        "capital_requis": 2950,
-        "greeks": {
-          "delta": 0.3351,
-          "gamma": -0.1028,
-          "theta_jour": 0.0255
-        }
+        "strike": 92.0,
+        "volume": 1070,
+        "open_interest": 250,
+        "ratio_vol_oi": 4.28,
+        "premium_flow_usd": 3274200
       }
     },
     {
       "ticker": "TSLA",
       "kind": "activite_inhabituelle",
-      "strategy": "Surveiller / suivre le flux : call 377.5 exp 2026-11-16",
-      "score": 50.5,
-      "summary": "TSLA : volume 1,365 vs OI 303 (x4.5) sur call 377.5 (-0.0% du spot), ~1.14M$ de prime — flux haussier",
+      "strategy": "Surveiller / suivre le flux : call 435 exp 2026-11-18",
+      "score": 53.1,
+      "summary": "TSLA : volume 2,005 vs OI 179 (x11.2) sur call 435 (+11.5% du spot), ~0.05M$ de prime — flux haussier",
       "details": {
-        "expiry": "2026-11-16",
-        "dte": 6,
+        "expiry": "2026-11-18",
+        "dte": 5,
         "side": "call",
-        "strike": 377.5,
-        "volume": 1365,
-        "open_interest": 303,
-        "ratio_vol_oi": 4.5,
-        "premium_flow_usd": 1139775
+        "strike": 435.0,
+        "volume": 2005,
+        "open_interest": 179,
+        "ratio_vol_oi": 11.2,
+        "premium_flow_usd": 50125
+      }
+    },
+    {
+      "ticker": "RIOT",
+      "kind": "activite_inhabituelle",
+      "strategy": "Surveiller / suivre le flux : call 17.5 exp 2026-12-04",
+      "score": 52.9,
+      "summary": "RIOT : volume 1,026 vs OI 113 (x9.1) sur call 17.5 (+0.1% du spot), ~0.16M$ de prime — flux haussier",
+      "details": {
+        "expiry": "2026-12-04",
+        "dte": 21,
+        "side": "call",
+        "strike": 17.5,
+        "volume": 1026,
+        "open_interest": 113,
+        "ratio_vol_oi": 9.08,
+        "premium_flow_usd": 164160
+      }
+    },
+    {
+      "ticker": "SNAP",
+      "kind": "put_cash_secured",
+      "strategy": "Vendre put SNAP 5 exp 2026-12-04 @ ~0.14$ (capital requis 500$)",
+      "score": 52.6,
+      "summary": "SNAP : put 5 (21j, delta 0.32) rapporte ~42% annualisé, prob. de profit ~64%",
+      "details": {
+        "expiry": "2026-12-04",
+        "dte": 21,
+        "strike": 5.0,
+        "mid": 0.14,
+        "bid_vente": 0.13,
+        "commission_incluse": 1.0,
+        "delta": 0.32,
+        "annual_yield": 0.417,
+        "prob_profit": 0.64,
+        "capital_requis": 500,
+        "greeks": {
+          "delta": 0.3174,
+          "gamma": -0.5579,
+          "theta_jour": 0.0052
+        }
+      }
+    },
+    {
+      "ticker": "META",
+      "kind": "put_cash_secured",
+      "strategy": "Vendre put META 625 exp 2026-12-04 @ ~16.32$ (capital requis 62,500$)",
+      "score": 52.2,
+      "summary": "META : put 625 (21j, delta 0.37) rapporte ~44% annualisé, prob. de profit ~60%",
+      "details": {
+        "expiry": "2026-12-04",
+        "dte": 21,
+        "strike": 625.0,
+        "mid": 16.32,
+        "bid_vente": 16.0,
+        "commission_incluse": 1.0,
+        "delta": 0.37,
+        "annual_yield": 0.445,
+        "prob_profit": 0.6,
+        "capital_requis": 62500,
+        "greeks": {
+          "delta": 0.367,
+          "gamma": -0.0065,
+          "theta_jour": 0.492
+        }
+      }
+    },
+    {
+      "ticker": "CLF",
+      "kind": "options_bon_marche",
+      "strategy": "Achat d'options pas chères : calls/puts longs ou straddle",
+      "score": 52.0,
+      "summary": "CLF : IV 58% sous la vol réalisée 98% (ratio x0.59) — le marché sous-estime le mouvement",
+      "details": {
+        "iv_atm": 0.5772,
+        "rv_20d": 0.9817,
+        "ratio": 0.59
       }
     },
     {
       "ticker": "T",
       "kind": "options_bon_marche",
       "strategy": "Achat d'options pas chères : calls/puts longs ou straddle",
-      "score": 50.0,
-      "summary": "T : IV 27% sous la vol réalisée 44% (ratio x0.61) — le marché sous-estime le mouvement",
+      "score": 50.8,
+      "summary": "T : IV 26% sous la vol réalisée 44% (ratio x0.60) — le marché sous-estime le mouvement",
       "details": {
-        "iv_atm": 0.2703,
-        "rv_20d": 0.4411,
-        "ratio": 0.61
+        "iv_atm": 0.2632,
+        "rv_20d": 0.4369,
+        "ratio": 0.6
       }
     },
     {
-      "ticker": "TSLA",
+      "ticker": "PFE",
       "kind": "activite_inhabituelle",
-      "strategy": "Surveiller / suivre le flux : call 385 exp 2026-11-16",
-      "score": 49.8,
-      "summary": "TSLA : volume 1,436 vs OI 289 (x5.0) sur call 385 (+2.0% du spot), ~0.70M$ de prime — flux haussier",
+      "strategy": "Surveiller / suivre le flux : call 29 exp 2026-12-04",
+      "score": 50.7,
+      "summary": "PFE : volume 1,852 vs OI 223 (x8.3) sur call 29 (+0.7% du spot), ~0.11M$ de prime — flux haussier",
       "details": {
-        "expiry": "2026-11-16",
-        "dte": 6,
+        "expiry": "2026-12-04",
+        "dte": 21,
         "side": "call",
-        "strike": 385.0,
-        "volume": 1436,
-        "open_interest": 289,
-        "ratio_vol_oi": 4.97,
-        "premium_flow_usd": 696460
-      }
-    },
-    {
-      "ticker": "TSLA",
-      "kind": "activite_inhabituelle",
-      "strategy": "Surveiller / suivre le flux : put 375 exp 2026-11-16",
-      "score": 48.7,
-      "summary": "TSLA : volume 932 vs OI 202 (x4.6) sur put 375 (-0.7% du spot), ~0.67M$ de prime — flux baissier (ou couverture)",
-      "details": {
-        "expiry": "2026-11-16",
-        "dte": 6,
-        "side": "put",
-        "strike": 375.0,
-        "volume": 932,
-        "open_interest": 202,
-        "ratio_vol_oi": 4.61,
-        "premium_flow_usd": 667312
+        "strike": 29.0,
+        "volume": 1852,
+        "open_interest": 223,
+        "ratio_vol_oi": 8.3,
+        "premium_flow_usd": 111120
       }
     },
     {
       "ticker": "SPY",
       "kind": "options_bon_marche",
       "strategy": "Achat d'options pas chères : calls/puts longs ou straddle",
-      "score": 46.6,
-      "summary": "SPY : IV 15% sous la vol réalisée 22% (ratio x0.65) — le marché sous-estime le mouvement",
+      "score": 50.5,
+      "summary": "SPY : IV 14% sous la vol réalisée 22% (ratio x0.61) — le marché sous-estime le mouvement",
       "details": {
-        "iv_atm": 0.1459,
-        "rv_20d": 0.2228,
-        "ratio": 0.65
+        "iv_atm": 0.1355,
+        "rv_20d": 0.2236,
+        "ratio": 0.61
       }
     },
     {
-      "ticker": "CLF",
+      "ticker": "CCL",
+      "kind": "put_cash_secured",
+      "strategy": "Vendre put CCL 28.5 exp 2026-12-04 @ ~0.75$ (capital requis 2,850$)",
+      "score": 50.0,
+      "summary": "CCL : put 28.5 (21j, delta 0.37) rapporte ~42% annualisé, prob. de profit ~60%",
+      "details": {
+        "expiry": "2026-12-04",
+        "dte": 21,
+        "strike": 28.5,
+        "mid": 0.75,
+        "bid_vente": 0.69,
+        "commission_incluse": 1.0,
+        "delta": 0.37,
+        "annual_yield": 0.415,
+        "prob_profit": 0.6,
+        "capital_requis": 2850,
+        "greeks": {
+          "delta": 0.3654,
+          "gamma": -0.1303,
+          "theta_jour": 0.0244
+        }
+      }
+    },
+    {
+      "ticker": "RIVN",
+      "kind": "put_cash_secured",
+      "strategy": "Vendre put RIVN 11.5 exp 2026-12-24 @ ~0.52$ (capital requis 1,150$)",
+      "score": 47.7,
+      "summary": "RIVN : put 11.5 (41j, delta 0.31) rapporte ~36% annualisé, prob. de profit ~62%",
+      "details": {
+        "expiry": "2026-12-24",
+        "dte": 41,
+        "strike": 11.5,
+        "mid": 0.52,
+        "bid_vente": 0.48,
+        "commission_incluse": 1.0,
+        "delta": 0.31,
+        "annual_yield": 0.364,
+        "prob_profit": 0.62,
+        "capital_requis": 1150,
+        "greeks": {
+          "delta": 0.3113,
+          "gamma": -0.1624,
+          "theta_jour": 0.0088
+        }
+      }
+    },
+    {
+      "ticker": "GOLD",
+      "kind": "put_cash_secured",
+      "strategy": "Vendre put GOLD 35 exp 2026-12-18 @ ~1.43$ (capital requis 3,500$)",
+      "score": 46.7,
+      "summary": "GOLD : put 35 (35j, delta 0.37) rapporte ~38% annualisé, prob. de profit ~58%",
+      "details": {
+        "expiry": "2026-12-18",
+        "dte": 35,
+        "strike": 35.0,
+        "mid": 1.43,
+        "bid_vente": 1.3,
+        "commission_incluse": 1.0,
+        "delta": 0.37,
+        "annual_yield": 0.384,
+        "prob_profit": 0.58,
+        "capital_requis": 3500,
+        "greeks": {
+          "delta": 0.3663,
+          "gamma": -0.0706,
+          "theta_jour": 0.0268
+        }
+      }
+    },
+    {
+      "ticker": "PBR",
       "kind": "options_bon_marche",
       "strategy": "Achat d'options pas chères : calls/puts longs ou straddle",
-      "score": 46.4,
-      "summary": "CLF : IV 64% sous la vol réalisée 98% (ratio x0.66) — le marché sous-estime le mouvement",
+      "score": 46.2,
+      "summary": "PBR : IV 40% sous la vol réalisée 61% (ratio x0.66) — le marché sous-estime le mouvement",
       "details": {
-        "iv_atm": 0.6436,
-        "rv_20d": 0.978,
+        "iv_atm": 0.4009,
+        "rv_20d": 0.6079,
         "ratio": 0.66
       }
     },
     {
-      "ticker": "NIO",
-      "kind": "put_cash_secured",
-      "strategy": "Vendre put NIO 3 exp 2026-12-24 @ ~0.15$ (capital requis 300$)",
-      "score": 46.0,
-      "summary": "NIO : put 3 (44j, delta 0.3) rapporte ~33% annualisé, prob. de profit ~63%",
+      "ticker": "QQQ",
+      "kind": "options_bon_marche",
+      "strategy": "Achat d'options pas chères : calls/puts longs ou straddle",
+      "score": 46.1,
+      "summary": "QQQ : IV 24% sous la vol réalisée 36% (ratio x0.66) — le marché sous-estime le mouvement",
       "details": {
-        "expiry": "2026-12-24",
-        "dte": 44,
-        "strike": 3.0,
-        "mid": 0.15,
-        "bid_vente": 0.13,
-        "commission_incluse": 1.0,
-        "delta": 0.3,
-        "annual_yield": 0.332,
-        "prob_profit": 0.63,
-        "capital_requis": 300,
-        "greeks": {
-          "delta": 0.299,
-          "gamma": -0.5208,
-          "theta_jour": 0.0025
+        "iv_atm": 0.2382,
+        "rv_20d": 0.36,
+        "ratio": 0.66
+      }
+    },
+    {
+      "ticker": "PLUG",
+      "kind": "ml_mouvement",
+      "strategy": "PAS DE TRADE : mouvement probable mais aucune direction claire — mettre sous surveillance et attendre un signal directionnel",
+      "score": 45,
+      "summary": "PLUG : le modèle ML voit 32% de chances d'un mouvement >19.4% sous 5 séances (2.2x la moyenne), alors que les options n'en facturent que 16% — le mouvement est bon marché",
+      "details": {
+        "prob_modele_5j": 0.324,
+        "taux_de_base": 0.149,
+        "confiance_vs_moyenne": "x2.2",
+        "prob_implicite_options": 0.16,
+        "ratio_modele_options": 2.03,
+        "mouvement_seuil": 0.194,
+        "iv_atm": 0.891,
+        "vol_realisee": 0.836,
+        "auc_test_du_modele": 0.625,
+        "spot": 1.1,
+        "direction_independante": -0.23,
+        "straddle_reference": {
+          "expiry": "2026-12-04",
+          "dte": 21,
+          "strike": 1.0,
+          "cout": 0.2,
+          "spread_max_jambes": 0.222,
+          "cout_par_contrat": 20
         }
       }
     },
     {
-      "ticker": "PLTR",
+      "ticker": "QQQ",
+      "kind": "put_cash_secured",
+      "strategy": "Vendre put QQQ 670 exp 2026-11-30 @ ~9.97$ (capital requis 67,000$)",
+      "score": 43.9,
+      "summary": "QQQ : put 670 (17j, delta 0.38) rapporte ~32% annualisé, prob. de profit ~61%",
+      "details": {
+        "expiry": "2026-11-30",
+        "dte": 17,
+        "strike": 670.0,
+        "mid": 9.97,
+        "bid_vente": 9.94,
+        "commission_incluse": 1.0,
+        "delta": 0.38,
+        "annual_yield": 0.318,
+        "prob_profit": 0.61,
+        "capital_requis": 67000,
+        "greeks": {
+          "delta": 0.375,
+          "gamma": -0.0112,
+          "theta_jour": 0.346
+        }
+      }
+    },
+    {
+      "ticker": "LCID",
       "kind": "activite_inhabituelle",
-      "strategy": "Surveiller / suivre le flux : call 167.5 exp 2026-11-20",
-      "score": 45.7,
-      "summary": "PLTR : volume 1,602 vs OI 486 (x3.3) sur call 167.5 (+0.1% du spot), ~0.95M$ de prime — flux haussier",
+      "strategy": "Surveiller / suivre le flux : call 3 exp 2026-11-20",
+      "score": 43.5,
+      "summary": "LCID : volume 10,483 vs OI 2,255 (x4.6) sur call 3 (+1.2% du spot), ~0.13M$ de prime — flux haussier",
       "details": {
         "expiry": "2026-11-20",
-        "dte": 10,
+        "dte": 7,
         "side": "call",
-        "strike": 167.5,
-        "volume": 1602,
-        "open_interest": 486,
-        "ratio_vol_oi": 3.3,
-        "premium_flow_usd": 945180
-      }
-    },
-    {
-      "ticker": "QQQ",
-      "kind": "strategie_optimale",
-      "strategy": "ACHETER call 674 + ACHETER put 674 exp 2026-12-31 (débit ~48.93$)",
-      "score": 45.5,
-      "summary": "QQQ : straddle acheté 674/674 exp 2026-12-31 (51j) — débit 48.93$, risque max 48.93$, POP 53%, EV prudent +8.79$/action, gain max -100% du risque en 51j",
-      "details": {
-        "strategie": "straddle acheté",
-        "jambes": [
-          "ACHETER call 674",
-          "ACHETER put 674"
-        ],
-        "expiry": "2026-12-31",
-        "dte": 51,
-        "credit_par_action": -48.93,
-        "risque_max_par_action": 48.93,
-        "prob_profit": 0.534,
-        "esperance_gain_EV": 13.701,
-        "edge_par_risque": 0.28,
-        "ratio_gain_risque": -1.0,
-        "rendement_annualise": -7.157,
-        "kelly_pleine": 0.0,
-        "demi_kelly_conseillee": 0.0,
-        "spot": 673.8,
-        "vol_estimee": 0.312,
-        "iv_atm": 0.243,
-        "ev_prudent_apres_frais": 8.788,
-        "greeks": {
-          "delta": 0.0873,
-          "gamma": 0.0101,
-          "theta_jour": -0.6112,
-          "vega": 1.9975
-        }
-      }
-    },
-    {
-      "ticker": "SNAP",
-      "kind": "put_cash_secured",
-      "strategy": "Vendre put SNAP 4.5 exp 2026-12-24 @ ~0.20$ (capital requis 450$)",
-      "score": 45.2,
-      "summary": "SNAP : put 4.5 (44j, delta 0.27) rapporte ~30% annualisé, prob. de profit ~66%",
-      "details": {
-        "expiry": "2026-12-24",
-        "dte": 44,
-        "strike": 4.5,
-        "mid": 0.2,
-        "bid_vente": 0.17,
-        "commission_incluse": 1.0,
-        "delta": 0.27,
-        "annual_yield": 0.295,
-        "prob_profit": 0.66,
-        "capital_requis": 450,
-        "greeks": {
-          "delta": 0.269,
-          "gamma": -0.33,
-          "theta_jour": 0.0036
-        }
-      }
-    },
-    {
-      "ticker": "QQQ",
-      "kind": "options_bon_marche",
-      "strategy": "Achat d'options pas chères : calls/puts longs ou straddle",
-      "score": 44.9,
-      "summary": "QQQ : IV 24% sous la vol réalisée 36% (ratio x0.68) — le marché sous-estime le mouvement",
-      "details": {
-        "iv_atm": 0.2426,
-        "rv_20d": 0.3589,
-        "ratio": 0.68
-      }
-    },
-    {
-      "ticker": "SOFI",
-      "kind": "options_bon_marche",
-      "strategy": "Achat d'options pas chères : calls/puts longs ou straddle",
-      "score": 44.6,
-      "summary": "SOFI : IV 51% sous la vol réalisée 75% (ratio x0.68) — le marché sous-estime le mouvement",
-      "details": {
-        "iv_atm": 0.5088,
-        "rv_20d": 0.7484,
-        "ratio": 0.68
+        "strike": 3.0,
+        "volume": 10483,
+        "open_interest": 2255,
+        "ratio_vol_oi": 4.65,
+        "premium_flow_usd": 125796
       }
     },
     {
       "ticker": "NIO",
       "kind": "prime_riche",
       "strategy": "Vente de prime : put cash-secured, covered call ou iron condor",
-      "score": 44.2,
-      "summary": "NIO : IV 61% vs vol réalisée 41% (ratio x1.50) — les options sont chères, avantage au vendeur",
+      "score": 43.4,
+      "summary": "NIO : IV 64% vs vol réalisée 43% (ratio x1.49) — les options sont chères, avantage au vendeur",
       "details": {
-        "iv_atm": 0.6133,
-        "rv_20d": 0.4079,
-        "ratio": 1.5
+        "iv_atm": 0.6387,
+        "rv_20d": 0.4285,
+        "ratio": 1.49
       }
     },
     {
-      "ticker": "NVDA",
-      "kind": "ml_mouvement",
-      "strategy": "PAS DE TRADE : mouvement probable mais aucune direction claire — mettre sous surveillance et attendre un signal directionnel",
-      "score": 44.0,
-      "summary": "NVDA : le modèle ML voit 37% de chances d'un mouvement >11.9% sous 5 séances (2.5x la moyenne), alors que les options n'en facturent que 22% — le mouvement est bon marché",
-      "details": {
-        "prob_modele_5j": 0.37,
-        "taux_de_base": 0.149,
-        "confiance_vs_moyenne": "x2.5",
-        "prob_implicite_options": 0.225,
-        "ratio_modele_options": 1.65,
-        "mouvement_seuil": 0.119,
-        "iv_atm": 0.62,
-        "vol_realisee": 0.514,
-        "auc_test_du_modele": 0.625,
-        "spot": 168.21,
-        "direction_independante": -0.18,
-        "straddle_reference": {
-          "expiry": "2026-12-04",
-          "dte": 24,
-          "strike": 170.0,
-          "cout": 21.92,
-          "spread_max_jambes": 0.026,
-          "cout_par_contrat": 2192
-        },
-        "attention_earnings": "résultats dans 7j — le mouvement prévu est peut-être déjà facturé"
-      }
-    },
-    {
-      "ticker": "RIOT",
-      "kind": "activite_inhabituelle",
-      "strategy": "Surveiller / suivre le flux : put 13 exp 2026-12-04",
-      "score": 43.9,
-      "summary": "RIOT : volume 5,088 vs OI 1,058 (x4.8) sur put 13 (-27.3% du spot), ~0.12M$ de prime — flux baissier (ou couverture)",
+      "ticker": "BAC",
+      "kind": "put_cash_secured",
+      "strategy": "Vendre put BAC 50 exp 2026-12-04 @ ~0.91$ (capital requis 5,000$)",
+      "score": 42.6,
+      "summary": "BAC : put 50 (21j, delta 0.38) rapporte ~31% annualisé, prob. de profit ~60%",
       "details": {
         "expiry": "2026-12-04",
-        "dte": 24,
-        "side": "put",
-        "strike": 13.0,
-        "volume": 5088,
-        "open_interest": 1058,
-        "ratio_vol_oi": 4.81,
-        "premium_flow_usd": 122111
+        "dte": 21,
+        "strike": 50.0,
+        "mid": 0.91,
+        "bid_vente": 0.9,
+        "commission_incluse": 1.0,
+        "delta": 0.38,
+        "annual_yield": 0.309,
+        "prob_profit": 0.6,
+        "capital_requis": 5000,
+        "greeks": {
+          "delta": 0.3753,
+          "gamma": -0.1214,
+          "theta_jour": 0.0258
+        }
       }
     },
     {
-      "ticker": "QQQ",
-      "kind": "put_cash_secured",
-      "strategy": "Vendre put QQQ 664 exp 2026-11-30 @ ~11.47$ (capital requis 66,400$)",
-      "score": 43.0,
-      "summary": "QQQ : put 664 (20j, delta 0.37) rapporte ~31% annualisé, prob. de profit ~60%",
+      "ticker": "PFE",
+      "kind": "activite_inhabituelle",
+      "strategy": "Surveiller / suivre le flux : call 30.5 exp 2026-11-20",
+      "score": 42.4,
+      "summary": "PFE : volume 16,998 vs OI 3,471 (x4.9) sur call 30.5 (+5.9% du spot), ~0.05M$ de prime — flux haussier",
       "details": {
-        "expiry": "2026-11-30",
-        "dte": 20,
-        "strike": 664.0,
-        "mid": 11.47,
-        "bid_vente": 11.42,
+        "expiry": "2026-11-20",
+        "dte": 7,
+        "side": "call",
+        "strike": 30.5,
+        "volume": 16998,
+        "open_interest": 3471,
+        "ratio_vol_oi": 4.9,
+        "premium_flow_usd": 50994
+      }
+    },
+    {
+      "ticker": "INTC",
+      "kind": "activite_inhabituelle",
+      "strategy": "Surveiller / suivre le flux : put 40 exp 2026-12-24",
+      "score": 42.1,
+      "summary": "INTC : volume 2,729 vs OI 626 (x4.4) sur put 40 (-32.5% du spot), ~0.10M$ de prime — flux baissier (ou couverture)",
+      "details": {
+        "expiry": "2026-12-24",
+        "dte": 41,
+        "side": "put",
+        "strike": 40.0,
+        "volume": 2729,
+        "open_interest": 626,
+        "ratio_vol_oi": 4.36,
+        "premium_flow_usd": 100973
+      }
+    },
+    {
+      "ticker": "AGNC",
+      "kind": "put_cash_secured",
+      "strategy": "Vendre put AGNC 8 exp 2026-12-04 @ ~0.16$ (capital requis 800$)",
+      "score": 41.9,
+      "summary": "AGNC : put 8 (21j, delta 0.35) rapporte ~28% annualisé, prob. de profit ~62%",
+      "details": {
+        "expiry": "2026-12-04",
+        "dte": 21,
+        "strike": 8.0,
+        "mid": 0.16,
+        "bid_vente": 0.14,
         "commission_incluse": 1.0,
-        "delta": 0.37,
-        "annual_yield": 0.314,
-        "prob_profit": 0.6,
-        "capital_requis": 66400,
+        "delta": 0.35,
+        "annual_yield": 0.282,
+        "prob_profit": 0.62,
+        "capital_requis": 800,
         "greeks": {
-          "delta": 0.3734,
-          "gamma": -0.0096,
-          "theta_jour": 0.3394
+          "delta": 0.3453,
+          "gamma": -0.5377,
+          "theta_jour": 0.0056
         }
       }
     },
     {
       "ticker": "F",
       "kind": "put_cash_secured",
-      "strategy": "Vendre put F 12 exp 2026-12-04 @ ~0.26$ (capital requis 1,200$)",
-      "score": 42.3,
-      "summary": "F : put 12 (24j, delta 0.37) rapporte ~30% annualisé, prob. de profit ~60%",
+      "strategy": "Vendre put F 11.5 exp 2026-12-04 @ ~0.16$ (capital requis 1,150$)",
+      "score": 41.2,
+      "summary": "F : put 11.5 (21j, delta 0.29) rapporte ~21% annualisé, prob. de profit ~69%",
       "details": {
         "expiry": "2026-12-04",
-        "dte": 24,
-        "strike": 12.0,
-        "mid": 0.26,
-        "bid_vente": 0.25,
-        "commission_incluse": 1.0,
-        "delta": 0.37,
-        "annual_yield": 0.304,
-        "prob_profit": 0.6,
-        "capital_requis": 1200,
-        "greeks": {
-          "delta": 0.3687,
-          "gamma": -0.4021,
-          "theta_jour": 0.0068
-        }
-      }
-    },
-    {
-      "ticker": "SNAP",
-      "kind": "options_bon_marche",
-      "strategy": "Achat d'options pas chères : calls/puts longs ou straddle",
-      "score": 41.6,
-      "summary": "SNAP : IV 54% sous la vol réalisée 76% (ratio x0.72) — le marché sous-estime le mouvement",
-      "details": {
-        "iv_atm": 0.543,
-        "rv_20d": 0.7569,
-        "ratio": 0.72
-      }
-    },
-    {
-      "ticker": "BAC",
-      "kind": "put_cash_secured",
-      "strategy": "Vendre put BAC 49 exp 2026-12-04 @ ~0.70$ (capital requis 4,900$)",
-      "score": 40.8,
-      "summary": "BAC : put 49 (24j, delta 0.29) rapporte ~20% annualisé, prob. de profit ~69%",
-      "details": {
-        "expiry": "2026-12-04",
-        "dte": 24,
-        "strike": 49.0,
-        "mid": 0.7,
-        "bid_vente": 0.67,
+        "dte": 21,
+        "strike": 11.5,
+        "mid": 0.16,
+        "bid_vente": 0.15,
         "commission_incluse": 1.0,
         "delta": 0.29,
-        "annual_yield": 0.205,
+        "annual_yield": 0.212,
         "prob_profit": 0.69,
-        "capital_requis": 4900,
+        "capital_requis": 1150,
         "greeks": {
-          "delta": 0.2884,
-          "gamma": -0.097,
-          "theta_jour": 0.0232
+          "delta": 0.2897,
+          "gamma": -0.3956,
+          "theta_jour": 0.0066
         }
       }
     },
     {
-      "ticker": "TSLA",
+      "ticker": "SOFI",
       "kind": "options_bon_marche",
       "strategy": "Achat d'options pas chères : calls/puts longs ou straddle",
-      "score": 40.7,
-      "summary": "TSLA : IV 45% sous la vol réalisée 61% (ratio x0.73) — le marché sous-estime le mouvement",
+      "score": 40.8,
+      "summary": "SOFI : IV 49% sous la vol réalisée 67% (ratio x0.73) — le marché sous-estime le mouvement",
       "details": {
-        "iv_atm": 0.4452,
-        "rv_20d": 0.6114,
+        "iv_atm": 0.4868,
+        "rv_20d": 0.6694,
         "ratio": 0.73
       }
     },
     {
       "ticker": "T",
       "kind": "put_cash_secured",
-      "strategy": "Vendre put T 21.5 exp 2026-12-04 @ ~0.41$ (capital requis 2,150$)",
-      "score": 40.4,
-      "summary": "T : put 21.5 (24j, delta 0.36) rapporte ~27% annualisé, prob. de profit ~61%",
+      "strategy": "Vendre put T 21.5 exp 2026-12-04 @ ~0.26$ (capital requis 2,150$)",
+      "score": 40.0,
+      "summary": "T : put 21.5 (21j, delta 0.28) rapporte ~19% annualisé, prob. de profit ~70%",
       "details": {
         "expiry": "2026-12-04",
-        "dte": 24,
+        "dte": 21,
         "strike": 21.5,
-        "mid": 0.41,
-        "bid_vente": 0.39,
+        "mid": 0.26,
+        "bid_vente": 0.24,
         "commission_incluse": 1.0,
-        "delta": 0.36,
-        "annual_yield": 0.269,
-        "prob_profit": 0.61,
+        "delta": 0.28,
+        "annual_yield": 0.186,
+        "prob_profit": 0.7,
         "capital_requis": 2150,
         "greeks": {
-          "delta": 0.3621,
-          "gamma": -0.2448,
-          "theta_jour": 0.0109
-        }
-      }
-    },
-    {
-      "ticker": "AAPL",
-      "kind": "put_cash_secured",
-      "strategy": "Vendre put AAPL 340 exp 2026-12-04 @ ~4.88$ (capital requis 34,000$)",
-      "score": 40.2,
-      "summary": "AAPL : put 340 (24j, delta 0.31) rapporte ~21% annualisé, prob. de profit ~67%",
-      "details": {
-        "expiry": "2026-12-04",
-        "dte": 24,
-        "strike": 340.0,
-        "mid": 4.88,
-        "bid_vente": 4.8,
-        "commission_incluse": 1.0,
-        "delta": 0.31,
-        "annual_yield": 0.214,
-        "prob_profit": 0.67,
-        "capital_requis": 34000,
-        "greeks": {
-          "delta": 0.3101,
-          "gamma": -0.0163,
-          "theta_jour": 0.1449
-        }
-      }
-    },
-    {
-      "ticker": "AGNC",
-      "kind": "put_cash_secured",
-      "strategy": "Vendre put AGNC 8.5 exp 2026-12-04 @ ~0.17$ (capital requis 850$)",
-      "score": 39.1,
-      "summary": "AGNC : put 8.5 (24j, delta 0.36) rapporte ~25% annualisé, prob. de profit ~61%",
-      "details": {
-        "expiry": "2026-12-04",
-        "dte": 24,
-        "strike": 8.5,
-        "mid": 0.17,
-        "bid_vente": 0.15,
-        "commission_incluse": 1.0,
-        "delta": 0.36,
-        "annual_yield": 0.25,
-        "prob_profit": 0.61,
-        "capital_requis": 850,
-        "greeks": {
-          "delta": 0.3588,
-          "gamma": -0.5467,
-          "theta_jour": 0.0049
-        }
-      }
-    },
-    {
-      "ticker": "RIOT",
-      "kind": "activite_inhabituelle",
-      "strategy": "Surveiller / suivre le flux : put 17.5 exp 2026-11-20",
-      "score": 37.9,
-      "summary": "RIOT : volume 623 vs OI 190 (x3.3) sur put 17.5 (-2.2% du spot), ~0.08M$ de prime — flux baissier (ou couverture)",
-      "details": {
-        "expiry": "2026-11-20",
-        "dte": 10,
-        "side": "put",
-        "strike": 17.5,
-        "volume": 623,
-        "open_interest": 190,
-        "ratio_vol_oi": 3.28,
-        "premium_flow_usd": 76006
-      }
-    },
-    {
-      "ticker": "PLTR",
-      "kind": "options_bon_marche",
-      "strategy": "Achat d'options pas chères : calls/puts longs ou straddle",
-      "score": 35.3,
-      "summary": "PLTR : IV 50% sous la vol réalisée 63% (ratio x0.80) — le marché sous-estime le mouvement",
-      "details": {
-        "iv_atm": 0.5041,
-        "rv_20d": 0.6328,
-        "ratio": 0.8
-      }
-    },
-    {
-      "ticker": "SPY",
-      "kind": "put_cash_secured",
-      "strategy": "Vendre put SPY 743 exp 2026-11-30 @ ~7.57$ (capital requis 74,300$)",
-      "score": 35.1,
-      "summary": "SPY : put 743 (20j, delta 0.37) rapporte ~18% annualisé, prob. de profit ~62%",
-      "details": {
-        "expiry": "2026-11-30",
-        "dte": 20,
-        "strike": 743.0,
-        "mid": 7.57,
-        "bid_vente": 7.55,
-        "commission_incluse": 1.0,
-        "delta": 0.37,
-        "annual_yield": 0.185,
-        "prob_profit": 0.62,
-        "capital_requis": 74300,
-        "greeks": {
-          "delta": 0.3677,
-          "gamma": -0.0146,
-          "theta_jour": 0.2079
-        }
-      }
-    },
-    {
-      "ticker": "SOFI",
-      "kind": "strategie_optimale",
-      "strategy": "ACHETER call 16 + ACHETER put 16 exp 2026-12-24 (débit ~2.27$)",
-      "score": 29.5,
-      "summary": "SOFI : straddle acheté 16/16 exp 2026-12-24 (44j) — débit 2.27$, risque max 2.27$, POP 53%, EV prudent +0.39$/action, gain max -100% du risque en 44j",
-      "details": {
-        "strategie": "straddle acheté",
-        "jambes": [
-          "ACHETER call 16",
-          "ACHETER put 16"
-        ],
-        "expiry": "2026-12-24",
-        "dte": 44,
-        "credit_par_action": -2.27,
-        "risque_max_par_action": 2.27,
-        "prob_profit": 0.528,
-        "esperance_gain_EV": 0.633,
-        "edge_par_risque": 0.279,
-        "ratio_gain_risque": -1.0,
-        "rendement_annualise": -8.295,
-        "kelly_pleine": 0.0,
-        "demi_kelly_conseillee": 0.0,
-        "spot": 16.18,
-        "vol_estimee": 0.653,
-        "iv_atm": 0.509,
-        "ev_prudent_apres_frais": 0.386,
-        "greeks": {
-          "delta": 0.1491,
-          "gamma": 0.2138,
-          "theta_jour": -0.0326,
-          "vega": 0.0441
-        }
-      }
-    },
-    {
-      "ticker": "SPY",
-      "kind": "strategie_optimale",
-      "strategy": "ACHETER call 749 + ACHETER put 749 exp 2026-12-31 (débit ~35.33$)",
-      "score": 18.2,
-      "summary": "SPY : straddle acheté 749/749 exp 2026-12-31 (51j) — débit 35.33$, risque max 35.33$, POP 51%, EV prudent +4.08$/action, gain max -100% du risque en 51j",
-      "details": {
-        "strategie": "straddle acheté",
-        "jambes": [
-          "ACHETER call 749",
-          "ACHETER put 749"
-        ],
-        "expiry": "2026-12-31",
-        "dte": 51,
-        "credit_par_action": -35.33,
-        "risque_max_par_action": 35.33,
-        "prob_profit": 0.511,
-        "esperance_gain_EV": 7.628,
-        "edge_par_risque": 0.216,
-        "ratio_gain_risque": -1.0,
-        "rendement_annualise": -7.157,
-        "kelly_pleine": 0.0,
-        "demi_kelly_conseillee": 0.0,
-        "spot": 749.39,
-        "vol_estimee": 0.192,
-        "iv_atm": 0.146,
-        "ev_prudent_apres_frais": 4.075,
-        "greeks": {
-          "delta": 0.104,
-          "gamma": 0.0147,
-          "theta_jour": -0.4215,
-          "vega": 2.216
-        }
-      }
-    },
-    {
-      "ticker": "AMD",
-      "kind": "strategie_optimale",
-      "strategy": "ACHETER call 515 + ACHETER put 515 exp 2026-12-04 (débit ~70.55$)",
-      "score": 14.5,
-      "summary": "AMD : straddle acheté 515/515 exp 2026-12-04 (24j) — débit 70.55$, risque max 70.55$, POP 58%, EV prudent +23.78$/action, gain max -100% du risque en 24j",
-      "details": {
-        "strategie": "straddle acheté",
-        "jambes": [
-          "ACHETER call 515",
-          "ACHETER put 515"
-        ],
-        "expiry": "2026-12-04",
-        "dte": 24,
-        "credit_par_action": -70.55,
-        "risque_max_par_action": 70.55,
-        "prob_profit": 0.579,
-        "esperance_gain_EV": 30.85,
-        "edge_par_risque": 0.437,
-        "ratio_gain_risque": -1.0,
-        "rendement_annualise": -15.208,
-        "kelly_pleine": 0.0,
-        "demi_kelly_conseillee": 0.0,
-        "spot": 515.75,
-        "vol_estimee": 0.965,
-        "iv_atm": 0.656,
-        "ev_prudent_apres_frais": 23.775,
-        "greeks": {
-          "delta": 0.1126,
-          "gamma": 0.0062,
-          "theta_jour": -2.0957,
-          "vega": 1.0447
+          "delta": 0.28,
+          "gamma": -0.2406,
+          "theta_jour": 0.0104
         }
       }
     },
     {
       "ticker": "TSLA",
-      "kind": "strategie_optimale",
-      "strategy": "ACHETER call 380 + ACHETER put 380 exp 2026-12-24 (débit ~45.80$)",
-      "score": 14.1,
-      "summary": "TSLA : straddle acheté 380/380 exp 2026-12-24 (44j) — débit 45.80$, risque max 45.80$, POP 52%, EV prudent +6.54$/action, gain max -100% du risque en 44j",
+      "kind": "options_bon_marche",
+      "strategy": "Achat d'options pas chères : calls/puts longs ou straddle",
+      "score": 39.9,
+      "summary": "TSLA : IV 45% sous la vol réalisée 61% (ratio x0.74) — le marché sous-estime le mouvement",
       "details": {
-        "strategie": "straddle acheté",
-        "jambes": [
-          "ACHETER call 380",
-          "ACHETER put 380"
-        ],
-        "expiry": "2026-12-24",
-        "dte": 44,
-        "credit_par_action": -45.8,
-        "risque_max_par_action": 45.8,
-        "prob_profit": 0.524,
-        "esperance_gain_EV": 11.144,
-        "edge_par_risque": 0.243,
-        "ratio_gain_risque": -1.0,
-        "rendement_annualise": -8.295,
-        "kelly_pleine": 0.0,
-        "demi_kelly_conseillee": 0.0,
-        "spot": 377.62,
-        "vol_estimee": 0.545,
-        "iv_atm": 0.445,
-        "ev_prudent_apres_frais": 6.544,
-        "greeks": {
-          "delta": 0.0718,
-          "gamma": 0.0111,
-          "theta_jour": -0.6415,
-          "vega": 1.0419
-        }
+        "iv_atm": 0.451,
+        "rv_20d": 0.6103,
+        "ratio": 0.74
       }
     },
     {
-      "ticker": "SPY",
-      "kind": "strategie_optimale",
-      "strategy": "ACHETER call 749 + ACHETER put 749 exp 2026-11-30 (débit ~20.87$)",
-      "score": 0.0,
-      "summary": "SPY : straddle acheté 749/749 exp 2026-11-30 (20j) — débit 20.87$, risque max 20.87$, POP 54%, EV prudent +3.92$/action, gain max -100% du risque en 20j",
+      "ticker": "AAPL",
+      "kind": "activite_inhabituelle",
+      "strategy": "Surveiller / suivre le flux : put 347.5 exp 2026-11-18",
+      "score": 39.6,
+      "summary": "AAPL : volume 1,920 vs OI 568 (x3.4) sur put 347.5 (-2.4% du spot), ~0.14M$ de prime — flux baissier (ou couverture)",
       "details": {
-        "strategie": "straddle acheté",
-        "jambes": [
-          "ACHETER call 749",
-          "ACHETER put 749"
-        ],
-        "expiry": "2026-11-30",
-        "dte": 20,
-        "credit_par_action": -20.87,
-        "risque_max_par_action": 20.87,
-        "prob_profit": 0.535,
-        "esperance_gain_EV": 6.025,
-        "edge_par_risque": 0.289,
-        "ratio_gain_risque": -1.0,
-        "rendement_annualise": -18.25,
-        "kelly_pleine": 0.0,
-        "demi_kelly_conseillee": 0.0,
-        "spot": 749.39,
-        "vol_estimee": 0.192,
-        "iv_atm": 0.146,
-        "ev_prudent_apres_frais": 3.918,
+        "expiry": "2026-11-18",
+        "dte": 5,
+        "side": "put",
+        "strike": 347.5,
+        "volume": 1920,
+        "open_interest": 568,
+        "ratio_vol_oi": 3.38,
+        "premium_flow_usd": 138240
+      }
+    },
+    {
+      "ticker": "SNAP",
+      "kind": "options_bon_marche",
+      "strategy": "Achat d'options pas chères : calls/puts longs ou straddle",
+      "score": 38.8,
+      "summary": "SNAP : IV 55% sous la vol réalisée 74% (ratio x0.75) — le marché sous-estime le mouvement",
+      "details": {
+        "iv_atm": 0.5547,
+        "rv_20d": 0.7376,
+        "ratio": 0.75
+      }
+    },
+    {
+      "ticker": "PFE",
+      "kind": "put_cash_secured",
+      "strategy": "Vendre put PFE 28 exp 2026-12-04 @ ~0.30$ (capital requis 2,800$)",
+      "score": 38.8,
+      "summary": "PFE : put 28 (21j, delta 0.28) rapporte ~17% annualisé, prob. de profit ~70%",
+      "details": {
+        "expiry": "2026-12-04",
+        "dte": 21,
+        "strike": 28.0,
+        "mid": 0.3,
+        "bid_vente": 0.28,
+        "commission_incluse": 1.0,
+        "delta": 0.28,
+        "annual_yield": 0.168,
+        "prob_profit": 0.7,
+        "capital_requis": 2800,
         "greeks": {
-          "delta": 0.0708,
-          "gamma": 0.0236,
-          "theta_jour": -0.6725,
-          "vega": 1.3941
+          "delta": 0.2767,
+          "gamma": -0.211,
+          "theta_jour": 0.0116
         }
       }
     },
     {
       "ticker": "QQQ",
       "kind": "strategie_optimale",
-      "strategy": "ACHETER call 674 + ACHETER put 674 exp 2026-11-30 (débit ~31.16$)",
-      "score": 0.0,
-      "summary": "QQQ : straddle acheté 674/674 exp 2026-11-30 (20j) — débit 31.16$, risque max 31.16$, POP 53%, EV prudent +4.97$/action, gain max -100% du risque en 20j",
+      "strategy": "ACHETER call 678 + ACHETER put 678 exp 2026-12-31 (débit ~47.80$)",
+      "score": 38.3,
+      "summary": "QQQ : straddle acheté 678/678 exp 2026-12-31 (48j) — débit 47.80$, risque max 47.80$, POP 53%, EV prudent +8.38$/action, gain max -100% du risque en 48j",
       "details": {
         "strategie": "straddle acheté",
         "jambes": [
-          "ACHETER call 674",
-          "ACHETER put 674"
+          "ACHETER call 678",
+          "ACHETER put 678"
         ],
-        "expiry": "2026-11-30",
-        "dte": 20,
-        "credit_par_action": -31.16,
-        "risque_max_par_action": 31.16,
-        "prob_profit": 0.527,
-        "esperance_gain_EV": 8.11,
-        "edge_par_risque": 0.26,
+        "expiry": "2026-12-31",
+        "dte": 48,
+        "credit_par_action": -47.8,
+        "risque_max_par_action": 47.8,
+        "prob_profit": 0.532,
+        "esperance_gain_EV": 13.182,
+        "edge_par_risque": 0.276,
         "ratio_gain_risque": -1.0,
-        "rendement_annualise": -18.25,
+        "rendement_annualise": -7.604,
         "kelly_pleine": 0.0,
         "demi_kelly_conseillee": 0.0,
-        "spot": 673.8,
-        "vol_estimee": 0.312,
-        "iv_atm": 0.243,
-        "ev_prudent_apres_frais": 4.973,
+        "spot": 678.49,
+        "vol_estimee": 0.311,
+        "iv_atm": 0.238,
+        "ev_prudent_apres_frais": 8.382,
         "greeks": {
-          "delta": 0.0528,
-          "gamma": 0.0162,
-          "theta_jour": -0.9801,
-          "vega": 1.2557
+          "delta": 0.0918,
+          "gamma": 0.0103,
+          "theta_jour": -0.6325,
+          "vega": 1.9502
         }
       }
     },
     {
-      "ticker": "PLTR",
+      "ticker": "AAPL",
+      "kind": "put_cash_secured",
+      "strategy": "Vendre put AAPL 350 exp 2026-12-04 @ ~4.12$ (capital requis 35,000$)",
+      "score": 37.9,
+      "summary": "AAPL : put 350 (21j, delta 0.33) rapporte ~20% annualisé, prob. de profit ~65%",
+      "details": {
+        "expiry": "2026-12-04",
+        "dte": 21,
+        "strike": 350.0,
+        "mid": 4.12,
+        "bid_vente": 4.0,
+        "commission_incluse": 1.0,
+        "delta": 0.33,
+        "annual_yield": 0.198,
+        "prob_profit": 0.65,
+        "capital_requis": 35000,
+        "greeks": {
+          "delta": 0.3294,
+          "gamma": -0.0213,
+          "theta_jour": 0.1318
+        }
+      }
+    },
+    {
+      "ticker": "AAPL",
+      "kind": "options_bon_marche",
+      "strategy": "Achat d'options pas chères : calls/puts longs ou straddle",
+      "score": 36.1,
+      "summary": "AAPL : IV 22% sous la vol réalisée 28% (ratio x0.79) — le marché sous-estime le mouvement",
+      "details": {
+        "iv_atm": 0.2164,
+        "rv_20d": 0.2752,
+        "ratio": 0.79
+      }
+    },
+    {
+      "ticker": "SPY",
+      "kind": "put_cash_secured",
+      "strategy": "Vendre put SPY 748 exp 2026-11-30 @ ~6.47$ (capital requis 74,800$)",
+      "score": 34.5,
+      "summary": "SPY : put 748 (17j, delta 0.38) rapporte ~18% annualisé, prob. de profit ~61%",
+      "details": {
+        "expiry": "2026-11-30",
+        "dte": 17,
+        "strike": 748.0,
+        "mid": 6.47,
+        "bid_vente": 6.45,
+        "commission_incluse": 1.0,
+        "delta": 0.38,
+        "annual_yield": 0.185,
+        "prob_profit": 0.61,
+        "capital_requis": 74800,
+        "greeks": {
+          "delta": 0.3798,
+          "gamma": -0.0182,
+          "theta_jour": 0.1984
+        }
+      }
+    },
+    {
+      "ticker": "SPY",
       "kind": "strategie_optimale",
-      "strategy": "ACHETER call 165 + ACHETER put 165 exp 2026-12-04 (débit ~17.40$)",
-      "score": 0.0,
-      "summary": "PLTR : straddle acheté 165/165 exp 2026-12-04 (24j) — débit 17.40$, risque max 17.40$, POP 48%, EV prudent +0.69$/action, gain max -100% du risque en 24j",
+      "strategy": "ACHETER call 753 + ACHETER put 753 exp 2026-12-31 (débit ~32.61$)",
+      "score": 30.9,
+      "summary": "SPY : straddle acheté 753/753 exp 2026-12-31 (48j) — débit 32.61$, risque max 32.61$, POP 53%, EV prudent +5.13$/action, gain max -100% du risque en 48j",
       "details": {
         "strategie": "straddle acheté",
         "jambes": [
-          "ACHETER call 165",
-          "ACHETER put 165"
+          "ACHETER call 753",
+          "ACHETER put 753"
+        ],
+        "expiry": "2026-12-31",
+        "dte": 48,
+        "credit_par_action": -32.61,
+        "risque_max_par_action": 32.61,
+        "prob_profit": 0.526,
+        "esperance_gain_EV": 8.411,
+        "edge_par_risque": 0.258,
+        "ratio_gain_risque": -1.0,
+        "rendement_annualise": -7.604,
+        "kelly_pleine": 0.0,
+        "demi_kelly_conseillee": 0.0,
+        "spot": 752.52,
+        "vol_estimee": 0.188,
+        "iv_atm": 0.136,
+        "ev_prudent_apres_frais": 5.131,
+        "greeks": {
+          "delta": 0.0888,
+          "gamma": 0.0154,
+          "theta_jour": -0.4277,
+          "vega": 2.1639
+        }
+      }
+    },
+    {
+      "ticker": "AAPL",
+      "kind": "strategie_optimale",
+      "strategy": "ACHETER call 355 + ACHETER put 355 exp 2026-12-04 (débit ~14.77$)",
+      "score": 0.0,
+      "summary": "AAPL : straddle acheté 355/355 exp 2026-12-04 (21j) — débit 14.77$, risque max 14.77$, POP 49%, EV prudent +0.91$/action, gain max -100% du risque en 21j",
+      "details": {
+        "strategie": "straddle acheté",
+        "jambes": [
+          "ACHETER call 355",
+          "ACHETER put 355"
         ],
         "expiry": "2026-12-04",
-        "dte": 24,
-        "credit_par_action": -17.4,
-        "risque_max_par_action": 17.4,
-        "prob_profit": 0.478,
-        "esperance_gain_EV": 2.445,
-        "edge_par_risque": 0.141,
+        "dte": 21,
+        "credit_par_action": -14.77,
+        "risque_max_par_action": 14.77,
+        "prob_profit": 0.491,
+        "esperance_gain_EV": 2.404,
+        "edge_par_risque": 0.163,
         "ratio_gain_risque": -1.0,
-        "rendement_annualise": -15.208,
+        "rendement_annualise": -17.381,
         "kelly_pleine": 0.0,
         "demi_kelly_conseillee": 0.0,
-        "spot": 167.35,
-        "vol_estimee": 0.581,
-        "iv_atm": 0.504,
-        "ev_prudent_apres_frais": 0.685,
+        "spot": 356.14,
+        "vol_estimee": 0.252,
+        "iv_atm": 0.216,
+        "ev_prudent_apres_frais": 0.906,
         "greeks": {
-          "delta": 0.1501,
-          "gamma": 0.0314,
-          "theta_jour": -0.4079,
-          "vega": 0.3363
+          "delta": 0.1002,
+          "gamma": 0.0368,
+          "theta_jour": -0.4074,
+          "vega": 0.6762
         }
       }
     },
     {
-      "ticker": "PLTR",
+      "ticker": "TSLA",
       "kind": "strategie_optimale",
-      "strategy": "ACHETER call 165 + ACHETER put 165 exp 2026-12-24 (débit ~23.10$)",
+      "strategy": "ACHETER call 390 + ACHETER put 390 exp 2026-12-04 (débit ~34.03$)",
       "score": 0.0,
-      "summary": "PLTR : straddle acheté 165/165 exp 2026-12-24 (44j) — débit 23.10$, risque max 23.10$, POP 49%, EV prudent +1.34$/action, gain max -100% du risque en 44j",
+      "summary": "TSLA : straddle acheté 390/390 exp 2026-12-04 (21j) — débit 34.03$, risque max 34.03$, POP 50%, EV prudent +3.29$/action, gain max -100% du risque en 21j",
       "details": {
         "strategie": "straddle acheté",
         "jambes": [
-          "ACHETER call 165",
-          "ACHETER put 165"
+          "ACHETER call 390",
+          "ACHETER put 390"
         ],
-        "expiry": "2026-12-24",
-        "dte": 44,
-        "credit_par_action": -23.1,
-        "risque_max_par_action": 23.1,
-        "prob_profit": 0.485,
-        "esperance_gain_EV": 3.667,
-        "edge_par_risque": 0.159,
+        "expiry": "2026-12-04",
+        "dte": 21,
+        "credit_par_action": -34.03,
+        "risque_max_par_action": 34.03,
+        "prob_profit": 0.505,
+        "esperance_gain_EV": 6.716,
+        "edge_par_risque": 0.197,
         "ratio_gain_risque": -1.0,
-        "rendement_annualise": -8.295,
+        "rendement_annualise": -17.381,
         "kelly_pleine": 0.0,
         "demi_kelly_conseillee": 0.0,
-        "spot": 167.35,
-        "vol_estimee": 0.581,
-        "iv_atm": 0.504,
-        "ev_prudent_apres_frais": 1.337,
+        "spot": 390.23,
+        "vol_estimee": 0.547,
+        "iv_atm": 0.451,
+        "ev_prudent_apres_frais": 3.294,
         "greeks": {
-          "delta": 0.1568,
-          "gamma": 0.0232,
-          "theta_jour": -0.3002,
-          "vega": 0.4546
+          "delta": 0.0716,
+          "gamma": 0.0155,
+          "theta_jour": -0.9665,
+          "vega": 0.7438
+        }
+      }
+    },
+    {
+      "ticker": "TSLA",
+      "kind": "strategie_optimale",
+      "strategy": "ACHETER call 390 + ACHETER put 390 exp 2026-12-24 (débit ~46.42$)",
+      "score": 0.0,
+      "summary": "TSLA : straddle acheté 390/390 exp 2026-12-24 (41j) — débit 46.42$, risque max 46.42$, POP 51%, EV prudent +5.74$/action, gain max -100% du risque en 41j",
+      "details": {
+        "strategie": "straddle acheté",
+        "jambes": [
+          "ACHETER call 390",
+          "ACHETER put 390"
+        ],
+        "expiry": "2026-12-24",
+        "dte": 41,
+        "credit_par_action": -46.42,
+        "risque_max_par_action": 46.42,
+        "prob_profit": 0.514,
+        "esperance_gain_EV": 10.403,
+        "edge_par_risque": 0.224,
+        "ratio_gain_risque": -1.0,
+        "rendement_annualise": -8.902,
+        "kelly_pleine": 0.0,
+        "demi_kelly_conseillee": 0.0,
+        "spot": 390.23,
+        "vol_estimee": 0.547,
+        "iv_atm": 0.451,
+        "ev_prudent_apres_frais": 5.741,
+        "greeks": {
+          "delta": 0.0974,
+          "gamma": 0.0111,
+          "theta_jour": -0.6881,
+          "vega": 1.0357
+        }
+      }
+    },
+    {
+      "ticker": "AMD",
+      "kind": "strategie_optimale",
+      "strategy": "ACHETER call 530 + ACHETER put 530 exp 2026-12-04 (débit ~71.38$)",
+      "score": 0.0,
+      "summary": "AMD : straddle acheté 530/530 exp 2026-12-04 (21j) — débit 71.38$, risque max 71.38$, POP 58%, EV prudent +24.28$/action, gain max -100% du risque en 21j",
+      "details": {
+        "strategie": "straddle acheté",
+        "jambes": [
+          "ACHETER call 530",
+          "ACHETER put 530"
+        ],
+        "expiry": "2026-12-04",
+        "dte": 21,
+        "credit_par_action": -71.38,
+        "risque_max_par_action": 71.38,
+        "prob_profit": 0.58,
+        "esperance_gain_EV": 31.437,
+        "edge_par_risque": 0.44,
+        "ratio_gain_risque": -1.0,
+        "rendement_annualise": -17.381,
+        "kelly_pleine": 0.0,
+        "demi_kelly_conseillee": 0.0,
+        "spot": 529.94,
+        "vol_estimee": 1.017,
+        "iv_atm": 0.688,
+        "ev_prudent_apres_frais": 24.28,
+        "greeks": {
+          "delta": 0.1051,
+          "gamma": 0.0061,
+          "theta_jour": -2.4297,
+          "vega": 1.0054
+        }
+      }
+    },
+    {
+      "ticker": "SPY",
+      "kind": "strategie_optimale",
+      "strategy": "ACHETER call 753 + ACHETER put 753 exp 2026-11-30 (débit ~18.03$)",
+      "score": 0.0,
+      "summary": "SPY : straddle acheté 753/753 exp 2026-11-30 (17j) — débit 18.03$, risque max 18.03$, POP 56%, EV prudent +4.55$/action, gain max -100% du risque en 17j",
+      "details": {
+        "strategie": "straddle acheté",
+        "jambes": [
+          "ACHETER call 753",
+          "ACHETER put 753"
+        ],
+        "expiry": "2026-11-30",
+        "dte": 17,
+        "credit_par_action": -18.03,
+        "risque_max_par_action": 18.03,
+        "prob_profit": 0.556,
+        "esperance_gain_EV": 6.372,
+        "edge_par_risque": 0.353,
+        "ratio_gain_risque": -1.0,
+        "rendement_annualise": -21.471,
+        "kelly_pleine": 0.0,
+        "demi_kelly_conseillee": 0.0,
+        "spot": 752.52,
+        "vol_estimee": 0.188,
+        "iv_atm": 0.136,
+        "ev_prudent_apres_frais": 4.549,
+        "greeks": {
+          "delta": 0.0449,
+          "gamma": 0.026,
+          "theta_jour": -0.7178,
+          "vega": 1.2937
+        }
+      }
+    },
+    {
+      "ticker": "QQQ",
+      "kind": "strategie_optimale",
+      "strategy": "ACHETER call 678 + ACHETER put 678 exp 2026-11-30 (débit ~28.55$)",
+      "score": 0.0,
+      "summary": "QQQ : straddle acheté 678/678 exp 2026-11-30 (17j) — débit 28.55$, risque max 28.55$, POP 53%, EV prudent +4.92$/action, gain max -100% du risque en 17j",
+      "details": {
+        "strategie": "straddle acheté",
+        "jambes": [
+          "ACHETER call 678",
+          "ACHETER put 678"
+        ],
+        "expiry": "2026-11-30",
+        "dte": 17,
+        "credit_par_action": -28.55,
+        "risque_max_par_action": 28.55,
+        "prob_profit": 0.531,
+        "esperance_gain_EV": 7.792,
+        "edge_par_risque": 0.273,
+        "ratio_gain_risque": -1.0,
+        "rendement_annualise": -21.471,
+        "kelly_pleine": 0.0,
+        "demi_kelly_conseillee": 0.0,
+        "spot": 678.49,
+        "vol_estimee": 0.311,
+        "iv_atm": 0.238,
+        "ev_prudent_apres_frais": 4.917,
+        "greeks": {
+          "delta": 0.0602,
+          "gamma": 0.0175,
+          "theta_jour": -1.0672,
+          "vega": 1.165
         }
       }
     },
     {
       "ticker": "SOFI",
       "kind": "strategie_optimale",
-      "strategy": "ACHETER call 16 + ACHETER put 16 exp 2026-11-20 (débit ~1.19$)",
+      "strategy": "ACHETER call 15.5 + ACHETER put 15.5 exp 2026-11-20 (débit ~0.86$)",
       "score": 0.0,
-      "summary": "SOFI : straddle acheté 16/16 exp 2026-11-20 (10j) — débit 1.19$, risque max 1.19$, POP 49%, EV prudent +0.07$/action, gain max -100% du risque en 10j",
+      "summary": "SOFI : straddle acheté 15.5/15.5 exp 2026-11-20 (7j) — débit 0.86$, risque max 0.86$, POP 50%, EV prudent +0.05$/action, gain max -100% du risque en 7j",
       "details": {
         "strategie": "straddle acheté",
         "jambes": [
-          "ACHETER call 16",
-          "ACHETER put 16"
+          "ACHETER call 15.5",
+          "ACHETER put 15.5"
         ],
         "expiry": "2026-11-20",
-        "dte": 10,
-        "credit_par_action": -1.19,
-        "risque_max_par_action": 1.19,
-        "prob_profit": 0.492,
-        "esperance_gain_EV": 0.205,
-        "edge_par_risque": 0.172,
+        "dte": 7,
+        "credit_par_action": -0.86,
+        "risque_max_par_action": 0.86,
+        "prob_profit": 0.5,
+        "esperance_gain_EV": 0.154,
+        "edge_par_risque": 0.179,
         "ratio_gain_risque": -1.0,
-        "rendement_annualise": -36.5,
+        "rendement_annualise": -52.143,
         "kelly_pleine": 0.0,
         "demi_kelly_conseillee": 0.0,
-        "spot": 16.18,
-        "vol_estimee": 0.653,
-        "iv_atm": 0.509,
-        "ev_prudent_apres_frais": 0.066,
+        "spot": 15.41,
+        "vol_estimee": 0.596,
+        "iv_atm": 0.487,
+        "ev_prudent_apres_frais": 0.048,
         "greeks": {
-          "delta": 0.1364,
-          "gamma": 0.4497,
-          "theta_jour": -0.0688,
-          "vega": 0.0211
+          "delta": -0.0118,
+          "gamma": 0.6267,
+          "theta_jour": -0.0724,
+          "vega": 0.017
+        }
+      }
+    },
+    {
+      "ticker": "SOFI",
+      "kind": "strategie_optimale",
+      "strategy": "ACHETER call 15.5 + ACHETER put 15.5 exp 2026-12-04 (débit ~1.46$)",
+      "score": 0.0,
+      "summary": "SOFI : straddle acheté 15.5/15.5 exp 2026-12-04 (21j) — débit 1.46$, risque max 1.46$, POP 51%, EV prudent +0.13$/action, gain max -100% du risque en 21j",
+      "details": {
+        "strategie": "straddle acheté",
+        "jambes": [
+          "ACHETER call 15.5",
+          "ACHETER put 15.5"
+        ],
+        "expiry": "2026-12-04",
+        "dte": 21,
+        "credit_par_action": -1.46,
+        "risque_max_par_action": 1.46,
+        "prob_profit": 0.51,
+        "esperance_gain_EV": 0.301,
+        "edge_par_risque": 0.206,
+        "ratio_gain_risque": -1.0,
+        "rendement_annualise": -17.381,
+        "kelly_pleine": 0.0,
+        "demi_kelly_conseillee": 0.0,
+        "spot": 15.41,
+        "vol_estimee": 0.596,
+        "iv_atm": 0.487,
+        "ev_prudent_apres_frais": 0.135,
+        "greeks": {
+          "delta": 0.0408,
+          "gamma": 0.3614,
+          "theta_jour": -0.0417,
+          "vega": 0.0295
         }
       }
     },
     {
       "ticker": "T",
       "kind": "strategie_optimale",
-      "strategy": "ACHETER call 22 + ACHETER put 22 exp 2026-11-20 (débit ~0.85$)",
+      "strategy": "ACHETER call 22 + ACHETER put 22 exp 2026-11-20 (débit ~0.71$)",
       "score": 0.0,
-      "summary": "T : straddle acheté 22/22 exp 2026-11-20 (10j) — débit 0.85$, risque max 0.85$, POP 53%, EV prudent +0.13$/action, gain max -100% du risque en 10j",
+      "summary": "T : straddle acheté 22/22 exp 2026-11-20 (7j) — débit 0.71$, risque max 0.71$, POP 53%, EV prudent +0.11$/action, gain max -100% du risque en 7j",
       "details": {
         "strategie": "straddle acheté",
         "jambes": [
@@ -1845,34 +1983,34 @@
           "ACHETER put 22"
         ],
         "expiry": "2026-11-20",
-        "dte": 10,
-        "credit_par_action": -0.85,
-        "risque_max_par_action": 0.85,
-        "prob_profit": 0.532,
-        "esperance_gain_EV": 0.231,
-        "edge_par_risque": 0.272,
+        "dte": 7,
+        "credit_par_action": -0.71,
+        "risque_max_par_action": 0.71,
+        "prob_profit": 0.528,
+        "esperance_gain_EV": 0.199,
+        "edge_par_risque": 0.278,
         "ratio_gain_risque": -1.0,
-        "rendement_annualise": -36.5,
+        "rendement_annualise": -52.143,
         "kelly_pleine": 0.0,
         "demi_kelly_conseillee": 0.0,
-        "spot": 21.92,
-        "vol_estimee": 0.373,
-        "iv_atm": 0.27,
-        "ev_prudent_apres_frais": 0.126,
+        "spot": 22.2,
+        "vol_estimee": 0.367,
+        "iv_atm": 0.263,
+        "ev_prudent_apres_frais": 0.108,
         "greeks": {
-          "delta": -0.0078,
-          "gamma": 0.59,
-          "theta_jour": -0.0538,
-          "vega": 0.0289
+          "delta": 0.1761,
+          "gamma": 0.689,
+          "theta_jour": -0.0632,
+          "vega": 0.0239
         }
       }
     },
     {
       "ticker": "T",
       "kind": "strategie_optimale",
-      "strategy": "ACHETER call 22 + ACHETER put 22 exp 2026-12-04 (débit ~1.20$)",
+      "strategy": "ACHETER call 22 + ACHETER put 22 exp 2026-12-04 (débit ~1.11$)",
       "score": 0.0,
-      "summary": "T : straddle acheté 22/22 exp 2026-12-04 (24j) — débit 1.20$, risque max 1.20$, POP 57%, EV prudent +0.33$/action, gain max -100% du risque en 24j",
+      "summary": "T : straddle acheté 22/22 exp 2026-12-04 (21j) — débit 1.11$, risque max 1.11$, POP 57%, EV prudent +0.32$/action, gain max -100% du risque en 21j",
       "details": {
         "strategie": "straddle acheté",
         "jambes": [
@@ -1880,69 +2018,34 @@
           "ACHETER put 22"
         ],
         "expiry": "2026-12-04",
-        "dte": 24,
-        "credit_par_action": -1.2,
-        "risque_max_par_action": 1.2,
-        "prob_profit": 0.569,
-        "esperance_gain_EV": 0.472,
-        "edge_par_risque": 0.393,
+        "dte": 21,
+        "credit_par_action": -1.11,
+        "risque_max_par_action": 1.11,
+        "prob_profit": 0.566,
+        "esperance_gain_EV": 0.45,
+        "edge_par_risque": 0.404,
         "ratio_gain_risque": -1.0,
-        "rendement_annualise": -15.208,
+        "rendement_annualise": -17.381,
         "kelly_pleine": 0.0,
         "demi_kelly_conseillee": 0.0,
-        "spot": 21.92,
-        "vol_estimee": 0.373,
-        "iv_atm": 0.27,
-        "ev_prudent_apres_frais": 0.332,
+        "spot": 22.2,
+        "vol_estimee": 0.367,
+        "iv_atm": 0.263,
+        "ev_prudent_apres_frais": 0.319,
         "greeks": {
-          "delta": 0.0316,
-          "gamma": 0.3805,
-          "theta_jour": -0.0347,
-          "vega": 0.0448
-        }
-      }
-    },
-    {
-      "ticker": "AAL",
-      "kind": "strategie_optimale",
-      "strategy": "ACHETER call 14 + ACHETER put 14 exp 2026-12-04 (débit ~1.34$)",
-      "score": 0.0,
-      "summary": "AAL : straddle acheté 14/14 exp 2026-12-04 (24j) — débit 1.34$, risque max 1.34$, POP 48%, EV prudent +0.04$/action, gain max -100% du risque en 24j",
-      "details": {
-        "strategie": "straddle acheté",
-        "jambes": [
-          "ACHETER call 14",
-          "ACHETER put 14"
-        ],
-        "expiry": "2026-12-04",
-        "dte": 24,
-        "credit_par_action": -1.34,
-        "risque_max_par_action": 1.34,
-        "prob_profit": 0.485,
-        "esperance_gain_EV": 0.198,
-        "edge_par_risque": 0.148,
-        "ratio_gain_risque": -1.0,
-        "rendement_annualise": -15.208,
-        "kelly_pleine": 0.0,
-        "demi_kelly_conseillee": 0.0,
-        "spot": 14.06,
-        "vol_estimee": 0.536,
-        "iv_atm": 0.475,
-        "ev_prudent_apres_frais": 0.044,
-        "greeks": {
-          "delta": 0.0986,
-          "gamma": 0.4096,
-          "theta_jour": -0.0319,
-          "vega": 0.0286
+          "delta": 0.1408,
+          "gamma": 0.4014,
+          "theta_jour": -0.0368,
+          "vega": 0.0418
         }
       }
     },
     {
       "ticker": "SNAP",
       "kind": "strategie_optimale",
-      "strategy": "ACHETER call 5 + ACHETER put 5 exp 2026-12-04 (débit ~0.57$)",
+      "strategy": "ACHETER call 5 + ACHETER put 5 exp 2026-12-04 (débit ~0.58$)",
       "score": 0.0,
-      "summary": "SNAP : straddle acheté 5/5 exp 2026-12-04 (24j) — débit 0.57$, risque max 0.57$, POP 51%, EV prudent +0.04$/action, gain max -100% du risque en 24j",
+      "summary": "SNAP : straddle acheté 5/5 exp 2026-12-04 (21j) — débit 0.58$, risque max 0.58$, POP 48%, EV prudent +0.02$/action, gain max -100% du risque en 21j",
       "details": {
         "strategie": "straddle acheté",
         "jambes": [
@@ -1950,34 +2053,69 @@
           "ACHETER put 5"
         ],
         "expiry": "2026-12-04",
-        "dte": 24,
-        "credit_par_action": -0.57,
-        "risque_max_par_action": 0.57,
-        "prob_profit": 0.511,
-        "esperance_gain_EV": 0.118,
-        "edge_par_risque": 0.208,
+        "dte": 21,
+        "credit_par_action": -0.58,
+        "risque_max_par_action": 0.58,
+        "prob_profit": 0.48,
+        "esperance_gain_EV": 0.102,
+        "edge_par_risque": 0.176,
         "ratio_gain_risque": -1.0,
-        "rendement_annualise": -15.208,
+        "rendement_annualise": -17.381,
         "kelly_pleine": 0.0,
         "demi_kelly_conseillee": 0.0,
-        "spot": 4.97,
-        "vol_estimee": 0.671,
-        "iv_atm": 0.543,
-        "ev_prudent_apres_frais": 0.041,
+        "spot": 5.24,
+        "vol_estimee": 0.664,
+        "iv_atm": 0.555,
+        "ev_prudent_apres_frais": 0.024,
         "greeks": {
-          "delta": 0.0498,
-          "gamma": 0.9317,
-          "theta_jour": -0.0141,
-          "vega": 0.0101
+          "delta": 0.308,
+          "gamma": 0.8825,
+          "theta_jour": -0.0148,
+          "vega": 0.0093
+        }
+      }
+    },
+    {
+      "ticker": "SNAP",
+      "kind": "strategie_optimale",
+      "strategy": "ACHETER call 5 + ACHETER put 5 exp 2026-12-24 (débit ~0.79$)",
+      "score": 0.0,
+      "summary": "SNAP : straddle acheté 5/5 exp 2026-12-24 (41j) — débit 0.79$, risque max 0.79$, POP 48%, EV prudent +0.04$/action, gain max -100% du risque en 41j",
+      "details": {
+        "strategie": "straddle acheté",
+        "jambes": [
+          "ACHETER call 5",
+          "ACHETER put 5"
+        ],
+        "expiry": "2026-12-24",
+        "dte": 41,
+        "credit_par_action": -0.79,
+        "risque_max_par_action": 0.79,
+        "prob_profit": 0.477,
+        "esperance_gain_EV": 0.136,
+        "edge_par_risque": 0.172,
+        "ratio_gain_risque": -1.0,
+        "rendement_annualise": -8.902,
+        "kelly_pleine": 0.0,
+        "demi_kelly_conseillee": 0.0,
+        "spot": 5.24,
+        "vol_estimee": 0.664,
+        "iv_atm": 0.555,
+        "ev_prudent_apres_frais": 0.037,
+        "greeks": {
+          "delta": 0.2728,
+          "gamma": 0.6428,
+          "theta_jour": -0.0108,
+          "vega": 0.0132
         }
       }
     },
     {
       "ticker": "PBR",
       "kind": "strategie_optimale",
-      "strategy": "ACHETER call 18 + ACHETER put 18 exp 2026-11-20 (débit ~1.19$)",
+      "strategy": "ACHETER call 18 + ACHETER put 18 exp 2026-11-20 (débit ~0.77$)",
       "score": 0.0,
-      "summary": "PBR : straddle acheté 18/18 exp 2026-11-20 (10j) — débit 1.19$, risque max 1.19$, POP 50%, EV prudent +0.10$/action, gain max -100% du risque en 10j [ATTENTION : earnings avant l'expiration]",
+      "summary": "PBR : straddle acheté 18/18 exp 2026-11-20 (7j) — débit 0.77$, risque max 0.77$, POP 57%, EV prudent +0.23$/action, gain max -100% du risque en 7j",
       "details": {
         "strategie": "straddle acheté",
         "jambes": [
@@ -1985,96 +2123,165 @@
           "ACHETER put 18"
         ],
         "expiry": "2026-11-20",
-        "dte": 10,
-        "credit_par_action": -1.19,
-        "risque_max_par_action": 1.19,
-        "prob_profit": 0.501,
-        "esperance_gain_EV": 0.235,
-        "edge_par_risque": 0.199,
+        "dte": 7,
+        "credit_par_action": -0.77,
+        "risque_max_par_action": 0.77,
+        "prob_profit": 0.568,
+        "esperance_gain_EV": 0.326,
+        "edge_par_risque": 0.424,
         "ratio_gain_risque": -1.0,
-        "rendement_annualise": -36.5,
+        "rendement_annualise": -52.143,
         "kelly_pleine": 0.0,
         "demi_kelly_conseillee": 0.0,
-        "spot": 18.22,
-        "vol_estimee": 0.589,
-        "iv_atm": 0.545,
-        "ev_prudent_apres_frais": 0.097,
+        "spot": 18.36,
+        "vol_estimee": 0.525,
+        "iv_atm": 0.401,
+        "ev_prudent_apres_frais": 0.229,
         "greeks": {
-          "delta": 0.1453,
-          "gamma": 0.4417,
-          "theta_jour": -0.0698,
-          "vega": 0.0237
-        },
-        "attention_earnings": "résultats dans 0j, avant l'expiration — risque de gap"
+          "delta": 0.2514,
+          "gamma": 0.5677,
+          "theta_jour": -0.0727,
+          "vega": 0.0193
+        }
       }
     },
     {
-      "ticker": "CLF",
+      "ticker": "PBR",
       "kind": "strategie_optimale",
-      "strategy": "ACHETER call 13 + ACHETER put 13 exp 2026-11-20 (débit ~1.18$)",
+      "strategy": "ACHETER call 18.5 + ACHETER put 18.5 exp 2026-12-04 (débit ~1.28$)",
       "score": 0.0,
-      "summary": "CLF : straddle acheté 13/13 exp 2026-11-20 (10j) — débit 1.18$, risque max 1.18$, POP 52%, EV prudent +0.13$/action, gain max -100% du risque en 10j",
+      "summary": "PBR : straddle acheté 18.5/18.5 exp 2026-12-04 (21j) — débit 1.28$, risque max 1.28$, POP 58%, EV prudent +0.42$/action, gain max -100% du risque en 21j",
       "details": {
         "strategie": "straddle acheté",
         "jambes": [
-          "ACHETER call 13",
-          "ACHETER put 13"
+          "ACHETER call 18.5",
+          "ACHETER put 18.5"
         ],
-        "expiry": "2026-11-20",
-        "dte": 10,
-        "credit_par_action": -1.18,
-        "risque_max_par_action": 1.18,
-        "prob_profit": 0.52,
-        "esperance_gain_EV": 0.264,
-        "edge_par_risque": 0.224,
+        "expiry": "2026-12-04",
+        "dte": 21,
+        "credit_par_action": -1.28,
+        "risque_max_par_action": 1.28,
+        "prob_profit": 0.584,
+        "esperance_gain_EV": 0.57,
+        "edge_par_risque": 0.445,
         "ratio_gain_risque": -1.0,
-        "rendement_annualise": -36.5,
+        "rendement_annualise": -17.381,
         "kelly_pleine": 0.0,
         "demi_kelly_conseillee": 0.0,
-        "spot": 12.8,
-        "vol_estimee": 0.844,
-        "iv_atm": 0.644,
-        "ev_prudent_apres_frais": 0.126,
+        "spot": 18.36,
+        "vol_estimee": 0.525,
+        "iv_atm": 0.401,
+        "ev_prudent_apres_frais": 0.422,
         "greeks": {
-          "delta": -0.028,
-          "gamma": 0.446,
-          "theta_jour": -0.0711,
-          "vega": 0.0169
+          "delta": 0.0185,
+          "gamma": 0.3449,
+          "theta_jour": -0.0437,
+          "vega": 0.0351
         }
       }
     },
     {
       "ticker": "CLF",
       "kind": "strategie_optimale",
-      "strategy": "ACHETER call 13 + ACHETER put 13 exp 2026-12-04 (débit ~1.74$)",
+      "strategy": "ACHETER call 12.5 + ACHETER put 12.5 exp 2026-11-20 (débit ~0.88$)",
       "score": 0.0,
-      "summary": "CLF : straddle acheté 13/13 exp 2026-12-04 (24j) — débit 1.74$, risque max 1.74$, POP 54%, EV prudent +0.29$/action, gain max -100% du risque en 24j",
+      "summary": "CLF : straddle acheté 12.5/12.5 exp 2026-11-20 (7j) — débit 0.88$, risque max 0.88$, POP 53%, EV prudent +0.15$/action, gain max -100% du risque en 7j",
       "details": {
         "strategie": "straddle acheté",
         "jambes": [
-          "ACHETER call 13",
-          "ACHETER put 13"
+          "ACHETER call 12.5",
+          "ACHETER put 12.5"
         ],
-        "expiry": "2026-12-04",
-        "dte": 24,
-        "credit_par_action": -1.74,
-        "risque_max_par_action": 1.74,
-        "prob_profit": 0.538,
-        "esperance_gain_EV": 0.484,
-        "edge_par_risque": 0.278,
+        "expiry": "2026-11-20",
+        "dte": 7,
+        "credit_par_action": -0.88,
+        "risque_max_par_action": 0.88,
+        "prob_profit": 0.535,
+        "esperance_gain_EV": 0.259,
+        "edge_par_risque": 0.294,
         "ratio_gain_risque": -1.0,
-        "rendement_annualise": -15.208,
+        "rendement_annualise": -52.143,
         "kelly_pleine": 0.0,
         "demi_kelly_conseillee": 0.0,
-        "spot": 12.8,
-        "vol_estimee": 0.844,
-        "iv_atm": 0.644,
-        "ev_prudent_apres_frais": 0.29,
+        "spot": 12.6,
+        "vol_estimee": 0.82,
+        "iv_atm": 0.577,
+        "ev_prudent_apres_frais": 0.151,
         "greeks": {
-          "delta": 0.0387,
-          "gamma": 0.2877,
-          "theta_jour": -0.0458,
-          "vega": 0.0261
+          "delta": 0.1043,
+          "gamma": 0.5532,
+          "theta_jour": -0.0808,
+          "vega": 0.0138
+        }
+      }
+    },
+    {
+      "ticker": "CLF",
+      "kind": "strategie_optimale",
+      "strategy": "ACHETER call 12.5 + ACHETER put 12.5 exp 2026-12-04 (débit ~1.42$)",
+      "score": 0.0,
+      "summary": "CLF : straddle acheté 12.5/12.5 exp 2026-12-04 (21j) — débit 1.42$, risque max 1.42$, POP 56%, EV prudent +0.38$/action, gain max -100% du risque en 21j",
+      "details": {
+        "strategie": "straddle acheté",
+        "jambes": [
+          "ACHETER call 12.5",
+          "ACHETER put 12.5"
+        ],
+        "expiry": "2026-12-04",
+        "dte": 21,
+        "credit_par_action": -1.42,
+        "risque_max_par_action": 1.42,
+        "prob_profit": 0.562,
+        "esperance_gain_EV": 0.546,
+        "edge_par_risque": 0.384,
+        "ratio_gain_risque": -1.0,
+        "rendement_annualise": -17.381,
+        "kelly_pleine": 0.0,
+        "demi_kelly_conseillee": 0.0,
+        "spot": 12.6,
+        "vol_estimee": 0.82,
+        "iv_atm": 0.577,
+        "ev_prudent_apres_frais": 0.384,
+        "greeks": {
+          "delta": 0.1192,
+          "gamma": 0.3185,
+          "theta_jour": -0.0465,
+          "vega": 0.0238
+        }
+      }
+    },
+    {
+      "ticker": "CCL",
+      "kind": "strategie_optimale",
+      "strategy": "ACHETER call 29.5 + ACHETER put 29.5 exp 2026-12-04 (débit ~2.23$)",
+      "score": 0.0,
+      "summary": "CCL : straddle acheté 29.5/29.5 exp 2026-12-04 (21j) — débit 2.23$, risque max 2.23$, POP 50%, EV prudent +0.12$/action, gain max -100% du risque en 21j",
+      "details": {
+        "strategie": "straddle acheté",
+        "jambes": [
+          "ACHETER call 29.5",
+          "ACHETER put 29.5"
+        ],
+        "expiry": "2026-12-04",
+        "dte": 21,
+        "credit_par_action": -2.23,
+        "risque_max_par_action": 2.23,
+        "prob_profit": 0.496,
+        "esperance_gain_EV": 0.361,
+        "edge_par_risque": 0.162,
+        "ratio_gain_risque": -1.0,
+        "rendement_annualise": -17.381,
+        "kelly_pleine": 0.0,
+        "demi_kelly_conseillee": 0.0,
+        "spot": 29.26,
+        "vol_estimee": 0.461,
+        "iv_atm": 0.405,
+        "ev_prudent_apres_frais": 0.118,
+        "greeks": {
+          "delta": 0.0051,
+          "gamma": 0.2465,
+          "theta_jour": -0.0612,
+          "vega": 0.056
         }
       }
     }
